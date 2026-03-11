@@ -440,9 +440,10 @@ main { max-width:960px; margin:0 auto; padding:18px 14px 150px; }
 // ════════════════════════════════════════════
 // CONFIG JSONBIN
 // ════════════════════════════════════════════
-const API_KEY  = "$2a$10$WJq.I7aQPqeXX6R8aTmCaeAsDgA.zPr4VodYIKBzU1Im2yEO/VdOa";
-const BASE_URL = "https://api.jsonbin.io/v3/bins";
-const BIN_KEY  = "ajd_bin_id_v2"; // stored in localStorage
+const MASTER_KEY = "$2a$10$cWtTLdjbcKEoszIPkkqTou.Dk/DPNyCJHtwHKvt.dMKKr31Cmhrbq";
+const ACCESS_KEY = "$2a$10$WJq.I7aQPqeXX6R8aTmCaeAsDgA.zPr4VodYIKBzU1Im2yEO/VdOa";
+const BASE_URL   = "https://api.jsonbin.io/v3/bins";
+const BIN_ID_FIXED = "69b19886aa77b81da9d79b3a"; // bin fijo, no necesita crearse
 
 // ════════════════════════════════════════════
 // ESTADO
@@ -457,33 +458,21 @@ let products = [
 ];
 let nextId   = 10;
 let parciales = [];
-let binId    = localStorage.getItem(BIN_KEY) || null;
+let binId    = BIN_ID_FIXED; // siempre el mismo bin
 let syncing  = false;
-let lastEtag = null;
 
 // ════════════════════════════════════════════
 // JSONBIN API
 // ════════════════════════════════════════════
-async function createBin(data) {
-  const res = await fetch(BASE_URL, {
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "X-Master-Key": API_KEY,
-      "X-Bin-Name":   "ajolotito-dulce",
-      "X-Bin-Private":"false"
-    },
-    body: JSON.stringify(data)
-  });
-  if (!res.ok) throw new Error("No se pudo crear el bin: " + res.status);
-  const j = await res.json();
-  return j.metadata.id;
-}
+// createBin ya no se usa — bin fijo hardcodeado
 
 async function readBin() {
   if (!binId) return null;
   const res = await fetch(`${BASE_URL}/${binId}/latest`, {
-    headers:{ "X-Master-Key": API_KEY }
+    headers:{
+      "X-Master-Key": MASTER_KEY,
+      "X-Access-Key": ACCESS_KEY
+    }
   });
   if (!res.ok) throw new Error("No se pudo leer: " + res.status);
   const j = await res.json();
@@ -491,16 +480,12 @@ async function readBin() {
 }
 
 async function writeBin(data) {
-  if (!binId) {
-    binId = await createBin(data);
-    localStorage.setItem(BIN_KEY, binId);
-    return;
-  }
   const res = await fetch(`${BASE_URL}/${binId}`, {
     method:"PUT",
     headers:{
       "Content-Type":"application/json",
-      "X-Master-Key": API_KEY
+      "X-Master-Key": MASTER_KEY,
+      "X-Access-Key": ACCESS_KEY
     },
     body: JSON.stringify(data)
   });
