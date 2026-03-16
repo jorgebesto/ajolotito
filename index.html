@@ -381,6 +381,122 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-prog-fill{height:100%;border-radius:99px;transition:width 0.5s ease;}
 .f-tc-rem{font-size:9px;color:var(--muted);margin-top:7px;font-weight:700;}
 
+/* ── BOTÓN PAGAR TC en la tarjeta ── */
+.f-tc-pay-btn{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  width:100%;margin-top:10px;padding:7px 10px;
+  background:linear-gradient(135deg,#2196f3,#1565c0);color:#fff;
+  border:none;border-radius:10px;font-family:'Nunito',sans-serif;
+  font-size:11px;font-weight:800;cursor:pointer;
+  box-shadow:0 3px 10px rgba(52,152,219,0.3);transition:all 0.2s;
+}
+.f-tc-pay-btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(52,152,219,0.4);}
+
+/* ── MODAL PAGO TC ── */
+.tc-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;
+  display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+@media(min-width:600px){.tc-modal-overlay{align-items:center;padding:20px;}}
+.tc-modal{background:#fff;border-radius:28px 28px 0 0;width:100%;max-width:480px;
+  padding:0;overflow:hidden;box-shadow:0 -10px 50px rgba(0,0,0,0.25);
+  animation:tcup 0.3s cubic-bezier(0.34,1.4,0.64,1);}
+@media(min-width:600px){.tc-modal{border-radius:28px;animation:tcsci 0.3s ease;}}
+@keyframes tcup{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes tcsci{from{transform:scale(0.88);opacity:0}to{transform:scale(1);opacity:1}}
+
+.tc-modal-head{
+  background:linear-gradient(135deg,#1565c0,#1976d2,#2196f3);
+  padding:22px 20px 18px;text-align:center;position:relative;}
+.tc-modal-emoji{font-size:2.2rem;display:block;margin-bottom:6px;}
+.tc-modal-title{font-family:'Pacifico',cursive;color:#fff;font-size:1.3rem;margin-bottom:3px;}
+.tc-modal-sub{color:rgba(255,255,255,0.72);font-size:0.75rem;font-weight:600;}
+.tc-modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.18);
+  border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.tc-modal-close:hover{background:rgba(255,255,255,0.3);}
+
+.tc-modal-body{padding:18px 18px 22px;}
+
+/* estado actual TC */
+.tc-estado{background:linear-gradient(135deg,#e3f2fd,#f0f8ff);
+  border:1.5px solid #bbdefb;border-radius:16px;padding:14px;
+  margin-bottom:16px;display:flex;gap:14px;}
+.tc-estado-item{flex:1;text-align:center;}
+.tc-estado-lbl{font-size:10px;font-weight:800;color:#1565c0;text-transform:uppercase;
+  letter-spacing:0.5px;margin-bottom:4px;}
+.tc-estado-val{font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:700;}
+.tc-estado-val.utili{color:#e53935;}
+.tc-estado-val.cupo{color:#2196f3;}
+.tc-estado-sep{width:1px;background:#bbdefb;border-radius:99px;}
+
+/* tipo de pago */
+.tc-tipo-toggle{display:flex;gap:7px;margin-bottom:14px;}
+.tc-tipo-btn{flex:1;padding:9px 8px;border-radius:11px;
+  border:1.5px solid var(--border);background:var(--card2);
+  color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;
+  font-weight:800;cursor:pointer;transition:all 0.2s;text-align:center;}
+.tc-tipo-btn.total-mode{background:#e8f5e9;border-color:#a8dfc0;color:#2e7d32;}
+.tc-tipo-btn.parcial-mode{background:#fff3e0;border-color:#ffe0b2;color:#e65100;}
+
+/* campos */
+.tc-field-grp{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.tc-field-lbl{font-size:11.5px;font-weight:800;color:var(--text);opacity:0.7;}
+.tc-inp{background:#fff;border:1.5px solid var(--border);border-radius:11px;
+  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:14px;
+  color:var(--text);width:100%;outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;font-weight:600;}
+.tc-inp:focus{border-color:var(--credit);box-shadow:0 0 0 3px rgba(52,152,219,0.15);}
+.tc-select{background:#fff;border:1.5px solid var(--border);border-radius:11px;
+  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--text);
+  width:100%;outline:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b0a39a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;margin-bottom:12px;}
+.tc-select:focus{border-color:var(--credit);}
+
+/* preview */
+.tc-preview{background:linear-gradient(135deg,#e8f5e9,#f1f8ff);
+  border:1.5px solid #c8e6c9;border-radius:14px;padding:12px 14px;
+  margin-bottom:14px;display:none;}
+.tc-preview.show{display:block;}
+.tc-preview-row{display:flex;justify-content:space-between;align-items:center;
+  font-size:12.5px;padding:3px 0;}
+.tc-preview-row:not(:last-child){border-bottom:1px solid rgba(0,0,0,0.06);padding-bottom:6px;margin-bottom:3px;}
+.tc-preview-lbl{color:var(--muted);font-weight:700;}
+.tc-preview-val{font-family:'DM Mono',monospace;font-weight:700;}
+.tc-preview-val.red{color:#e53935;}
+.tc-preview-val.green{color:#2e7d32;}
+.tc-preview-val.blue{color:#1976d2;}
+
+/* advertencia pago mínimo */
+.tc-warning{background:#fff8e1;border:1.5px solid #ffe082;border-radius:11px;
+  padding:10px 13px;font-size:12px;font-weight:700;color:#f57f17;
+  margin-bottom:12px;display:none;line-height:1.5;}
+.tc-warning.show{display:block;}
+
+/* botón confirmar */
+.tc-confirm-btn{width:100%;background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;
+  border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;
+  font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 5px 18px rgba(21,101,192,0.3);}
+.tc-confirm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(21,101,192,0.4);}
+.tc-confirm-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+
+/* historial pagos TC */
+.tc-historial{background:var(--card2);border:1.5px solid var(--border);border-radius:20px;
+  padding:16px;margin-bottom:20px;}
+.tc-historial-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:12px;
+  display:flex;align-items:center;gap:7px;}
+.tc-pago-item{display:flex;align-items:center;justify-content:space-between;
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:10px 13px;margin-bottom:7px;animation:mfin 0.3s ease;}
+.tc-pago-item:last-child{margin-bottom:0;}
+.tc-pago-left{display:flex;flex-direction:column;gap:2px;}
+.tc-pago-tipo{font-size:12px;font-weight:800;color:var(--credit);}
+.tc-pago-meta{font-size:11px;color:var(--muted);font-weight:600;}
+.tc-pago-amount{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:var(--accent);}
+.tc-historial-empty{text-align:center;padding:16px;font-size:12.5px;
+  color:var(--muted);font-weight:600;}
+@keyframes mfin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+
 /* panels */
 .f-panels{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;}
 @media(min-width:700px){.f-panels{grid-template-columns:1fr 1fr;}}
@@ -428,13 +544,14 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
   background:#fff;border:1.5px solid var(--border);border-radius:14px;
   padding:11px 14px;animation:mfin 0.3s ease;
   box-shadow:0 1px 6px rgba(58,46,40,0.04);}
-@keyframes mfin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.f-mov-item.tc-pago-mov{border-color:#bbdefb;background:linear-gradient(135deg,#f8fbff,#fff);}
 .f-mov-left{display:flex;flex-direction:column;gap:2px;}
 .f-mov-desc{font-size:13.5px;font-weight:700;color:var(--text);}
 .f-mov-meta{font-size:11px;font-weight:600;color:var(--muted);}
 .f-mov-amount{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;}
 .f-mov-amount.ing{color:var(--accent);}
 .f-mov-amount.gas{color:var(--accent2);}
+.f-mov-amount.tc-pay{color:var(--credit);}
 .f-mov-empty{text-align:center;padding:28px 16px;color:var(--muted);font-size:13px;font-weight:600;}
 
 /* toast finanzas */
@@ -447,6 +564,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-toast.ing{border-color:#a8dfc0;color:var(--accent);}
 .f-toast.gas{border-color:#f5b8b8;color:var(--accent2);}
 .f-toast.warn{border-color:#f5dea8;color:var(--accent3);}
+.f-toast.tc{border-color:#bbdefb;color:var(--credit);}
 </style>
 </head>
 <body>
@@ -600,6 +718,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
         <div class="f-card-lbl">Daviplata</div>
         <div class="f-card-val dv" id="fv-davi">$0</div>
       </div>
+      <!-- TC card con botón pagar -->
       <div class="f-bal-card">
         <div class="f-card-icon">💳</div>
         <div class="f-card-lbl">Tarjeta de Crédito</div>
@@ -610,7 +729,17 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
           <div class="f-prog-bar"><div class="f-prog-fill" id="f-tc-bar" style="width:0%"></div></div>
         </div>
         <div class="f-tc-rem">📅 Pago día 16 · <span id="f-dias-pago">…</span></div>
+        <!-- ✅ NUEVO BOTÓN PAGAR TC -->
+        <button class="f-tc-pay-btn" onclick="openTCModal()">
+          💳 Registrar pago TC
+        </button>
       </div>
+    </div>
+
+    <!-- Historial pagos TC -->
+    <div class="tc-historial" id="tc-historial" style="display:none;">
+      <div class="tc-historial-title">💳 Historial de pagos a TC</div>
+      <div id="tc-historial-list"></div>
     </div>
 
     <!-- Panels -->
@@ -673,6 +802,93 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 
 <div class="f-toast" id="f-toast"></div>
 
+<!-- ══════════════════════════════════════
+     MODAL PAGAR TC
+══════════════════════════════════════ -->
+<div class="tc-modal-overlay" id="tc-modal-overlay" style="display:none;" onclick="closeTCModalOut(event)">
+  <div class="tc-modal">
+    <div class="tc-modal-head">
+      <button class="tc-modal-close" onclick="closeTCModal()">✕</button>
+      <span class="tc-modal-emoji">💳</span>
+      <div class="tc-modal-title">Pago de Tarjeta</div>
+      <div class="tc-modal-sub">Registra cuánto pagaste a tu TC</div>
+    </div>
+    <div class="tc-modal-body">
+
+      <!-- Estado actual -->
+      <div class="tc-estado">
+        <div class="tc-estado-item">
+          <div class="tc-estado-lbl">Saldo utilizado</div>
+          <div class="tc-estado-val utili" id="tc-val-utili">$0</div>
+        </div>
+        <div class="tc-estado-sep"></div>
+        <div class="tc-estado-item">
+          <div class="tc-estado-lbl">Cupo disponible</div>
+          <div class="tc-estado-val cupo" id="tc-val-cupo">$0</div>
+        </div>
+      </div>
+
+      <!-- Tipo: pago total vs parcial -->
+      <div class="tc-tipo-toggle">
+        <button class="tc-tipo-btn total-mode" id="tc-btn-total" onclick="tcSetTipo('total')">✅ Pago total</button>
+        <button class="tc-tipo-btn" id="tc-btn-parcial" onclick="tcSetTipo('parcial')">💰 Pago parcial / abono</button>
+      </div>
+
+      <!-- Campo monto (solo en parcial) -->
+      <div id="tc-field-monto" style="display:none;">
+        <div class="tc-field-grp">
+          <label class="tc-field-lbl">¿Cuánto vas a pagar?</label>
+          <input class="tc-inp" id="tc-monto" type="number" placeholder="0" min="0" inputmode="numeric" oninput="tcUpdatePreview()">
+        </div>
+      </div>
+
+      <!-- ¿Con qué medio pagaste? -->
+      <div class="tc-field-grp">
+        <label class="tc-field-lbl">¿Desde qué cuenta pagaste?</label>
+        <select class="tc-select" id="tc-cuenta" onchange="tcUpdatePreview()">
+          <option value="">— Selecciona —</option>
+          <option value="efectivo">💵 Efectivo</option>
+          <option value="nequi">🟣 Nequi</option>
+          <option value="davi">🔴 Daviplata</option>
+        </select>
+      </div>
+
+      <!-- Fecha -->
+      <div class="tc-field-grp">
+        <label class="tc-field-lbl">Fecha del pago</label>
+        <input class="tc-inp" id="tc-fecha" type="date">
+      </div>
+
+      <!-- Advertencia pago mínimo -->
+      <div class="tc-warning" id="tc-warning"></div>
+
+      <!-- Preview de resultado -->
+      <div class="tc-preview" id="tc-preview">
+        <div class="tc-preview-row">
+          <span class="tc-preview-lbl">Monto a pagar</span>
+          <span class="tc-preview-val red" id="tc-prev-monto">$0</span>
+        </div>
+        <div class="tc-preview-row">
+          <span class="tc-preview-lbl">Saldo TC después del pago</span>
+          <span class="tc-preview-val blue" id="tc-prev-nuevo-saldo">$0</span>
+        </div>
+        <div class="tc-preview-row">
+          <span class="tc-preview-lbl">Cupo disponible después</span>
+          <span class="tc-preview-val green" id="tc-prev-cupo">$0</span>
+        </div>
+        <div class="tc-preview-row" id="tc-prev-cuenta-row">
+          <span class="tc-preview-lbl">Saldo cuenta después</span>
+          <span class="tc-preview-val" id="tc-prev-cuenta-saldo">$0</span>
+        </div>
+      </div>
+
+      <button class="tc-confirm-btn" id="tc-confirm-btn" onclick="confirmarPagoTC()" disabled>
+        💳 Confirmar pago
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════
      JAVASCRIPT COMBINADO
 ════════════════════════════════════════════ -->
@@ -688,7 +904,6 @@ function switchTab(t) {
   document.getElementById(t + '-panel').classList.add('active');
   document.getElementById('tab-' + t).classList.add('active');
   if (t === 'finanzas') {
-    // Asegurarse que se muestre el estado correcto
     var s = localStorage.getItem('misfinanzas');
     if (s && !document.getElementById('f-app').classList.contains('visible')) {
       fLoadState();
@@ -763,7 +978,6 @@ function renderParciales() {
     var div = document.createElement('div');
     div.className = 'pitem';
     var items = par.items.map(function(i){ return i.emoji+' '+i.name+' x'+i.qty; }).join(' · ');
-    // badge de pago: split o medio único
     var pagoHTML = '';
     if(par.split) {
       var parts = [];
@@ -803,7 +1017,6 @@ function updateBar() {
   document.getElementById('bfin').disabled = parciales.length===0 && su===0;
 }
 
-/* ─ Cambiar cantidad ─ */
 function change(id, delta) {
   var p = products.find(function(x){return x.id===id;});
   if (!p) return;
@@ -813,7 +1026,6 @@ function change(id, delta) {
   if (delta>0) vToast('+1 '+p.emoji+' '+p.name);
 }
 
-/* ─ Agregar producto ─ */
 function addProduct() {
   var name  = document.getElementById('nname').value.trim();
   var price = parseInt(document.getElementById('nprice').value);
@@ -829,7 +1041,7 @@ function addProduct() {
 }
 
 /* ════════════════════════════════════════
-   SPLIT DE PAGO — VALOR DIRECTO
+   SPLIT DE PAGO
 ════════════════════════════════════════ */
 var splitTotal  = 0;
 var splitValues = {efectivo:0, nequi:0, davi:0};
@@ -889,7 +1101,6 @@ function updateSplitUI(ctx) {
     var pb = document.getElementById('spct-'+m+'-'+ctx);
     if(pb) pb.textContent = pct+'%';
   });
-  // barra visual
   var bef=document.getElementById('sbar-ef-'+ctx);
   var bnq=document.getElementById('sbar-nq-'+ctx);
   var bdv=document.getElementById('sbar-dv-'+ctx);
@@ -898,14 +1109,12 @@ function updateSplitUI(ctx) {
     if(bnq) bnq.style.width=Math.round((splitValues.nequi||0)/t*100)+'%';
     if(bdv) bdv.style.width=Math.round((splitValues.davi||0)/t*100)+'%';
   }
-  // restante
   var rem = t - sum;
   var remEl = document.getElementById('split-rem-'+ctx);
   if(remEl){
     remEl.textContent = (rem>=0?'$'+rem.toLocaleString('es-CO'):'-$'+Math.abs(rem).toLocaleString('es-CO'));
     remEl.className   = 'split-remaining-val'+(rem<0?' over':'');
   }
-  // validar
   var ok  = Math.abs(sum - t) <= 0;
   var err = document.getElementById('split-err-'+ctx);
   var okEl= document.getElementById('split-ok-'+ctx);
@@ -924,7 +1133,6 @@ function registrarParcial() {
   var items = products.filter(function(p){return p.qty>0;})
     .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
   if (!items.length) return;
-  // Mostrar mini-modal para elegir medio
   showMedioModal('parcial', items);
 }
 
@@ -940,7 +1148,6 @@ function showMedioModal(context, items) {
     '</div>';
   }).join('');
 
-  var pendingItemsJSON = JSON.stringify(items);
   var content = '<div class="tbox">'+
     '<div class="tl">Total a cobrar</div>'+
     '<div class="tm">$'+total.toLocaleString('es-CO')+'</div>'+
@@ -950,16 +1157,13 @@ function showMedioModal(context, items) {
   '<div class="dsec">'+buildSplitSelector(total, context)+'</div>'+
   '<div class="macts">'+
     '<button class="breset" onclick="closeMedioModal()">✕ Cancelar</button>'+
-    '<button class="bfin" style="flex:2" id="btn-confirm-parcial">'+
-      '💾 Guardar venta'+
-    '</button>'+
+    '<button class="bfin" style="flex:2" id="btn-confirm-parcial">💾 Guardar venta</button>'+
   '</div>';
 
   document.getElementById('mtitle').textContent = '💾 Registrar venta parcial';
   document.getElementById('mdate').textContent  = '';
   document.getElementById('mcontent').innerHTML = content;
   document.getElementById('mov').style.display  = 'flex';
-  // attach click after render to avoid &quot; encoding issues
   document.getElementById('btn-confirm-parcial').addEventListener('click', function(){
     confirmParcial(_pendingItems, total, units, time);
   });
@@ -974,12 +1178,10 @@ function closeMedioModal() {
 }
 
 function confirmParcial(items, total, units, time) {
-  // fallback to globals if called without args
   if(!items) { items=_pendingItems; total=_pendingTotal; units=_pendingUnits; time=_pendingTime; }
   var sum = (splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
   if(Math.abs(sum - total) > 0) { vToast('⚠️ Los valores deben sumar $'+total.toLocaleString('es-CO'),'r'); return; }
   var split = getSplitValues();
-  // registrar con split info
   parciales.push({id:'p_'+Date.now(),time:time,items:items,total:total,units:units,
     split:{efectivo:split.efectivo,nequi:split.nequi,davi:split.davi}});
   products.forEach(function(p){p.qty=0;});
@@ -988,13 +1190,11 @@ function confirmParcial(items, total, units, time) {
   renderParciales();
   updateBar();
   closeMedioModal();
-  // toast con breakdown
   var parts = [];
   if(split.efectivo>0) parts.push('💵$'+split.efectivo.toLocaleString('es-CO'));
   if(split.nequi>0)    parts.push('🟣$'+split.nequi.toLocaleString('es-CO'));
   if(split.davi>0)     parts.push('🔴$'+split.davi.toLocaleString('es-CO'));
   vToast('💾 '+parts.join(' · '),'g');
-  // ── Transferir a Finanzas por medio ──
   if(split.efectivo>0) transferToFinanzas(split.efectivo, 'efectivo', 'Venta Ajolotito · '+time);
   if(split.nequi>0)    transferToFinanzas(split.nequi,    'nequi',    'Venta Ajolotito · '+time);
   if(split.davi>0)     transferToFinanzas(split.davi,     'davi',     'Venta Ajolotito · '+time);
@@ -1007,9 +1207,7 @@ function showResumen() {
   var pendingItems = products.filter(function(p){return p.qty>0;})
     .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
 
-  // Consolidar cantidades del día
   var resumen = {};
-  var allItems = [];
   parciales.forEach(function(par){
     par.items.forEach(function(i){
       if (!resumen[i.id]) resumen[i.id]={id:i.id,name:i.name,emoji:i.emoji,price:i.price,qty:0};
@@ -1033,22 +1231,17 @@ function showResumen() {
   var ds  = now.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
   var ts  = now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
 
-  // Tabla resumen productos
   var tableHTML = '<table class="stbl"><thead><tr><th></th><th>Producto</th><th>Cant.</th><th>Total</th></tr></thead><tbody>';
   arr.forEach(function(c){
     tableHTML += '<tr><td class="eji">'+c.emoji+'</td><td>'+c.name+'</td><td><span class="qbadge">'+c.qty+'</span></td><td class="scol">$'+(c.qty*c.price).toLocaleString('es-CO')+'</td></tr>';
   });
   tableHTML += '</tbody></table>';
 
-  // Resumen por medio de pago
   var porMedio = {efectivo:0,nequi:0,davi:0};
   parciales.forEach(function(p){
     var m = p.medio||'efectivo';
     porMedio[m] = (porMedio[m]||0)+p.total;
   });
-  if (pendingItems.length) {
-    // Los pendientes no tienen medio aún — se pedirá
-  }
 
   var medioHTML = '';
   if (porMedio.efectivo>0) medioHTML += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>💵 Efectivo</span><strong>$'+porMedio.efectivo.toLocaleString('es-CO')+'</strong></div>';
@@ -1125,7 +1318,6 @@ function resetDay() {
   updateBar();
 }
 
-/* ─ WhatsApp ─ */
 function sendWhatsApp() {
   var pendingItems = products.filter(function(p){return p.qty>0;})
     .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
@@ -1164,8 +1356,7 @@ function sendWhatsApp() {
   lines.push('━━━━━━━━━━━━━━━━━━');
   parciales.forEach(function(par){
     var its=par.items.map(function(i){return i.emoji+'x'+i.qty;}).join(' ');
-    var medLabel={efectivo:'💵',nequi:'🟣',davi:'🔴'};
-    lines.push('🕐 '+par.time+'  '+its+'  👉 $'+par.total.toLocaleString('es-CO')+' '+(medLabel[par.medio]||''));
+    lines.push('🕐 '+par.time+'  '+its+'  👉 $'+par.total.toLocaleString('es-CO'));
   });
   lines.push('');
   lines.push('━━━━━━━━━━━━━━━━━━');
@@ -1185,7 +1376,6 @@ function closeOut(e) {
   if (e.target === document.getElementById('mov')) closeMedioModal();
 }
 
-/* ─ Toast ventas ─ */
 function vToast(msg,cls) {
   var old=document.getElementById('_vtoast');
   if(old) old.remove();
@@ -1196,7 +1386,6 @@ function vToast(msg,cls) {
   setTimeout(function(){if(t.parentNode)t.remove();},2600);
 }
 
-/* ─ Fecha header ─ */
 function updateDateBadge() {
   var now=new Date();
   var ds=now.toLocaleDateString('es-CO',{weekday:'short',day:'numeric',month:'short'});
@@ -1207,19 +1396,16 @@ function updateDateBadge() {
    TRANSFERIR VENTA → FINANZAS
 ════════════════════════════════════════ */
 function transferToFinanzas(amount, medio, desc) {
-  // Cargar estado de finanzas
   var raw=localStorage.getItem('misfinanzas');
-  if(!raw) return; // Finanzas no inicializado aún — no transferir
+  if(!raw) return;
   var fs;
   try{ fs=JSON.parse(raw); } catch(e){ return; }
 
-  // Sumar al saldo correspondiente
   if(medio==='efectivo') fs.efectivo+=amount;
   else if(medio==='nequi') fs.nequi+=amount;
   else if(medio==='davi') fs.davi+=amount;
   fs.ingresos+=amount;
 
-  // Agregar movimiento
   var today=new Date().toISOString().split('T')[0];
   if(!fs.movimientos) fs.movimientos=[];
   fs.movimientos.push({
@@ -1232,13 +1418,11 @@ function transferToFinanzas(amount, medio, desc) {
   });
   localStorage.setItem('misfinanzas',JSON.stringify(fs));
 
-  // Si la app de finanzas está visible, re-renderizar
   if(document.getElementById('f-app').classList.contains('visible')) {
     fState=fs; fRender();
   }
-  // Notificación discreta
   var lblM={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
-  showFToast('+$'+amount.toLocaleString('es-CO')+' → Finanzas ('+( lblM[medio]||medio)+')', 'ing');
+  showFToast('+$'+amount.toLocaleString('es-CO')+' → Finanzas ('+(lblM[medio]||medio)+')', 'ing');
 }
 
 /* ════════════════════════════════════════
@@ -1342,7 +1526,7 @@ function fIniciar(){
   var davi=parseFloat(document.getElementById('fi-davi').value)||0;
   var tcGasto=parseFloat(document.getElementById('fi-tc-gasto').value)||0;
   var tcCupo=parseFloat(document.getElementById('fi-tc-cupo').value)||0;
-  fState={efectivo,nequi,davi,tcGasto,tcCupo,ingresos:0,gastos:0,movimientos:[]};
+  fState={efectivo,nequi,davi,tcGasto,tcCupo,ingresos:0,gastos:0,movimientos:[],pagosTc:[]};
   document.getElementById('f-mov-fecha').value=new Date().toISOString().split('T')[0];
   fSaveState();
   document.getElementById('f-setup').classList.remove('visible');
@@ -1369,7 +1553,7 @@ function fRender(){
   bar.style.width=pct+'%';
   bar.style.background=pct>80?'var(--accent2)':pct>50?'var(--accent3)':'var(--credit)';
   document.getElementById('f-dias-pago').textContent=fDiasPago();
-  fRenderMovimientos(); fRenderTips();
+  fRenderMovimientos(); fRenderTips(); fRenderHistorialTC();
 }
 
 function fRenderMovimientos(){
@@ -1382,9 +1566,34 @@ function fRenderMovimientos(){
   list.innerHTML=[...fState.movimientos].reverse().map(function(m){
     var meta=m.fecha+' · '+(lbl[m.cuenta]||m.cuenta);
     if(m.cuotas&&m.cuotas>1) meta+=' · '+m.cuotas+' cuotas (~'+fFmt(m.valor/m.cuotas)+'/mes)';
-    return '<div class="f-mov-item">'+
+    var esTCPago = m.tipo==='tc-pago';
+    return '<div class="f-mov-item'+(esTCPago?' tc-pago-mov':'')+'">'+
       '<div class="f-mov-left"><div class="f-mov-desc">'+(m.desc||'Sin descripción')+'</div><div class="f-mov-meta">'+meta+'</div></div>'+
-      '<div class="f-mov-amount '+(m.tipo==='ingreso'?'ing':'gas')+'">'+(m.tipo==='ingreso'?'+':'-')+fFmt(m.valor)+'</div>'+
+      '<div class="f-mov-amount '+(esTCPago?'tc-pay':m.tipo==='ingreso'?'ing':'gas')+'">'+(esTCPago?'↩ TC':m.tipo==='ingreso'?'+':'-')+fFmt(m.valor)+'</div>'+
+    '</div>';
+  }).join('');
+}
+
+function fRenderHistorialTC(){
+  var pagosTc = fState.pagosTc||[];
+  var container = document.getElementById('tc-historial');
+  var list = document.getElementById('tc-historial-list');
+  if(!pagosTc.length){
+    container.style.display='none';
+    return;
+  }
+  container.style.display='block';
+  list.innerHTML = [...pagosTc].reverse().map(function(p){
+    var tipoLabel = p.tipoPago==='total'
+      ? '<span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Pago total</span>'
+      : '<span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Abono parcial</span>';
+    var cuentaLbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
+    return '<div class="tc-pago-item">'+
+      '<div class="tc-pago-left">'+
+        '<div class="tc-pago-tipo">'+tipoLabel+'</div>'+
+        '<div class="tc-pago-meta">'+p.fecha+' · desde '+(cuentaLbl[p.cuenta]||p.cuenta)+'</div>'+
+      '</div>'+
+      '<div class="tc-pago-amount">'+fFmt(p.monto)+' ↩</div>'+
     '</div>';
   }).join('');
 }
@@ -1395,9 +1604,9 @@ function fRenderTips(){
   var pct=totalCupo>0?(fState.tcGasto/totalCupo)*100:0;
   var dia=new Date().getDate();
   if(dia>=13&&dia<=18){
-    if(dia===16) tips.push({icon:'🚨',text:'<strong>HOY es el día de pago de tu TC.</strong> Paga el total para no generar intereses.'});
-    else if(dia<16) tips.push({icon:'📅',text:'El pago de tu TC es el <strong>16 de este mes</strong> (en '+(16-dia)+' días).'});
-    else tips.push({icon:'⏰',text:'El 16 ya pasó. Cada día genera intereses en tu TC.'});
+    if(dia===16) tips.push({icon:'🚨',text:'<strong>HOY es el día de pago de tu TC.</strong> Haz clic en "Registrar pago TC" para cuadrar.'});
+    else if(dia<16) tips.push({icon:'📅',text:'El pago de tu TC es el <strong>16 de este mes</strong> (en '+(16-dia)+' días). Usa el botón "Registrar pago TC" cuando lo hagas.'});
+    else tips.push({icon:'⏰',text:'El 16 ya pasó. Cada día genera intereses. Registra tu pago con el botón 💳.'});
   }
   if(pct>80) tips.push({icon:'🚨',text:'Llevas el <strong>'+Math.round(pct)+'%</strong> del cupo usado. Superar el 80% impacta tu score.'});
   else if(pct>50) tips.push({icon:'💳',text:'Usas el <strong>'+Math.round(pct)+'%</strong> del cupo. No pases del 70%.'});
@@ -1408,9 +1617,12 @@ function fRenderTips(){
     if(tasa>80) tips.push({icon:'⚠️',text:'Gastas el <strong>'+tasa+'%</strong> de tus ingresos. La regla 50/30/20 sugiere 20% para ahorro.'});
     else if(fState.gastos>0) tips.push({icon:'✅',text:'¡Buen ritmo! Solo el <strong>'+tasa+'%</strong> de gasto sobre ingresos esta semana.'});
   }
-  // Consejo sobre ventas
   var totalVentas=parciales.reduce(function(s,p){return s+p.total;},0);
   if(totalVentas>0) tips.push({icon:'🍫',text:'Hoy llevas <strong>$'+totalVentas.toLocaleString('es-CO')+'</strong> en ventas registradas en tus finanzas.'});
+  // Tip pago TC si tiene saldo
+  if(fState.tcGasto>0 && !(fState.pagosTc||[]).length){
+    tips.push({icon:'💡',text:'Tienes <strong>'+fFmt(fState.tcGasto)+'</strong> en TC. Cuando pagues, usa el botón "Registrar pago TC" para cuadrar los saldos.'});
+  }
   if(!tips.length) tips.push({icon:'💡',text:'Registra tus movimientos para recibir sugerencias personalizadas.'});
   document.getElementById('f-tips').innerHTML=tips.slice(0,5).map(function(t){
     return '<div class="f-tip"><span class="f-tip-icon">'+t.icon+'</span><span>'+t.text+'</span></div>';
@@ -1480,6 +1692,7 @@ function fLoadState(){
   if(s){
     try{
       fState=JSON.parse(s);
+      if(!fState.pagosTc) fState.pagosTc=[];
       document.getElementById('f-setup').classList.remove('visible');
       document.getElementById('f-app').classList.add('visible');
       document.getElementById('f-week-lbl').textContent=fGetWeekLabel();
@@ -1492,6 +1705,149 @@ function fLoadState(){
 }
 
 /* ════════════════════════════════════════
+   MODAL PAGO TC — LÓGICA
+════════════════════════════════════════ */
+var tcTipoPago = 'total'; // 'total' | 'parcial'
+
+function openTCModal(){
+  // Actualizar valores actuales en modal
+  document.getElementById('tc-val-utili').textContent = fFmt(fState.tcGasto);
+  document.getElementById('tc-val-cupo').textContent  = fFmt(fState.tcCupo);
+  document.getElementById('tc-fecha').value = new Date().toISOString().split('T')[0];
+  document.getElementById('tc-cuenta').value = '';
+  document.getElementById('tc-monto').value = '';
+  document.getElementById('tc-preview').classList.remove('show');
+  document.getElementById('tc-warning').classList.remove('show');
+  document.getElementById('tc-confirm-btn').disabled = true;
+  tcSetTipo('total');
+  document.getElementById('tc-modal-overlay').style.display = 'flex';
+}
+
+function closeTCModal(){
+  document.getElementById('tc-modal-overlay').style.display = 'none';
+}
+
+function closeTCModalOut(e){
+  if(e.target === document.getElementById('tc-modal-overlay')) closeTCModal();
+}
+
+function tcSetTipo(tipo){
+  tcTipoPago = tipo;
+  var btnTotal   = document.getElementById('tc-btn-total');
+  var btnParcial = document.getElementById('tc-btn-parcial');
+  var campoMonto = document.getElementById('tc-field-monto');
+
+  if(tipo==='total'){
+    btnTotal.className   = 'tc-tipo-btn total-mode';
+    btnParcial.className = 'tc-tipo-btn';
+    campoMonto.style.display = 'none';
+    document.getElementById('tc-monto').value = fState.tcGasto; // autocompletar con el total
+  } else {
+    btnParcial.className = 'tc-tipo-btn parcial-mode';
+    btnTotal.className   = 'tc-tipo-btn';
+    campoMonto.style.display = 'block';
+    document.getElementById('tc-monto').value = '';
+  }
+  tcUpdatePreview();
+}
+
+function tcUpdatePreview(){
+  var cuenta = document.getElementById('tc-cuenta').value;
+  var montoInput = parseFloat(document.getElementById('tc-monto').value)||0;
+  var monto = tcTipoPago==='total' ? fState.tcGasto : montoInput;
+
+  // Ocultar todo si no hay cuenta o monto
+  if(!cuenta || monto<=0){
+    document.getElementById('tc-preview').classList.remove('show');
+    document.getElementById('tc-warning').classList.remove('show');
+    document.getElementById('tc-confirm-btn').disabled = true;
+    return;
+  }
+
+  // Calcular saldo de cuenta después del pago
+  var saldoCuenta = cuenta==='efectivo' ? fState.efectivo
+    : cuenta==='nequi' ? fState.nequi
+    : cuenta==='davi' ? fState.davi : 0;
+
+  var nuevoSaldoTC   = Math.max(0, fState.tcGasto - monto);
+  var nuevoCupo      = fState.tcCupo + monto;
+  var nuevoSaldoCuenta = saldoCuenta - monto;
+
+  // Actualizar preview
+  document.getElementById('tc-prev-monto').textContent = fFmt(monto);
+  document.getElementById('tc-prev-nuevo-saldo').textContent = fFmt(nuevoSaldoTC);
+  document.getElementById('tc-prev-cupo').textContent = fFmt(nuevoCupo);
+  document.getElementById('tc-prev-cuenta-saldo').textContent = fFmt(Math.abs(nuevoSaldoCuenta));
+  document.getElementById('tc-prev-cuenta-saldo').className =
+    'tc-preview-val ' + (nuevoSaldoCuenta>=0?'green':'red');
+  document.getElementById('tc-preview').classList.add('show');
+
+  // Advertencias
+  var warn = document.getElementById('tc-warning');
+  if(monto > fState.tcGasto){
+    warn.innerHTML = '⚠️ Estás pagando más de lo que debes ($'+fFmt(fState.tcGasto)+'). Se ajustará al saldo real.';
+    warn.classList.add('show');
+  } else if(nuevoSaldoCuenta < 0){
+    warn.innerHTML = '⚠️ No tienes suficiente saldo en '+{efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'}[cuenta]+' para este pago. Déficit: '+fFmt(Math.abs(nuevoSaldoCuenta));
+    warn.classList.add('show');
+  } else {
+    warn.classList.remove('show');
+  }
+
+  document.getElementById('tc-confirm-btn').disabled = false;
+}
+
+function confirmarPagoTC(){
+  var cuenta  = document.getElementById('tc-cuenta').value;
+  var montoRaw = parseFloat(document.getElementById('tc-monto').value)||0;
+  var monto   = tcTipoPago==='total' ? fState.tcGasto : montoRaw;
+  var fecha   = document.getElementById('tc-fecha').value || new Date().toISOString().split('T')[0];
+
+  if(!cuenta){ showFToast('Selecciona desde qué cuenta pagaste','warn'); return; }
+  if(monto<=0){ showFToast('El monto debe ser mayor a cero','warn'); return; }
+
+  // Ajustar si pagan más de lo que deben
+  var montoReal = Math.min(monto, fState.tcGasto);
+
+  // Descontar de la cuenta origen
+  if(cuenta==='efectivo') fState.efectivo = Math.max(0, fState.efectivo - montoReal);
+  else if(cuenta==='nequi') fState.nequi = Math.max(0, fState.nequi - montoReal);
+  else if(cuenta==='davi') fState.davi = Math.max(0, fState.davi - montoReal);
+
+  // Reducir saldo TC y restaurar cupo
+  fState.tcGasto = Math.max(0, fState.tcGasto - montoReal);
+  fState.tcCupo  = fState.tcCupo + montoReal;
+
+  // Registrar en movimientos
+  if(!fState.movimientos) fState.movimientos=[];
+  var cuentaLbl = {efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
+  fState.movimientos.push({
+    desc: tcTipoPago==='total' ? '💳 Pago total TC' : '💳 Abono a TC',
+    valor: montoReal,
+    tipo: 'tc-pago',
+    cuenta: cuenta,
+    cuotas: 1,
+    fecha: fecha
+  });
+
+  // Guardar en historial pagos TC
+  if(!fState.pagosTc) fState.pagosTc=[];
+  fState.pagosTc.push({
+    monto: montoReal,
+    tipoPago: tcTipoPago,
+    cuenta: cuenta,
+    fecha: fecha
+  });
+
+  fSaveState();
+  fRender();
+  closeTCModal();
+
+  var msgTipo = tcTipoPago==='total' ? '✅ Pago total TC' : '💳 Abono TC';
+  showFToast(msgTipo+' · '+fFmt(montoReal)+' desde '+(cuentaLbl[cuenta]||cuenta), 'tc');
+}
+
+/* ════════════════════════════════════════
    INIT
 ════════════════════════════════════════ */
 (function init(){
@@ -1500,9 +1856,7 @@ function fLoadState(){
   renderProducts();
   renderParciales();
   updateBar();
-  // Finanzas
   fLoadState();
-  // Inicializar la fecha de finanzas
   var fi=document.getElementById('f-mov-fecha');
   if(fi) fi.value=new Date().toISOString().split('T')[0];
 })();
