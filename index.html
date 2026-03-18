@@ -7,263 +7,298 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ════════════════════════════════════════
-   GLOBAL
-════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
-  /* Ventas palette */
   --brown-dark:#3d1a00;--brown:#7b3f00;--brown-mid:#a05c20;
   --brown-light:#c4864a;--gold:#d4943a;--gold-light:#f5c842;
   --cream:#fff8f0;--cream-dark:#f0e8dc;--warm-white:#fffcf7;
   --green:#2eb86e;--pink-deep:#e03060;
-  /* Finanzas palette — warm white, airy */
   --bg:#fdfaf7;--card:#ffffff;--card2:#faf7f4;
   --border:#ede6de;--text:#3a2e28;--muted:#b0a39a;
   --accent:#3cb371;--accent2:#e05c5c;--accent3:#e8a820;
   --nequi:#9b59b6;--davi:#e74c3c;--credit:#3498db;
+  --profit:#16a34a;--cost:#dc2626;--stock-ok:#2eb86e;--stock-warn:#f59e0b;--stock-low:#e05c5c;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;overflow-x:hidden}
 
-/* ════════════════════════════════════════
-   TAB NAV
-════════════════════════════════════════ */
-.tab-nav {
-  position:sticky;top:0;z-index:200;
-  display:flex;
-  background:var(--brown-dark);
-  box-shadow:0 2px 12px rgba(0,0,0,0.35);
-}
-.tab-btn {
-  flex:1;padding:14px 8px;
-  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
-  color:rgba(255,255,255,0.5);background:none;border:none;
-  cursor:pointer;transition:all 0.25s;letter-spacing:0.3px;
-  border-bottom:3px solid transparent;
-}
+/* ── TAB NAV ── */
+.tab-nav{position:sticky;top:0;z-index:200;display:flex;background:var(--brown-dark);box-shadow:0 2px 12px rgba(0,0,0,0.35);}
+.tab-btn{flex:1;padding:14px 8px;font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;color:rgba(255,255,255,0.5);background:none;border:none;cursor:pointer;transition:all 0.25s;letter-spacing:0.3px;border-bottom:3px solid transparent;}
 .tab-btn.active{color:var(--gold-light);border-bottom-color:var(--gold);}
 .tab-btn:hover:not(.active){color:rgba(255,255,255,0.8);}
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
 
-/* ════════════════════════════════════════
-   VENTAS — HEADER
-════════════════════════════════════════ */
-#ventas-panel {background:var(--cream);}
-#ventas-panel header {
-  background:linear-gradient(160deg,var(--brown-dark),var(--brown));
-  padding:14px 16px 10px;display:flex;align-items:center;gap:12px;
-  position:sticky;top:49px;z-index:100;
-  box-shadow:0 2px 14px rgba(0,0,0,0.3);
-}
-.logo-img{width:46px;height:46px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--gold);flex-shrink:0;}
+/* ── VENTAS HEADER ── */
+#ventas-panel{background:var(--cream);}
+#ventas-panel header{background:linear-gradient(160deg,var(--brown-dark),var(--brown));padding:14px 16px 10px;display:flex;align-items:center;gap:12px;position:sticky;top:49px;z-index:100;box-shadow:0 2px 14px rgba(0,0,0,0.3);}
+.logo-img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;}
 .htext{flex:1}
 .htit{font-family:'Pacifico',cursive;color:var(--gold-light);font-size:1.1rem;}
 .hsub{font-size:0.72rem;color:rgba(255,255,255,0.55);font-weight:600;}
-.dbadge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
-  border-radius:8px;padding:3px 9px;font-size:0.7rem;color:rgba(255,255,255,0.7);
-  font-weight:700;white-space:nowrap;}
+.dbadge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:3px 9px;font-size:0.7rem;color:rgba(255,255,255,0.7);font-weight:700;white-space:nowrap;}
 
-/* ── SECCIONES VENTAS ── */
 #ventas-panel main{padding:14px 13px 120px;}
-.stitle{font-size:0.72rem;font-weight:900;color:var(--brown-mid);
-  text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;}
+.stitle{font-size:0.72rem;font-weight:900;color:var(--brown-mid);text-transform:uppercase;letter-spacing:1px;margin:18px 0 8px;}
 
 /* ── LOG PARCIALES ── */
-.plog{background:#fff;border-radius:16px;overflow:hidden;
-  box-shadow:0 2px 10px rgba(0,0,0,0.06);}
-.plogh{display:flex;justify-content:space-between;align-items:center;
-  padding:10px 14px;background:var(--cream-dark);
-  border-bottom:2px solid var(--cream-dark);}
+.plog{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);}
+.plogh{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--cream-dark);border-bottom:2px solid var(--cream-dark);}
 .plogh span{font-size:0.78rem;font-weight:800;color:var(--brown);}
-.pcnt{background:var(--brown);color:#fff;border-radius:20px;padding:2px 10px;
-  font-size:0.72rem;font-weight:900;}
-.pempty{text-align:center;padding:20px;font-size:0.82rem;color:var(--brown-light);
-  font-weight:600;}
-.pitem{display:flex;align-items:center;gap:8px;padding:10px 13px;
-  border-bottom:1px solid var(--cream-dark);animation:fadein 0.3s ease;}
+.pcnt{background:var(--brown);color:#fff;border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:900;}
+.pempty{text-align:center;padding:20px;font-size:0.82rem;color:var(--brown-light);font-weight:600;}
+.pitem{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid var(--cream-dark);animation:fadein 0.3s ease;}
 .pitem:last-child{border-bottom:none}
 @keyframes fadein{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
 .pleft{flex:1;}
 .ptime{font-size:0.7rem;color:var(--brown-mid);font-weight:800;}
-.pprods{font-size:0.78rem;color:var(--brown-dark);font-weight:600;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;}
-.ppago{font-size:0.67rem;font-weight:700;margin-top:2px;border-radius:6px;
-  display:inline-block;padding:1px 6px;}
+.pprods{font-size:0.78rem;color:var(--brown-dark);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;}
+.ppago{font-size:0.67rem;font-weight:700;margin-top:2px;border-radius:6px;display:inline-block;padding:1px 6px;}
 .ppago.efectivo{background:#e8f5e9;color:#2e7d32;}
 .ppago.nequi{background:#f3e5f5;color:#7b1fa2;}
 .ppago.davi{background:#fde8e8;color:#c62828;}
 .pright{text-align:right;flex-shrink:0;}
 .ptot{font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:700;color:var(--green);}
 .punit{font-size:0.65rem;color:var(--brown-light);font-weight:700;}
-.bdel{background:none;border:none;color:var(--brown-light);font-size:0.9rem;
-  cursor:pointer;padding:4px;border-radius:6px;transition:all 0.15s;}
+.bdel{background:none;border:none;color:var(--brown-light);font-size:0.9rem;cursor:pointer;padding:4px;border-radius:6px;transition:all 0.15s;}
 .bdel:hover{background:var(--pink-deep);color:#fff;}
 
 /* ── GRID PRODUCTOS ── */
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
 @media(min-width:480px){.pgrid{grid-template-columns:repeat(3,1fr);}}
-.pcard{background:#fff;border-radius:16px;padding:12px 10px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);border:2px solid transparent;
-  transition:all 0.2s;text-align:center;}
-.pcard.hs{border-color:var(--gold);background:var(--warm-white);
-  box-shadow:0 4px 16px rgba(212,148,58,0.2);}
+.pcard{background:#fff;border-radius:16px;padding:12px 10px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border:2px solid transparent;transition:all 0.2s;text-align:center;}
+.pcard.hs{border-color:var(--gold);background:var(--warm-white);box-shadow:0 4px 16px rgba(212,148,58,0.2);}
+.pcard.no-stock{opacity:0.5;pointer-events:none;}
 .pemi{font-size:1.7rem;display:block;margin-bottom:4px;}
 .pname{font-size:0.78rem;font-weight:800;color:var(--brown-dark);line-height:1.2;}
 .pdesc{font-size:0.65rem;color:var(--brown-light);font-weight:600;margin:2px 0;}
-.pprice{font-family:'DM Mono',monospace;font-size:0.82rem;font-weight:700;
-  color:var(--brown);margin:5px 0 8px;}
-.crow{display:flex;align-items:center;justify-content:center;gap:6px;
-  background:var(--cream-dark);border-radius:10px;padding:4px;}
+.pprice{font-family:'DM Mono',monospace;font-size:0.82rem;font-weight:700;color:var(--brown);margin:5px 0 4px;}
+/* stock badge en tarjeta */
+.pstock-badge{font-size:0.65rem;font-weight:800;border-radius:6px;padding:2px 7px;margin-bottom:6px;display:inline-block;}
+.pstock-badge.ok{background:#e8f5e9;color:#2e7d32;}
+.pstock-badge.warn{background:#fff8e1;color:#b45309;}
+.pstock-badge.low{background:#fde8e8;color:#c62828;}
+.pstock-badge.none{background:#f3f3f3;color:#999;}
+.crow{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--cream-dark);border-radius:10px;padding:4px;}
 .crow.sold{background:linear-gradient(135deg,var(--gold),var(--brown-light));}
 .crow.sold .cdsp{color:#fff;}
-.bcnt{width:26px;height:26px;border-radius:7px;border:none;cursor:pointer;
-  font-size:0.9rem;font-weight:900;display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;touch-action:manipulation;}
+.bcnt{width:26px;height:26px;border-radius:7px;border:none;cursor:pointer;font-size:0.9rem;font-weight:900;display:flex;align-items:center;justify-content:center;transition:all 0.15s;touch-action:manipulation;}
 .bminus{background:var(--cream);color:var(--brown);}
 .bplus{background:var(--brown);color:#fff;}
 .bminus:hover{background:var(--brown-light);color:#fff;}
 .bplus:hover{background:var(--brown-dark);}
-.cdsp{min-width:22px;text-align:center;font-weight:900;font-size:0.88rem;
-  color:var(--brown-dark);}
+.cdsp{min-width:22px;text-align:center;font-weight:900;font-size:0.88rem;color:var(--brown-dark);}
 .csub{font-size:0.65rem;font-weight:800;color:var(--brown-mid);margin-top:5px;}
 
 /* ── AGREGAR PRODUCTO ── */
-.abox{background:#fff;border-radius:16px;padding:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.abox{background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .abox h3{font-size:0.8rem;font-weight:800;color:var(--brown-mid);margin-bottom:10px;}
 .aform{display:flex;flex-wrap:wrap;gap:8px;}
 .fg{display:flex;flex-direction:column;gap:3px;flex:1;min-width:120px;}
 .fg label{font-size:0.65rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;}
-.fg input{border:1.5px solid var(--cream-dark);border-radius:8px;
-  padding:7px 9px;font-family:'Nunito',sans-serif;font-size:0.82rem;
-  color:var(--brown-dark);background:var(--cream);outline:none;
-  transition:border-color 0.2s;}
+.fg input{border:1.5px solid var(--cream-dark);border-radius:8px;padding:7px 9px;font-family:'Nunito',sans-serif;font-size:0.82rem;color:var(--brown-dark);background:var(--cream);outline:none;transition:border-color 0.2s;}
 .fg input:focus{border-color:var(--brown-light);}
-.badd{background:linear-gradient(135deg,var(--brown),var(--brown-dark));
-  color:#fff;border:none;border-radius:10px;padding:9px 16px;
-  font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:800;
-  cursor:pointer;align-self:flex-end;touch-action:manipulation;}
+.badd{background:linear-gradient(135deg,var(--brown),var(--brown-dark));color:#fff;border:none;border-radius:10px;padding:9px 16px;font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:800;cursor:pointer;align-self:flex-end;touch-action:manipulation;}
+
+/* ═══════════════════════════════════
+   INVENTARIO — PANEL APERTURA
+═══════════════════════════════════ */
+.inv-setup-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:500;
+  display:flex;align-items:flex-end;justify-content:center;
+  backdrop-filter:blur(4px);
+}
+@media(min-width:600px){.inv-setup-overlay{align-items:center;padding:20px;}}
+.inv-setup-box{
+  background:var(--warm-white);border-radius:28px 28px 0 0;width:100%;max-width:520px;
+  max-height:92vh;overflow-y:auto;padding:0;
+  box-shadow:0 -10px 50px rgba(0,0,0,0.3);
+  animation:sup 0.35s cubic-bezier(0.34,1.2,0.64,1);
+}
+@media(min-width:600px){.inv-setup-box{border-radius:28px;animation:sci 0.3s ease;}}
+@keyframes sup{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes sci{from{transform:scale(0.88);opacity:0}to{transform:scale(1);opacity:1}}
+.inv-head{
+  background:linear-gradient(160deg,var(--brown-dark),var(--brown));
+  padding:22px 20px 18px;text-align:center;
+  border-radius:28px 28px 0 0;position:sticky;top:0;z-index:1;
+}
+@media(min-width:600px){.inv-head{border-radius:28px 28px 0 0;}}
+.inv-head-emoji{font-size:2.4rem;display:block;margin-bottom:6px;}
+.inv-head-title{font-family:'Pacifico',cursive;color:var(--gold-light);font-size:1.3rem;margin-bottom:4px;}
+.inv-head-sub{color:rgba(255,255,255,0.65);font-size:0.76rem;font-weight:600;line-height:1.5;}
+.inv-body{padding:18px 18px 24px;}
+.inv-intro{background:linear-gradient(135deg,#fff8e1,#fffbf0);border:1.5px solid #ffe082;border-radius:14px;padding:12px 15px;margin-bottom:18px;font-size:0.78rem;font-weight:600;color:#7c5c00;line-height:1.6;}
+.inv-intro strong{color:#5d4000;}
+.inv-product-row{
+  background:#fff;border:1.5px solid var(--cream-dark);border-radius:16px;
+  padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;
+}
+.inv-prod-left{flex:1;}
+.inv-prod-emoji{font-size:1.5rem;margin-bottom:2px;}
+.inv-prod-name{font-size:0.88rem;font-weight:800;color:var(--brown-dark);}
+.inv-prod-meta{font-size:0.7rem;color:var(--brown-mid);font-weight:600;margin-top:2px;}
+.inv-prod-costorow{display:flex;align-items:center;gap:6px;margin-top:8px;}
+.inv-prod-costorow label{font-size:0.65rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;white-space:nowrap;}
+.inv-cost-inp{
+  width:110px;border:1.5px solid var(--cream-dark);border-radius:9px;
+  padding:7px 10px;font-family:'DM Mono',monospace;font-size:0.85rem;
+  font-weight:700;color:var(--brown-dark);outline:none;text-align:right;
+  transition:border-color 0.2s;background:var(--cream);
+}
+.inv-cost-inp:focus{border-color:var(--brown-light);}
+.inv-prod-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.inv-qty-label{font-size:0.65rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;}
+.inv-qty-row{display:flex;align-items:center;gap:6px;background:var(--cream-dark);border-radius:10px;padding:4px 6px;}
+.inv-qty-btn{width:28px;height:28px;border-radius:8px;border:none;cursor:pointer;font-size:1rem;font-weight:900;display:flex;align-items:center;justify-content:center;transition:all 0.15s;touch-action:manipulation;}
+.inv-qty-minus{background:var(--cream);color:var(--brown);}
+.inv-qty-plus{background:var(--brown);color:#fff;}
+.inv-qty-dsp{min-width:28px;text-align:center;font-weight:900;font-size:0.95rem;color:var(--brown-dark);}
+.inv-margin-row{
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(135deg,#e8f5e9,#f1f8f4);border:1.5px solid #c8e6c9;
+  border-radius:10px;padding:8px 12px;margin-top:8px;font-size:0.75rem;font-weight:700;
+}
+.inv-margin-lbl{color:#2e7d32;}
+.inv-margin-val{font-family:'DM Mono',monospace;color:#1b5e20;font-size:0.82rem;}
+.inv-extra-row{
+  background:#fff;border:1.5px dashed var(--cream-dark);border-radius:16px;
+  padding:14px;margin-bottom:10px;
+}
+.inv-extra-row h4{font-size:0.75rem;font-weight:800;color:var(--brown-mid);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;}
+.inv-extra-form{display:flex;flex-wrap:wrap;gap:8px;}
+.inv-extra-fg{display:flex;flex-direction:column;gap:3px;flex:1;min-width:110px;}
+.inv-extra-fg label{font-size:0.62rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;}
+.inv-extra-fg input{border:1.5px solid var(--cream-dark);border-radius:8px;padding:7px 9px;font-family:'Nunito',sans-serif;font-size:0.82rem;color:var(--brown-dark);background:var(--cream);outline:none;}
+.inv-extra-fg input:focus{border-color:var(--brown-light);}
+.inv-confirm-btn{
+  width:100%;background:linear-gradient(135deg,var(--green),#1a9956);color:#fff;
+  border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;
+  font-size:1rem;font-weight:800;cursor:pointer;margin-top:6px;
+  box-shadow:0 5px 18px rgba(46,184,110,0.3);transition:all 0.2s;
+}
+.inv-confirm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,184,110,0.4);}
+
+/* ═══════════════════════════════════
+   RESUMEN INVENTARIO / GANANCIAS
+═══════════════════════════════════ */
+.inv-summary{
+  background:#fff;border-radius:18px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  overflow:hidden;margin-bottom:4px;
+}
+.inv-summary-head{
+  background:linear-gradient(135deg,var(--brown-dark),var(--brown));
+  padding:12px 15px;display:flex;justify-content:space-between;align-items:center;
+}
+.inv-summary-title{font-size:0.78rem;font-weight:800;color:var(--gold-light);}
+.inv-summary-edit{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;border-radius:8px;padding:4px 10px;font-size:0.68rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all 0.15s;}
+.inv-summary-edit:hover{background:rgba(255,255,255,0.25);}
+/* métricas principales */
+.inv-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 13px 8px;}
+.inv-metric{background:var(--cream);border-radius:12px;padding:10px 8px;text-align:center;}
+.inv-metric-icon{font-size:1.1rem;margin-bottom:3px;}
+.inv-metric-lbl{font-size:0.6rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;}
+.inv-metric-val{font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:700;}
+.inv-metric-val.profit{color:var(--profit);}
+.inv-metric-val.cost{color:var(--cost);}
+.inv-metric-val.neutral{color:var(--brown);}
+/* tabla stock */
+.inv-stock-table{padding:0 13px 14px;}
+.inv-stock-title{font-size:0.68rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;}
+.inv-stock-row{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;
+  background:var(--cream);border-radius:10px;margin-bottom:5px;
+}
+.inv-stock-emoji{font-size:1.1rem;flex-shrink:0;}
+.inv-stock-info{flex:1;}
+.inv-stock-name{font-size:0.78rem;font-weight:800;color:var(--brown-dark);}
+.inv-stock-detail{font-size:0.65rem;color:var(--brown-mid);font-weight:600;margin-top:1px;}
+.inv-stock-right{text-align:right;flex-shrink:0;}
+.inv-stock-units{font-family:'DM Mono',monospace;font-size:0.82rem;font-weight:700;}
+.inv-stock-units.ok{color:var(--stock-ok);}
+.inv-stock-units.warn{color:var(--stock-warn);}
+.inv-stock-units.low{color:var(--stock-low);}
+.inv-stock-sold{font-size:0.62rem;color:var(--brown-mid);font-weight:700;margin-top:1px;}
+/* barra progreso ganancia */
+.inv-profit-bar-wrap{padding:0 13px 14px;}
+.inv-profit-bar-title{font-size:0.68rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;margin-bottom:6px;}
+.inv-profit-bar-bg{height:10px;background:var(--cream-dark);border-radius:99px;overflow:hidden;}
+.inv-profit-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),#16a34a);transition:width 0.5s ease;}
 
 /* ── BARRA INFERIOR ── */
-.lbar{position:fixed;bottom:0;left:0;right:0;z-index:150;
-  background:linear-gradient(160deg,var(--brown-dark),#1a0800);
-  padding:10px 14px 14px;box-shadow:0 -4px 20px rgba(0,0,0,0.3);}
+.lbar{position:fixed;bottom:0;left:0;right:0;z-index:150;background:linear-gradient(160deg,var(--brown-dark),#1a0800);padding:10px 14px 14px;box-shadow:0 -4px 20px rgba(0,0,0,0.3);}
 .lstats{display:flex;gap:6px;margin-bottom:8px;}
-.lstat{flex:1;background:rgba(255,255,255,0.07);border-radius:10px;
-  padding:7px 6px;text-align:center;}
-.lb{display:block;font-size:0.6rem;font-weight:800;color:rgba(255,255,255,0.45);
-  text-transform:uppercase;margin-bottom:2px;}
+.lstat{flex:1;background:rgba(255,255,255,0.07);border-radius:10px;padding:7px 6px;text-align:center;}
+.lb{display:block;font-size:0.6rem;font-weight:800;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:2px;}
 .lv{font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:700;}
 .lv.un{color:var(--gold-light);}
 .lv.mo{color:rgba(255,255,255,0.8);}
 .lv.gr{color:var(--green);}
+.lv.gn{color:#86efac;}
 .lbtns{display:flex;gap:8px;}
-.bpar{flex:1;background:rgba(255,255,255,0.1);color:#fff;
-  border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;padding:11px;
-  font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;touch-action:manipulation;}
+.bpar{flex:1;background:rgba(255,255,255,0.1);color:#fff;border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;padding:11px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s;touch-action:manipulation;}
 .bpar:hover:not(:disabled){background:rgba(255,255,255,0.2);}
 .bpar:disabled,.bfin:disabled{opacity:0.35;cursor:not-allowed;}
-.bfin{flex:1;background:linear-gradient(135deg,var(--green),#1a9956);
-  color:#fff;border:none;border-radius:12px;padding:11px;
-  font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;touch-action:manipulation;
-  box-shadow:0 4px 14px rgba(46,184,110,0.35);}
+.bfin{flex:1;background:linear-gradient(135deg,var(--green),#1a9956);color:#fff;border:none;border-radius:12px;padding:11px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s;touch-action:manipulation;box-shadow:0 4px 14px rgba(46,184,110,0.35);}
 .bfin:hover:not(:disabled){transform:translateY(-2px);}
 
 /* ── TOAST VENTAS ── */
-.vtoast{position:fixed;top:70px;right:14px;background:var(--brown-dark);
-  border-left:4px solid var(--gold);color:#fff;padding:9px 15px;border-radius:12px;
-  font-size:0.82rem;font-weight:700;z-index:400;
-  box-shadow:0 4px 20px rgba(0,0,0,0.25);max-width:calc(100vw - 28px);
-  animation:vtin 0.3s ease,vtout 0.3s ease 2.2s forwards}
+.vtoast{position:fixed;top:70px;right:14px;background:var(--brown-dark);border-left:4px solid var(--gold);color:#fff;padding:9px 15px;border-radius:12px;font-size:0.82rem;font-weight:700;z-index:400;box-shadow:0 4px 20px rgba(0,0,0,0.25);max-width:calc(100vw - 28px);animation:vtin 0.3s ease,vtout 0.3s ease 2.2s forwards}
 .vtoast.g{border-left-color:var(--green)}
 .vtoast.r{border-left-color:var(--pink-deep)}
 @keyframes vtin{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes vtout{to{opacity:0;transform:translateX(40px)}}
 
 /* ── MODAL VENTAS ── */
-.mov{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:300;
-  display:flex;align-items:flex-end;justify-content:center;
-  backdrop-filter:blur(3px);}
+.mov{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:300;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);}
 @media(min-width:600px){.mov{align-items:center;padding:20px}}
-.modal{background:var(--warm-white);border-radius:24px 24px 0 0;width:100%;max-height:90vh;
-  overflow-y:auto;box-shadow:0 -8px 50px rgba(0,0,0,0.3);
-  animation:sup 0.3s ease;-webkit-overflow-scrolling:touch}
+.modal{background:var(--warm-white);border-radius:24px 24px 0 0;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 -8px 50px rgba(0,0,0,0.3);animation:sup 0.3s ease;-webkit-overflow-scrolling:touch}
 @media(min-width:600px){.modal{border-radius:24px;max-width:540px;animation:sci 0.3s ease}}
-@keyframes sup{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
-@keyframes sci{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
-.mhead{background:linear-gradient(160deg,var(--brown-dark),var(--brown));
-  padding:20px 18px 16px;text-align:center;
-  position:sticky;top:0;z-index:1;border-radius:24px 24px 0 0}
-.mlogo{width:54px;height:54px;object-fit:cover;border-radius:50%;margin-bottom:5px;
-  border:2px solid var(--gold);}
+.mhead{background:linear-gradient(160deg,var(--brown-dark),var(--brown));padding:20px 18px 16px;text-align:center;position:sticky;top:0;z-index:1;border-radius:24px 24px 0 0}
+.mlogo{width:54px;height:54px;object-fit:cover;border-radius:50%;margin-bottom:5px;border:2px solid var(--gold);}
 .mhead h2{font-family:'Pacifico',cursive;color:var(--gold-light);font-size:1.25rem}
 .mhead p{color:rgba(255,255,255,0.65);font-size:0.75rem;margin-top:3px}
 .mbody{padding:16px 15px 20px}
-.tbox{background:linear-gradient(135deg,var(--brown-dark),var(--brown));
-  border-radius:16px;padding:16px;text-align:center;margin-bottom:14px;}
-.tbox .tl{font-size:0.7rem;font-weight:800;color:rgba(255,255,255,0.55);
-  text-transform:uppercase;letter-spacing:1.5px;}
+.tbox{background:linear-gradient(135deg,var(--brown-dark),var(--brown));border-radius:16px;padding:16px;text-align:center;margin-bottom:14px;}
+.tbox .tl{font-size:0.7rem;font-weight:800;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1.5px;}
 .tbox .tm{font-family:'Pacifico',cursive;font-size:2rem;color:var(--gold-light);margin:4px 0;}
 .tbox .tu{font-size:0.78rem;color:rgba(255,255,255,0.65);font-weight:600;}
 .dsec{margin-bottom:14px}
-.dsec h4{font-size:0.72rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;
-  letter-spacing:0.8px;padding:6px 0;border-bottom:2px solid var(--cream-dark);margin-bottom:8px}
+.dsec h4{font-size:0.72rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;letter-spacing:0.8px;padding:6px 0;border-bottom:2px solid var(--cream-dark);margin-bottom:8px}
 .stbl{width:100%;border-collapse:collapse}
-.stbl th{text-align:left;font-size:0.66rem;font-weight:800;color:var(--brown-mid);
-  text-transform:uppercase;letter-spacing:0.5px;padding:6px 5px;border-bottom:2px solid var(--cream-dark)}
+.stbl th{text-align:left;font-size:0.66rem;font-weight:800;color:var(--brown-mid);text-transform:uppercase;letter-spacing:0.5px;padding:6px 5px;border-bottom:2px solid var(--cream-dark)}
 .stbl td{padding:8px 5px;font-size:0.83rem;border-bottom:1px solid var(--cream-dark);vertical-align:middle}
 .stbl tr:last-child td{border-bottom:none}
 .eji{font-size:1.1rem;width:28px}
-.qbadge{background:var(--cream-dark);border:1.5px solid var(--brown-light);
-  color:var(--brown-dark);border-radius:8px;padding:2px 7px;font-weight:900;font-size:0.82rem}
+.qbadge{background:var(--cream-dark);border:1.5px solid var(--brown-light);color:var(--brown-dark);border-radius:8px;padding:2px 7px;font-weight:900;font-size:0.82rem}
 .scol{font-weight:900;color:var(--brown);text-align:right}
-.prow{display:flex;align-items:center;padding:7px 4px;
-  border-bottom:1px solid var(--cream-dark);font-size:0.82rem;gap:6px}
+.prow{display:flex;align-items:center;padding:7px 4px;border-bottom:1px solid var(--cream-dark);font-size:0.82rem;gap:6px}
 .prow:last-child{border-bottom:none}
 .pri{flex:1;color:var(--brown-dark);font-weight:600;word-break:break-word}
 .prto{color:var(--green);font-weight:900;flex-shrink:0}
 .macts{display:flex;gap:9px;margin-top:4px;flex-wrap:wrap}
-.breset{flex:1;min-width:120px;background:var(--cream-dark);color:var(--brown);
-  border:2px solid var(--brown-light);border-radius:12px;padding:11px;
-  font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s}
+.breset{flex:1;min-width:120px;background:var(--cream-dark);color:var(--brown);border:2px solid var(--brown-light);border-radius:12px;padding:11px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s}
 .breset:hover{background:var(--brown-dark);color:#fff;border-color:var(--brown-dark)}
-.bwa{flex:1;min-width:120px;
-  background:linear-gradient(135deg,#25d366,#1da851);color:#fff;
-  border:none;border-radius:12px;padding:11px;
-  font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;touch-action:manipulation;
-  box-shadow:0 4px 14px rgba(37,211,102,0.35);
-  display:flex;align-items:center;justify-content:center;gap:6px}
+.bwa{flex:1;min-width:120px;background:linear-gradient(135deg,#25d366,#1da851);color:#fff;border:none;border-radius:12px;padding:11px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s;touch-action:manipulation;box-shadow:0 4px 14px rgba(37,211,102,0.35);display:flex;align-items:center;justify-content:center;gap:6px}
 .bwa:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,211,102,0.45)}
-.bclose{flex:1;min-width:120px;
-  background:linear-gradient(135deg,var(--pink-deep),#c04060);color:#fff;
-  border:none;border-radius:12px;padding:11px;
-  font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;touch-action:manipulation}
+.bclose{flex:1;min-width:120px;background:linear-gradient(135deg,var(--pink-deep),#c04060);color:#fff;border:none;border-radius:12px;padding:11px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;transition:all 0.2s;touch-action:manipulation}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--cream-dark)}
 ::-webkit-scrollbar-thumb{background:var(--brown-light);border-radius:10px}
 
-/* ── SELECTOR SPLIT DE PAGO (valor por medio) ── */
-.split-title{font-size:0.72rem;font-weight:900;color:var(--brown-mid);
-  text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
+/* ── SPLIT DE PAGO ── */
+.split-title{font-size:0.72rem;font-weight:900;color:var(--brown-mid);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
 .split-subtitle{font-size:0.75rem;color:var(--brown-mid);font-weight:600;margin-bottom:12px;line-height:1.5;}
 .split-rows{display:flex;flex-direction:column;gap:9px;}
-.split-row{background:#fff;border:1.5px solid var(--cream-dark);border-radius:14px;padding:11px 13px;
-  display:flex;align-items:center;gap:10px;}
+.split-row{background:#fff;border:1.5px solid var(--cream-dark);border-radius:14px;padding:11px 13px;display:flex;align-items:center;gap:10px;}
 .split-row-label{font-size:0.82rem;font-weight:800;flex:1;}
 .split-row-label.ef{color:#2e7d32;}
 .split-row-label.nq{color:var(--nequi);}
 .split-row-label.dv{color:var(--davi);}
 .split-val-prefix{font-size:0.82rem;font-weight:800;color:var(--brown-mid);}
-.split-val-inp{width:110px;border:1.5px solid var(--cream-dark);border-radius:9px;
-  padding:7px 9px;font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:700;
-  color:var(--brown-dark);text-align:right;outline:none;transition:border-color 0.2s;}
+.split-val-inp{width:110px;border:1.5px solid var(--cream-dark);border-radius:9px;padding:7px 9px;font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:700;color:var(--brown-dark);text-align:right;outline:none;transition:border-color 0.2s;}
 .split-val-inp:focus{border-color:var(--brown-light);}
 .split-val-inp.ef:focus{border-color:#4caf50;}
 .split-val-inp.nq:focus{border-color:var(--nequi);}
@@ -273,42 +308,26 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .split-bar-ef{height:100%;background:#4caf50;transition:width 0.3s;}
 .split-bar-nq{height:100%;background:var(--nequi);transition:width 0.3s;}
 .split-bar-dv{height:100%;background:var(--davi);transition:width 0.3s;}
-.split-remaining-row{display:flex;justify-content:space-between;align-items:center;
-  background:var(--cream-dark);border-radius:9px;padding:7px 11px;margin-top:8px;font-size:0.78rem;font-weight:800;}
+.split-remaining-row{display:flex;justify-content:space-between;align-items:center;background:var(--cream-dark);border-radius:9px;padding:7px 11px;margin-top:8px;font-size:0.78rem;font-weight:800;}
 .split-remaining-lbl{color:var(--brown-mid);}
 .split-remaining-val{font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--green);}
 .split-remaining-val.over{color:var(--pink-deep);}
-.split-err{font-size:0.72rem;font-weight:800;color:var(--pink-deep);text-align:center;
-  padding:7px;background:#fde8e8;border-radius:9px;margin-top:8px;display:none;}
+.split-err{font-size:0.72rem;font-weight:800;color:var(--pink-deep);text-align:center;padding:7px;background:#fde8e8;border-radius:9px;margin-top:8px;display:none;}
 .split-err.show{display:block;}
-.split-ok{font-size:0.72rem;font-weight:800;color:var(--green);text-align:center;
-  padding:7px;background:#e8f5e9;border-radius:9px;margin-top:8px;display:none;}
+.split-ok{font-size:0.72rem;font-weight:800;color:var(--green);text-align:center;padding:7px;background:#e8f5e9;border-radius:9px;margin-top:8px;display:none;}
 .split-ok.show{display:block;}
 
 /* ═══════════════════════════════════════
-   FINANZAS — diseño blanco cálido
+   FINANZAS
 ════════════════════════════════════════ */
-#finanzas-panel{background:var(--bg);min-height:calc(100vh - 49px);
-  font-family:'Nunito',sans-serif;color:var(--text);}
+#finanzas-panel{background:var(--bg);min-height:calc(100vh - 49px);font-family:'Nunito',sans-serif;color:var(--text);}
 #finanzas-panel *{box-sizing:border-box;}
-
-/* reminder */
-.f-banner{display:none;align-items:center;justify-content:space-between;
-  gap:12px;padding:12px 18px;
-  background:linear-gradient(90deg,#fffbf0,#fff8e8);
-  border-bottom:1px solid rgba(232,168,32,0.25);font-size:13px;}
+.f-banner{display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:linear-gradient(90deg,#fffbf0,#fff8e8);border-bottom:1px solid rgba(232,168,32,0.25);font-size:13px;}
 .f-banner-txt{color:#a06820;font-size:12px;line-height:1.6;font-weight:600;}
-.f-banner-close{background:rgba(160,104,32,0.08);border:1px solid rgba(160,104,32,0.15);
-  color:#a06820;border-radius:8px;padding:5px 12px;font-size:11px;
-  cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif;font-weight:700;}
-
-/* setup */
-.f-setup{display:none;min-height:calc(100vh - 49px);align-items:center;justify-content:center;
-  padding:24px 16px;background:var(--bg);}
+.f-banner-close{background:rgba(160,104,32,0.08);border:1px solid rgba(160,104,32,0.15);color:#a06820;border-radius:8px;padding:5px 12px;font-size:11px;cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif;font-weight:700;}
+.f-setup{display:none;min-height:calc(100vh - 49px);align-items:center;justify-content:center;padding:24px 16px;background:var(--bg);}
 .f-setup.visible{display:flex;}
-.f-setup-box{background:var(--card);border:1px solid var(--border);border-radius:28px;
-  padding:32px 24px;width:100%;max-width:420px;
-  box-shadow:0 8px 40px rgba(58,46,40,0.08);}
+.f-setup-box{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:32px 24px;width:100%;max-width:420px;box-shadow:0 8px 40px rgba(58,46,40,0.08);}
 .f-setup-icon{font-size:2.8rem;text-align:center;margin-bottom:10px;}
 .f-setup-title{font-family:'Pacifico',cursive;font-size:1.9rem;color:var(--text);margin-bottom:4px;text-align:center;}
 .f-setup-title span{color:var(--accent);}
@@ -317,41 +336,21 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-field-grp{display:flex;flex-direction:column;gap:5px;}
 .f-field-lbl{font-size:12px;font-weight:700;color:var(--text);opacity:0.7;display:flex;align-items:center;gap:7px;}
 .f-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.f-inp{background:#fff;border:1.5px solid var(--border);border-radius:11px;
-  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);
-  width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;font-weight:600;}
+.f-inp{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:11px 15px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;font-weight:600;}
 .f-inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(60,179,113,0.12);}
-.f-setup-btn{width:100%;background:linear-gradient(135deg,var(--accent),#2a9f5c);color:#fff;border:none;border-radius:14px;
-  padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;
-  cursor:pointer;transition:all 0.2s;box-shadow:0 5px 18px rgba(60,179,113,0.28);}
+.f-setup-btn{width:100%;background:linear-gradient(135deg,var(--accent),#2a9f5c);color:#fff;border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;box-shadow:0 5px 18px rgba(60,179,113,0.28);}
 .f-setup-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(60,179,113,0.35);}
-
-/* app */
 .f-app{display:none;padding:20px 16px 48px;}
 .f-app.visible{display:block;}
-
-/* header finanzas */
 .f-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .f-logo{font-family:'Pacifico',cursive;font-size:1.45rem;color:var(--text);}
 .f-logo span{color:var(--accent);}
 .f-header-right{display:flex;gap:8px;align-items:center;}
-.f-week{background:var(--card);border:1.5px solid var(--border);border-radius:10px;
-  padding:5px 11px;font-size:10px;color:var(--muted);font-weight:700;
-  box-shadow:0 1px 4px rgba(0,0,0,0.04);}
-.f-reset-btn{background:#fff;border:1.5px solid var(--border);border-radius:10px;
-  padding:5px 12px;font-size:11px;font-weight:700;color:var(--muted);
-  cursor:pointer;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.f-week{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:5px 11px;font-size:10px;color:var(--muted);font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+.f-reset-btn{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
 .f-reset-btn:hover{border-color:var(--accent2);color:var(--accent2);}
-
-/* total card — hero */
-.f-total-card{
-  background:linear-gradient(135deg,#ffffff 0%,#f3fbf6 100%);
-  border:1.5px solid #cceedd;border-radius:22px;padding:20px 20px 16px;
-  display:flex;justify-content:space-between;align-items:flex-start;
-  margin-bottom:16px;gap:12px;
-  box-shadow:0 4px 20px rgba(60,179,113,0.1);}
-.f-total-lbl{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;
-  text-transform:uppercase;letter-spacing:0.6px;}
+.f-total-card{background:linear-gradient(135deg,#ffffff 0%,#f3fbf6 100%);border:1.5px solid #cceedd;border-radius:22px;padding:20px 20px 16px;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:12px;box-shadow:0 4px 20px rgba(60,179,113,0.1);}
+.f-total-lbl{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.6px;}
 .f-total-val{font-family:'DM Mono',monospace;font-size:1.85rem;font-weight:700;line-height:1;}
 .f-total-val.pos{color:var(--accent);}
 .f-total-val.neg{color:var(--accent2);}
@@ -360,16 +359,12 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-stat-val{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;}
 .f-stat-val.ing{color:var(--accent);}
 .f-stat-val.gas{color:var(--accent2);}
-
-/* balance grid */
 .f-bal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
 @media(min-width:600px){.f-bal-grid{grid-template-columns:repeat(4,1fr);}}
-.f-bal-card{background:#fff;border:1.5px solid var(--border);border-radius:18px;padding:15px 13px;
-  box-shadow:0 2px 10px rgba(58,46,40,0.05);transition:transform 0.2s;}
+.f-bal-card{background:#fff;border:1.5px solid var(--border);border-radius:18px;padding:15px 13px;box-shadow:0 2px 10px rgba(58,46,40,0.05);transition:transform 0.2s;}
 .f-bal-card:hover{transform:translateY(-2px);}
 .f-card-icon{font-size:1.4rem;margin-bottom:6px;}
-.f-card-lbl{font-size:10px;font-weight:800;color:var(--muted);margin-bottom:5px;
-  text-transform:uppercase;letter-spacing:0.5px;}
+.f-card-lbl{font-size:10px;font-weight:800;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
 .f-card-val{font-family:'DM Mono',monospace;font-size:1.05rem;font-weight:700;color:var(--accent);}
 .f-card-val.nq{color:var(--nequi);}
 .f-card-val.dv{color:var(--davi);}
@@ -380,170 +375,83 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-prog-bar{height:5px;background:var(--border);border-radius:99px;overflow:hidden;}
 .f-prog-fill{height:100%;border-radius:99px;transition:width 0.5s ease;}
 .f-tc-rem{font-size:9px;color:var(--muted);margin-top:7px;font-weight:700;}
-
-/* ── BOTÓN PAGAR TC en la tarjeta ── */
-.f-tc-pay-btn{
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  width:100%;margin-top:10px;padding:7px 10px;
-  background:linear-gradient(135deg,#2196f3,#1565c0);color:#fff;
-  border:none;border-radius:10px;font-family:'Nunito',sans-serif;
-  font-size:11px;font-weight:800;cursor:pointer;
-  box-shadow:0 3px 10px rgba(52,152,219,0.3);transition:all 0.2s;
-}
+.f-tc-pay-btn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;margin-top:10px;padding:7px 10px;background:linear-gradient(135deg,#2196f3,#1565c0);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;cursor:pointer;box-shadow:0 3px 10px rgba(52,152,219,0.3);transition:all 0.2s;}
 .f-tc-pay-btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(52,152,219,0.4);}
-
-/* ── MODAL PAGO TC ── */
-.tc-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;
-  display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+.tc-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
 @media(min-width:600px){.tc-modal-overlay{align-items:center;padding:20px;}}
-.tc-modal{background:#fff;border-radius:28px 28px 0 0;width:100%;max-width:480px;
-  padding:0;overflow:hidden;box-shadow:0 -10px 50px rgba(0,0,0,0.25);
-  animation:tcup 0.3s cubic-bezier(0.34,1.4,0.64,1);}
+.tc-modal{background:#fff;border-radius:28px 28px 0 0;width:100%;max-width:480px;padding:0;overflow:hidden;box-shadow:0 -10px 50px rgba(0,0,0,0.25);animation:tcup 0.3s cubic-bezier(0.34,1.4,0.64,1);}
 @media(min-width:600px){.tc-modal{border-radius:28px;animation:tcsci 0.3s ease;}}
 @keyframes tcup{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes tcsci{from{transform:scale(0.88);opacity:0}to{transform:scale(1);opacity:1}}
-
-.tc-modal-head{
-  background:linear-gradient(135deg,#1565c0,#1976d2,#2196f3);
-  padding:22px 20px 18px;text-align:center;position:relative;}
+.tc-modal-head{background:linear-gradient(135deg,#1565c0,#1976d2,#2196f3);padding:22px 20px 18px;text-align:center;position:relative;}
 .tc-modal-emoji{font-size:2.2rem;display:block;margin-bottom:6px;}
 .tc-modal-title{font-family:'Pacifico',cursive;color:#fff;font-size:1.3rem;margin-bottom:3px;}
 .tc-modal-sub{color:rgba(255,255,255,0.72);font-size:0.75rem;font-weight:600;}
-.tc-modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.18);
-  border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:1rem;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.tc-modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.18);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
 .tc-modal-close:hover{background:rgba(255,255,255,0.3);}
-
 .tc-modal-body{padding:18px 18px 22px;}
-
-/* estado actual TC */
-.tc-estado{background:linear-gradient(135deg,#e3f2fd,#f0f8ff);
-  border:1.5px solid #bbdefb;border-radius:16px;padding:14px;
-  margin-bottom:16px;display:flex;gap:14px;}
+.tc-estado{background:linear-gradient(135deg,#e3f2fd,#f0f8ff);border:1.5px solid #bbdefb;border-radius:16px;padding:14px;margin-bottom:16px;display:flex;gap:14px;}
 .tc-estado-item{flex:1;text-align:center;}
-.tc-estado-lbl{font-size:10px;font-weight:800;color:#1565c0;text-transform:uppercase;
-  letter-spacing:0.5px;margin-bottom:4px;}
+.tc-estado-lbl{font-size:10px;font-weight:800;color:#1565c0;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;}
 .tc-estado-val{font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:700;}
 .tc-estado-val.utili{color:#e53935;}
 .tc-estado-val.cupo{color:#2196f3;}
 .tc-estado-sep{width:1px;background:#bbdefb;border-radius:99px;}
-
-/* tipo de pago */
 .tc-tipo-toggle{display:flex;gap:7px;margin-bottom:14px;}
-.tc-tipo-btn{flex:1;padding:9px 8px;border-radius:11px;
-  border:1.5px solid var(--border);background:var(--card2);
-  color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;
-  font-weight:800;cursor:pointer;transition:all 0.2s;text-align:center;}
+.tc-tipo-btn{flex:1;padding:9px 8px;border-radius:11px;border:1.5px solid var(--border);background:var(--card2);color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;transition:all 0.2s;text-align:center;}
 .tc-tipo-btn.total-mode{background:#e8f5e9;border-color:#a8dfc0;color:#2e7d32;}
 .tc-tipo-btn.parcial-mode{background:#fff3e0;border-color:#ffe0b2;color:#e65100;}
-
-/* campos */
 .tc-field-grp{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
 .tc-field-lbl{font-size:11.5px;font-weight:800;color:var(--text);opacity:0.7;}
-.tc-inp{background:#fff;border:1.5px solid var(--border);border-radius:11px;
-  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:14px;
-  color:var(--text);width:100%;outline:none;
-  transition:border-color 0.2s,box-shadow 0.2s;font-weight:600;}
+.tc-inp{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:11px 15px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);width:100%;outline:none;transition:border-color 0.2s,box-shadow 0.2s;font-weight:600;}
 .tc-inp:focus{border-color:var(--credit);box-shadow:0 0 0 3px rgba(52,152,219,0.15);}
-.tc-select{background:#fff;border:1.5px solid var(--border);border-radius:11px;
-  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--text);
-  width:100%;outline:none;-webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b0a39a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;margin-bottom:12px;}
+.tc-select{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:11px 15px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--text);width:100%;outline:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b0a39a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;margin-bottom:12px;}
 .tc-select:focus{border-color:var(--credit);}
-
-/* preview */
-.tc-preview{background:linear-gradient(135deg,#e8f5e9,#f1f8ff);
-  border:1.5px solid #c8e6c9;border-radius:14px;padding:12px 14px;
-  margin-bottom:14px;display:none;}
+.tc-preview{background:linear-gradient(135deg,#e8f5e9,#f1f8ff);border:1.5px solid #c8e6c9;border-radius:14px;padding:12px 14px;margin-bottom:14px;display:none;}
 .tc-preview.show{display:block;}
-.tc-preview-row{display:flex;justify-content:space-between;align-items:center;
-  font-size:12.5px;padding:3px 0;}
+.tc-preview-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:3px 0;}
 .tc-preview-row:not(:last-child){border-bottom:1px solid rgba(0,0,0,0.06);padding-bottom:6px;margin-bottom:3px;}
 .tc-preview-lbl{color:var(--muted);font-weight:700;}
 .tc-preview-val{font-family:'DM Mono',monospace;font-weight:700;}
 .tc-preview-val.red{color:#e53935;}
 .tc-preview-val.green{color:#2e7d32;}
 .tc-preview-val.blue{color:#1976d2;}
-
-/* advertencia pago mínimo */
-.tc-warning{background:#fff8e1;border:1.5px solid #ffe082;border-radius:11px;
-  padding:10px 13px;font-size:12px;font-weight:700;color:#f57f17;
-  margin-bottom:12px;display:none;line-height:1.5;}
+.tc-warning{background:#fff8e1;border:1.5px solid #ffe082;border-radius:11px;padding:10px 13px;font-size:12px;font-weight:700;color:#f57f17;margin-bottom:12px;display:none;line-height:1.5;}
 .tc-warning.show{display:block;}
-
-/* botón confirmar */
-.tc-confirm-btn{width:100%;background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;
-  border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;
-  font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;
-  box-shadow:0 5px 18px rgba(21,101,192,0.3);}
+.tc-confirm-btn{width:100%;background:linear-gradient(135deg,#1976d2,#1565c0);color:#fff;border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;box-shadow:0 5px 18px rgba(21,101,192,0.3);}
 .tc-confirm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(21,101,192,0.4);}
 .tc-confirm-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
-
-/* historial pagos TC */
-.tc-historial{background:var(--card2);border:1.5px solid var(--border);border-radius:20px;
-  padding:16px;margin-bottom:20px;}
-.tc-historial-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:12px;
-  display:flex;align-items:center;gap:7px;}
-.tc-pago-item{display:flex;align-items:center;justify-content:space-between;
-  background:#fff;border:1px solid var(--border);border-radius:12px;
-  padding:10px 13px;margin-bottom:7px;animation:mfin 0.3s ease;}
+.tc-historial{background:var(--card2);border:1.5px solid var(--border);border-radius:20px;padding:16px;margin-bottom:20px;}
+.tc-historial-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.tc-pago-item{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 13px;margin-bottom:7px;animation:mfin 0.3s ease;}
 .tc-pago-item:last-child{margin-bottom:0;}
 .tc-pago-left{display:flex;flex-direction:column;gap:2px;}
 .tc-pago-tipo{font-size:12px;font-weight:800;color:var(--credit);}
 .tc-pago-meta{font-size:11px;color:var(--muted);font-weight:600;}
 .tc-pago-amount{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:var(--accent);}
-.tc-historial-empty{text-align:center;padding:16px;font-size:12.5px;
-  color:var(--muted);font-weight:600;}
+.tc-historial-empty{text-align:center;padding:16px;font-size:12.5px;color:var(--muted);font-weight:600;}
 @keyframes mfin{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
-
-/* panels */
 .f-panels{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;}
 @media(min-width:700px){.f-panels{grid-template-columns:1fr 1fr;}}
-.f-panel{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:18px;
-  box-shadow:0 2px 12px rgba(58,46,40,0.05);}
-.f-panel-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:16px;
-  display:flex;justify-content:space-between;align-items:center;}
-
-/* form finanzas */
+.f-panel{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:18px;box-shadow:0 2px 12px rgba(58,46,40,0.05);}
+.f-panel-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
 .f-tipo-toggle{display:flex;gap:7px;margin-bottom:14px;}
-.f-tipo-btn{flex:1;padding:10px;border-radius:11px;border:1.5px solid var(--border);
-  background:var(--card2);color:var(--muted);font-family:'Nunito',sans-serif;
-  font-size:12.5px;font-weight:800;cursor:pointer;transition:all 0.2s;}
+.f-tipo-btn{flex:1;padding:10px;border-radius:11px;border:1.5px solid var(--border);background:var(--card2);color:var(--muted);font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:800;cursor:pointer;transition:all 0.2s;}
 .f-tipo-btn.ai{background:#edfaf4;border-color:#a8dfc0;color:var(--accent);}
 .f-tipo-btn.ag{background:#fef0f0;border-color:#f5b8b8;color:var(--accent2);}
-.f-sec-sep{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;
-  margin:12px 0 7px;border-top:1.5px solid var(--border);padding-top:11px;}
+.f-sec-sep{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin:12px 0 7px;border-top:1.5px solid var(--border);padding-top:11px;}
 .f-form-row{display:flex;gap:8px;}
 .f-form-row .f-inp{flex:1;}
-.f-select{background:#fff;border:1.5px solid var(--border);border-radius:11px;
-  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--text);
-  width:100%;outline:none;-webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b0a39a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;}
-.f-hint{background:#edfaf4;border:1.5px solid #a8dfc0;
-  border-radius:10px;padding:9px 13px;font-size:12px;font-weight:700;color:var(--accent);margin:9px 0;}
-.f-btn-reg{width:100%;background:linear-gradient(135deg,var(--accent),#2a9f5c);color:#fff;border:none;border-radius:13px;
-  padding:13px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;
-  cursor:pointer;margin-top:12px;transition:all 0.2s;
-  box-shadow:0 4px 14px rgba(60,179,113,0.25);}
+.f-select{background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:11px 15px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--text);width:100%;outline:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b0a39a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.f-hint{background:#edfaf4;border:1.5px solid #a8dfc0;border-radius:10px;padding:9px 13px;font-size:12px;font-weight:700;color:var(--accent);margin:9px 0;}
+.f-btn-reg{width:100%;background:linear-gradient(135deg,var(--accent),#2a9f5c);color:#fff;border:none;border-radius:13px;padding:13px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-top:12px;transition:all 0.2s;box-shadow:0 4px 14px rgba(60,179,113,0.25);}
 .f-btn-reg:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(60,179,113,0.35);}
-.f-btn-reg.gasto-mode{background:linear-gradient(135deg,var(--accent2),#c0392b);
-  box-shadow:0 4px 14px rgba(224,92,92,0.25);}
-
-/* tips */
+.f-btn-reg.gasto-mode{background:linear-gradient(135deg,var(--accent2),#c0392b);box-shadow:0 4px 14px rgba(224,92,92,0.25);}
 .f-tips-grid{display:flex;flex-direction:column;gap:9px;}
-.f-tip{background:var(--card2);border:1.5px solid var(--border);border-radius:13px;
-  padding:11px 13px;font-size:12.5px;font-weight:600;color:var(--text);
-  display:flex;gap:11px;align-items:flex-start;line-height:1.5;}
+.f-tip{background:var(--card2);border:1.5px solid var(--border);border-radius:13px;padding:11px 13px;font-size:12.5px;font-weight:600;color:var(--text);display:flex;gap:11px;align-items:flex-start;line-height:1.5;}
 .f-tip-icon{font-size:1.15rem;flex-shrink:0;margin-top:1px;}
-
-/* movimientos finanzas */
 .f-mov-list{display:flex;flex-direction:column;gap:7px;}
-.f-mov-item{display:flex;align-items:center;justify-content:space-between;
-  background:#fff;border:1.5px solid var(--border);border-radius:14px;
-  padding:11px 14px;animation:mfin 0.3s ease;
-  box-shadow:0 1px 6px rgba(58,46,40,0.04);}
+.f-mov-item{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:11px 14px;animation:mfin 0.3s ease;box-shadow:0 1px 6px rgba(58,46,40,0.04);}
 .f-mov-item.tc-pago-mov{border-color:#bbdefb;background:linear-gradient(135deg,#f8fbff,#fff);}
 .f-mov-left{display:flex;flex-direction:column;gap:2px;}
 .f-mov-desc{font-size:13.5px;font-weight:700;color:var(--text);}
@@ -553,13 +461,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-mov-amount.gas{color:var(--accent2);}
 .f-mov-amount.tc-pay{color:var(--credit);}
 .f-mov-empty{text-align:center;padding:28px 16px;color:var(--muted);font-size:13px;font-weight:600;}
-
-/* toast finanzas */
-.f-toast{position:fixed;bottom:24px;right:16px;background:#fff;
-  border:1.5px solid var(--border);border-radius:14px;padding:12px 18px;
-  font-size:13px;font-weight:700;z-index:600;
-  box-shadow:0 6px 28px rgba(58,46,40,0.1);
-  transform:translateY(80px);opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+.f-toast{position:fixed;bottom:24px;right:16px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:12px 18px;font-size:13px;font-weight:700;z-index:600;box-shadow:0 6px 28px rgba(58,46,40,0.1);transform:translateY(80px);opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);}
 .f-toast.show{transform:translateY(0);opacity:1;}
 .f-toast.ing{border-color:#a8dfc0;color:var(--accent);}
 .f-toast.gas{border-color:#f5b8b8;color:var(--accent2);}
@@ -569,15 +471,14 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 </head>
 <body>
 
-<!-- ═══════════════ NAVEGACIÓN ═══════════════ -->
+<!-- NAV -->
 <nav class="tab-nav">
   <button class="tab-btn active" id="tab-ventas" onclick="switchTab('ventas')">🍫 Ventas</button>
   <button class="tab-btn" id="tab-finanzas" onclick="switchTab('finanzas')">💰 Finanzas</button>
 </nav>
 
-<!-- ═══════════════ PANEL VENTAS ═══════════════ -->
+<!-- ═══════════ PANEL VENTAS ═══════════ -->
 <div id="ventas-panel" class="tab-panel active">
-
   <header>
     <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='40' fill='%237b3f00'/%3E%3Ctext x='40' y='52' text-anchor='middle' font-size='36' fill='%23f5c842'%3E🍫%3C/text%3E%3C/svg%3E" alt="Logo"/>
     <div class="htext">
@@ -588,6 +489,40 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
   </header>
 
   <main>
+    <!-- BLOQUE INVENTARIO / GANANCIAS -->
+    <div class="stitle">📦 Inventario & Ganancias del Día</div>
+    <div class="inv-summary" id="inv-summary">
+      <div class="inv-summary-head">
+        <span class="inv-summary-title">📊 Resumen de hoy</span>
+        <button class="inv-summary-edit" onclick="openInvSetup()">✏️ Editar apertura</button>
+      </div>
+      <div class="inv-metrics" id="inv-metrics">
+        <div class="inv-metric">
+          <div class="inv-metric-icon">💰</div>
+          <div class="inv-metric-lbl">Ganancia</div>
+          <div class="inv-metric-val profit" id="im-ganancia">$0</div>
+        </div>
+        <div class="inv-metric">
+          <div class="inv-metric-icon">💵</div>
+          <div class="inv-metric-lbl">Ingreso</div>
+          <div class="inv-metric-val neutral" id="im-ingreso">$0</div>
+        </div>
+        <div class="inv-metric">
+          <div class="inv-metric-icon">📦</div>
+          <div class="inv-metric-lbl">Costo</div>
+          <div class="inv-metric-val cost" id="im-costo">$0</div>
+        </div>
+      </div>
+      <div class="inv-profit-bar-wrap">
+        <div class="inv-profit-bar-title">Margen de ganancia del día</div>
+        <div class="inv-profit-bar-bg"><div class="inv-profit-bar-fill" id="inv-pbar" style="width:0%"></div></div>
+      </div>
+      <div class="inv-stock-table" id="inv-stock-table">
+        <div class="inv-stock-title">Stock disponible</div>
+        <div id="inv-stock-rows"></div>
+      </div>
+    </div>
+
     <div class="stitle">📋 Ventas Parciales del Día</div>
     <div class="plog">
       <div class="plogh">
@@ -617,6 +552,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
       <div class="lstat"><span class="lb">Selec.</span><span class="lv un" id="bunits">0</span></div>
       <div class="lstat"><span class="lb">En curso</span><span class="lv mo" id="bmoney">$0</span></div>
       <div class="lstat"><span class="lb">Total día</span><span class="lv gr" id="btotal">$0</span></div>
+      <div class="lstat"><span class="lb">Ganancia</span><span class="lv gn" id="bganancia">$0</span></div>
     </div>
     <div class="lbtns">
       <button class="bpar" id="bpar" onclick="registrarParcial()" disabled>💾 Parcial</button>
@@ -624,7 +560,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
     </div>
   </div>
 
-  <!-- Modal resumen -->
+  <!-- Modal resumen ventas -->
   <div class="mov" id="mov" style="display:none" onclick="closeOut(event)">
     <div class="modal">
       <div class="mhead">
@@ -635,51 +571,29 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
       <div class="mbody" id="mcontent"></div>
     </div>
   </div>
+</div>
 
-</div><!-- /ventas-panel -->
-
-<!-- ═══════════════ PANEL FINANZAS ═══════════════ -->
+<!-- ═══════════ PANEL FINANZAS ═══════════ -->
 <div id="finanzas-panel" class="tab-panel">
-
-  <!-- Banner recordatorio -->
   <div class="f-banner" id="f-reminder">
     <div class="f-banner-txt" id="f-reminder-msg"></div>
     <button class="f-banner-close" onclick="document.getElementById('f-reminder').style.display='none'">✕</button>
   </div>
-
-  <!-- Setup inicial -->
   <div class="f-setup" id="f-setup">
     <div class="f-setup-box">
       <div class="f-setup-icon">💰</div>
       <div class="f-setup-title">Mis<span>Finanzas</span></div>
       <div class="f-setup-sub">Ingresa tus saldos iniciales de esta semana para empezar a rastrear.</div>
       <div class="f-setup-grid">
-        <div class="f-field-grp">
-          <label class="f-field-lbl"><span class="f-dot" style="background:var(--accent)"></span>Efectivo disponible</label>
-          <input class="f-inp" id="fi-efectivo" type="number" placeholder="0" min="0">
-        </div>
-        <div class="f-field-grp">
-          <label class="f-field-lbl"><span class="f-dot" style="background:var(--nequi)"></span>Nequi</label>
-          <input class="f-inp" id="fi-nequi" type="number" placeholder="0" min="0">
-        </div>
-        <div class="f-field-grp">
-          <label class="f-field-lbl"><span class="f-dot" style="background:var(--davi)"></span>Daviplata</label>
-          <input class="f-inp" id="fi-davi" type="number" placeholder="0" min="0">
-        </div>
-        <div class="f-field-grp">
-          <label class="f-field-lbl"><span class="f-dot" style="background:var(--credit)"></span>TC — Saldo utilizado</label>
-          <input class="f-inp" id="fi-tc-gasto" type="number" placeholder="0" min="0">
-        </div>
-        <div class="f-field-grp">
-          <label class="f-field-lbl"><span class="f-dot" style="background:var(--credit)"></span>TC — Cupo disponible</label>
-          <input class="f-inp" id="fi-tc-cupo" type="number" placeholder="0" min="0">
-        </div>
+        <div class="f-field-grp"><label class="f-field-lbl"><span class="f-dot" style="background:var(--accent)"></span>Efectivo disponible</label><input class="f-inp" id="fi-efectivo" type="number" placeholder="0" min="0"></div>
+        <div class="f-field-grp"><label class="f-field-lbl"><span class="f-dot" style="background:var(--nequi)"></span>Nequi</label><input class="f-inp" id="fi-nequi" type="number" placeholder="0" min="0"></div>
+        <div class="f-field-grp"><label class="f-field-lbl"><span class="f-dot" style="background:var(--davi)"></span>Daviplata</label><input class="f-inp" id="fi-davi" type="number" placeholder="0" min="0"></div>
+        <div class="f-field-grp"><label class="f-field-lbl"><span class="f-dot" style="background:var(--credit)"></span>TC — Saldo utilizado</label><input class="f-inp" id="fi-tc-gasto" type="number" placeholder="0" min="0"></div>
+        <div class="f-field-grp"><label class="f-field-lbl"><span class="f-dot" style="background:var(--credit)"></span>TC — Cupo disponible</label><input class="f-inp" id="fi-tc-cupo" type="number" placeholder="0" min="0"></div>
       </div>
       <button class="f-setup-btn" onclick="fIniciar()">→ Comenzar mi semana</button>
     </div>
   </div>
-
-  <!-- App principal finanzas -->
   <div class="f-app" id="f-app">
     <div class="f-header">
       <div class="f-logo">Mis<span>Finanzas</span></div>
@@ -688,8 +602,6 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
         <button class="f-reset-btn" onclick="fReset()">↺ Nueva semana</button>
       </div>
     </div>
-
-    <!-- Total -->
     <div class="f-total-card">
       <div>
         <div class="f-total-lbl">Patrimonio líquido total</div>
@@ -700,28 +612,12 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
         <div><div class="f-stat-lbl">Gastos semana</div><div class="f-stat-val gas" id="f-total-gas">-$0</div></div>
       </div>
     </div>
-
-    <!-- Cards saldos -->
     <div class="f-bal-grid">
+      <div class="f-bal-card"><div class="f-card-icon">💵</div><div class="f-card-lbl">Efectivo</div><div class="f-card-val" id="fv-efectivo">$0</div></div>
+      <div class="f-bal-card"><div class="f-card-icon">🟣</div><div class="f-card-lbl">Nequi</div><div class="f-card-val nq" id="fv-nequi">$0</div></div>
+      <div class="f-bal-card"><div class="f-card-icon">🔴</div><div class="f-card-lbl">Daviplata</div><div class="f-card-val dv" id="fv-davi">$0</div></div>
       <div class="f-bal-card">
-        <div class="f-card-icon">💵</div>
-        <div class="f-card-lbl">Efectivo</div>
-        <div class="f-card-val" id="fv-efectivo">$0</div>
-      </div>
-      <div class="f-bal-card">
-        <div class="f-card-icon">🟣</div>
-        <div class="f-card-lbl">Nequi</div>
-        <div class="f-card-val nq" id="fv-nequi">$0</div>
-      </div>
-      <div class="f-bal-card">
-        <div class="f-card-icon">🔴</div>
-        <div class="f-card-lbl">Daviplata</div>
-        <div class="f-card-val dv" id="fv-davi">$0</div>
-      </div>
-      <!-- TC card con botón pagar -->
-      <div class="f-bal-card">
-        <div class="f-card-icon">💳</div>
-        <div class="f-card-lbl">Tarjeta de Crédito</div>
+        <div class="f-card-icon">💳</div><div class="f-card-lbl">Tarjeta de Crédito</div>
         <div class="f-card-val cr" id="fv-tc-gasto">$0 utili.</div>
         <div class="f-card-sub" id="fv-tc-cupo">Cupo: $0</div>
         <div class="f-prog-wrap">
@@ -729,22 +625,14 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
           <div class="f-prog-bar"><div class="f-prog-fill" id="f-tc-bar" style="width:0%"></div></div>
         </div>
         <div class="f-tc-rem">📅 Pago día 16 · <span id="f-dias-pago">…</span></div>
-        <!-- ✅ NUEVO BOTÓN PAGAR TC -->
-        <button class="f-tc-pay-btn" onclick="openTCModal()">
-          💳 Registrar pago TC
-        </button>
+        <button class="f-tc-pay-btn" onclick="openTCModal()">💳 Registrar pago TC</button>
       </div>
     </div>
-
-    <!-- Historial pagos TC -->
     <div class="tc-historial" id="tc-historial" style="display:none;">
       <div class="tc-historial-title">💳 Historial de pagos a TC</div>
       <div id="tc-historial-list"></div>
     </div>
-
-    <!-- Panels -->
     <div class="f-panels">
-      <!-- Registro -->
       <div class="f-panel">
         <div class="f-panel-title">📝 Registrar movimiento</div>
         <div class="f-tipo-toggle">
@@ -763,15 +651,11 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
           <option value="nequi">🟣 Nequi</option>
           <option value="davi">🔴 Daviplata</option>
         </select>
-        <div id="f-field-cuotas" style="display:none;margin-top:10px;">
+        <div id="f-field-cuotas" style="display:none;">
           <div class="f-sec-sep" style="margin-top:0">¿A cuántas cuotas?</div>
           <select class="f-select" id="f-mov-cuotas" onchange="fOnCuotas()">
-            <option value="1">1 cuota — contado</option>
-            <option value="2">2 cuotas</option>
-            <option value="3">3 cuotas</option>
-            <option value="6">6 cuotas</option>
-            <option value="12">12 cuotas</option>
-            <option value="24">24 cuotas</option>
+            <option value="1">1 cuota — contado</option><option value="2">2 cuotas</option><option value="3">3 cuotas</option>
+            <option value="6">6 cuotas</option><option value="12">12 cuotas</option><option value="24">24 cuotas</option>
             <option value="otro">Otro número…</option>
           </select>
           <div id="f-field-cuota-num" style="display:none;margin-top:8px;">
@@ -781,14 +665,11 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
         <div class="f-hint" id="f-hint" style="display:none;"></div>
         <button class="f-btn-reg" id="f-btn-reg" onclick="fRegistrar()">＋ Registrar ingreso</button>
       </div>
-      <!-- Tips -->
       <div class="f-panel">
         <div class="f-panel-title">💡 Sugerencias inteligentes</div>
         <div class="f-tips-grid" id="f-tips"></div>
       </div>
     </div>
-
-    <!-- Movimientos -->
     <div class="f-panel" style="margin-bottom:32px;">
       <div class="f-panel-title">
         <span>📊 Movimientos de la semana</span>
@@ -796,15 +677,12 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
       </div>
       <div class="f-mov-list" id="f-mov-list"><div class="f-mov-empty">Sin movimientos registrados aún.</div></div>
     </div>
-  </div><!-- /f-app -->
-
-</div><!-- /finanzas-panel -->
+  </div>
+</div>
 
 <div class="f-toast" id="f-toast"></div>
 
-<!-- ══════════════════════════════════════
-     MODAL PAGAR TC
-══════════════════════════════════════ -->
+<!-- MODAL PAGO TC -->
 <div class="tc-modal-overlay" id="tc-modal-overlay" style="display:none;" onclick="closeTCModalOut(event)">
   <div class="tc-modal">
     <div class="tc-modal-head">
@@ -814,35 +692,21 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
       <div class="tc-modal-sub">Registra cuánto pagaste a tu TC</div>
     </div>
     <div class="tc-modal-body">
-
-      <!-- Estado actual -->
       <div class="tc-estado">
-        <div class="tc-estado-item">
-          <div class="tc-estado-lbl">Saldo utilizado</div>
-          <div class="tc-estado-val utili" id="tc-val-utili">$0</div>
-        </div>
+        <div class="tc-estado-item"><div class="tc-estado-lbl">Saldo utilizado</div><div class="tc-estado-val utili" id="tc-val-utili">$0</div></div>
         <div class="tc-estado-sep"></div>
-        <div class="tc-estado-item">
-          <div class="tc-estado-lbl">Cupo disponible</div>
-          <div class="tc-estado-val cupo" id="tc-val-cupo">$0</div>
-        </div>
+        <div class="tc-estado-item"><div class="tc-estado-lbl">Cupo disponible</div><div class="tc-estado-val cupo" id="tc-val-cupo">$0</div></div>
       </div>
-
-      <!-- Tipo: pago total vs parcial -->
       <div class="tc-tipo-toggle">
         <button class="tc-tipo-btn total-mode" id="tc-btn-total" onclick="tcSetTipo('total')">✅ Pago total</button>
         <button class="tc-tipo-btn" id="tc-btn-parcial" onclick="tcSetTipo('parcial')">💰 Pago parcial / abono</button>
       </div>
-
-      <!-- Campo monto (solo en parcial) -->
       <div id="tc-field-monto" style="display:none;">
         <div class="tc-field-grp">
           <label class="tc-field-lbl">¿Cuánto vas a pagar?</label>
           <input class="tc-inp" id="tc-monto" type="number" placeholder="0" min="0" inputmode="numeric" oninput="tcUpdatePreview()">
         </div>
       </div>
-
-      <!-- ¿Con qué medio pagaste? -->
       <div class="tc-field-grp">
         <label class="tc-field-lbl">¿Desde qué cuenta pagaste?</label>
         <select class="tc-select" id="tc-cuenta" onchange="tcUpdatePreview()">
@@ -852,68 +716,334 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
           <option value="davi">🔴 Daviplata</option>
         </select>
       </div>
-
-      <!-- Fecha -->
       <div class="tc-field-grp">
         <label class="tc-field-lbl">Fecha del pago</label>
         <input class="tc-inp" id="tc-fecha" type="date">
       </div>
-
-      <!-- Advertencia pago mínimo -->
       <div class="tc-warning" id="tc-warning"></div>
-
-      <!-- Preview de resultado -->
       <div class="tc-preview" id="tc-preview">
-        <div class="tc-preview-row">
-          <span class="tc-preview-lbl">Monto a pagar</span>
-          <span class="tc-preview-val red" id="tc-prev-monto">$0</span>
+        <div class="tc-preview-row"><span class="tc-preview-lbl">Monto a pagar</span><span class="tc-preview-val red" id="tc-prev-monto">$0</span></div>
+        <div class="tc-preview-row"><span class="tc-preview-lbl">Saldo TC después del pago</span><span class="tc-preview-val blue" id="tc-prev-nuevo-saldo">$0</span></div>
+        <div class="tc-preview-row"><span class="tc-preview-lbl">Cupo disponible después</span><span class="tc-preview-val green" id="tc-prev-cupo">$0</span></div>
+        <div class="tc-preview-row" id="tc-prev-cuenta-row"><span class="tc-preview-lbl">Saldo cuenta después</span><span class="tc-preview-val" id="tc-prev-cuenta-saldo">$0</span></div>
+      </div>
+      <button class="tc-confirm-btn" id="tc-confirm-btn" onclick="confirmarPagoTC()" disabled>💳 Confirmar pago</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MODAL INVENTARIO APERTURA ═══════════ -->
+<div class="inv-setup-overlay" id="inv-setup-overlay" style="display:none;" onclick="closeInvOut(event)">
+  <div class="inv-setup-box">
+    <div class="inv-head">
+      <span class="inv-head-emoji">📦</span>
+      <div class="inv-head-title">Apertura del Día</div>
+      <div class="inv-head-sub">Indica cuántas unidades llevas hoy<br>y el costo de producción de cada lote.</div>
+    </div>
+    <div class="inv-body">
+      <div class="inv-intro">
+        💡 Con estos datos el sistema calculará automáticamente tu <strong>ganancia real</strong> al final del día, descontando lo que te costó producir.
+      </div>
+      <div id="inv-product-rows-container"></div>
+
+      <!-- Gastos extra del día -->
+      <div class="inv-extra-row">
+        <h4>🛍️ Gastos del día (ingredientes, transporte…)</h4>
+        <div class="inv-extra-form">
+          <div class="inv-extra-fg"><label>Descripción</label><input type="text" id="inv-gasto-desc" placeholder="Ej: Harina, gas…"/></div>
+          <div class="inv-extra-fg"><label>Valor $</label><input type="number" id="inv-gasto-val" placeholder="0" min="0" inputmode="numeric"/></div>
+          <button class="badd" style="align-self:flex-end" onclick="addGastoExtra()">+ Añadir</button>
         </div>
-        <div class="tc-preview-row">
-          <span class="tc-preview-lbl">Saldo TC después del pago</span>
-          <span class="tc-preview-val blue" id="tc-prev-nuevo-saldo">$0</span>
-        </div>
-        <div class="tc-preview-row">
-          <span class="tc-preview-lbl">Cupo disponible después</span>
-          <span class="tc-preview-val green" id="tc-prev-cupo">$0</span>
-        </div>
-        <div class="tc-preview-row" id="tc-prev-cuenta-row">
-          <span class="tc-preview-lbl">Saldo cuenta después</span>
-          <span class="tc-preview-val" id="tc-prev-cuenta-saldo">$0</span>
-        </div>
+        <div id="inv-gastos-list" style="margin-top:8px;display:flex;flex-direction:column;gap:5px;"></div>
       </div>
 
-      <button class="tc-confirm-btn" id="tc-confirm-btn" onclick="confirmarPagoTC()" disabled>
-        💳 Confirmar pago
-      </button>
+      <button class="inv-confirm-btn" onclick="confirmarApertura()">✅ Confirmar apertura</button>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════
-     JAVASCRIPT COMBINADO
+     JAVASCRIPT
 ════════════════════════════════════════════ -->
 <script>
 var WA_NUMBER = "573132694579";
 
-/* ════════════════════════════════════════
-   NAVEGACIÓN POR TABS
-════════════════════════════════════════ */
+/* ════════════════════
+   TABS
+════════════════════ */
 function switchTab(t) {
   document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-  document.getElementById(t + '-panel').classList.add('active');
-  document.getElementById('tab-' + t).classList.add('active');
-  if (t === 'finanzas') {
-    var s = localStorage.getItem('misfinanzas');
-    if (s && !document.getElementById('f-app').classList.contains('visible')) {
-      fLoadState();
-    }
+  document.getElementById(t+'-panel').classList.add('active');
+  document.getElementById('tab-'+t).classList.add('active');
+  if(t==='finanzas'){
+    var s=localStorage.getItem('misfinanzas');
+    if(s && !document.getElementById('f-app').classList.contains('visible')) fLoadState();
   }
+}
+
+/* ════════════════════
+   INVENTARIO — datos
+════════════════════ */
+
+// Productos base con costo de lote y unidades por lote
+// costeLote = lo que te costó producir ese lote
+// qLote     = unidades que da ese lote
+// Galletas: 60 und, costo lote = 9600 → precio venta paquete x6 = 2000 → 10 paquetes por lote
+// Repollas: 50 und, costo lote = 12700 → precio venta paquete x5 = 2000 → 10 paquetes
+// Tortas:   16 und, costo lote = 20000 → precio venta unidad = 3000 → 16 unidades
+// Brownies: 12 und, costo lote = 17000 → precio venta unidad = 3000 → 12 unidades
+
+var INV_DEFAULTS = {
+  1: { costeLote: 20000, qLote: 16 }, // Torta de Chocolate
+  2: { costeLote: 12700, qLote: 10 }, // Repollas (10 paquetes x5)
+  3: { costeLote:  9600, qLote: 10 }, // Galletas (10 paquetes x6)
+  4: { costeLote:     0, qLote:  1 }, // Repolla/Galleta suelta
+  5: { costeLote: 17000, qLote: 12 }, // Brownie
+  6: { costeLote:     0, qLote:  1 }  // Liberales (sin costo definido)
+};
+
+// Estado inventario diario
+var invState = {
+  apertura: {},    // {productId: {unidades, costeLote, qLote, costoUnit}}
+  gastosExtra: [], // [{desc, val}]
+  abierto: false
+};
+
+function invSave(){ localStorage.setItem('ajd_inv', JSON.stringify(invState)); }
+function invLoad(){
+  try{
+    var s = localStorage.getItem('ajd_inv');
+    if(s){ var v=JSON.parse(s); if(v && typeof v==='object') invState=v; }
+  }catch(e){}
+}
+
+/* ─ abrir modal apertura ─ */
+function openInvSetup(){
+  var container = document.getElementById('inv-product-rows-container');
+  container.innerHTML = '';
+
+  products.forEach(function(p){
+    var def = INV_DEFAULTS[p.id] || {costeLote:0, qLote:1};
+    var ap  = invState.apertura[p.id] || {unidades:0, costeLote:def.costeLote, qLote:def.qLote};
+
+    var costoUnit = ap.qLote>0 ? Math.round(ap.costeLote/ap.qLote) : 0;
+
+    var row = document.createElement('div');
+    row.className = 'inv-product-row';
+    row.id = 'inv-row-'+p.id;
+    row.innerHTML =
+      '<div class="inv-prod-left">'+
+        '<div class="inv-prod-emoji">'+p.emoji+'</div>'+
+        '<div class="inv-prod-name">'+p.name+'</div>'+
+        '<div class="inv-prod-meta">Precio venta: $'+p.price.toLocaleString('es-CO')+' · '+p.desc+'</div>'+
+        '<div class="inv-prod-costorow">'+
+          '<label>Costo lote ($):</label>'+
+          '<input class="inv-cost-inp" type="number" id="inv-costo-'+p.id+'" value="'+ap.costeLote+'" min="0" inputmode="numeric" oninput="recalcMargen('+p.id+')"/>'+
+          '<label style="margin-left:4px">/ </label>'+
+          '<input class="inv-cost-inp" type="number" id="inv-qlote-'+p.id+'" value="'+ap.qLote+'" min="1" style="width:70px" inputmode="numeric" oninput="recalcMargen('+p.id+')"/>'+
+          '<label style="margin-left:2px">und.</label>'+
+        '</div>'+
+        '<div class="inv-margin-row" id="inv-margin-'+p.id+'">'+
+          '<span class="inv-margin-lbl">Costo/und:</span>'+
+          '<span class="inv-margin-val">$'+costoUnit.toLocaleString('es-CO')+'</span>'+
+        '</div>'+
+      '</div>'+
+      '<div class="inv-prod-right">'+
+        '<div class="inv-qty-label">Unidades al iniciar</div>'+
+        '<div class="inv-qty-row">'+
+          '<button class="inv-qty-btn inv-qty-minus" onclick="invQtyChange('+p.id+',-1)">−</button>'+
+          '<span class="inv-qty-dsp" id="inv-qty-'+p.id+'">'+ap.unidades+'</span>'+
+          '<button class="inv-qty-btn inv-qty-plus" onclick="invQtyChange('+p.id+',+1)">+</button>'+
+        '</div>'+
+      '</div>';
+    container.appendChild(row);
+  });
+
+  // restaurar gastos extra
+  renderGastosExtraModal();
+
+  document.getElementById('inv-setup-overlay').style.display = 'flex';
+}
+
+function recalcMargen(pid){
+  var c = parseFloat(document.getElementById('inv-costo-'+pid).value)||0;
+  var q = parseInt(document.getElementById('inv-qlote-'+pid).value)||1;
+  var cu = q>0 ? Math.round(c/q) : 0;
+  var el = document.getElementById('inv-margin-'+pid);
+  if(el) el.innerHTML = '<span class="inv-margin-lbl">Costo/und:</span><span class="inv-margin-val">$'+cu.toLocaleString('es-CO')+'</span>';
+}
+
+function invQtyChange(pid, delta){
+  var el = document.getElementById('inv-qty-'+pid);
+  var cur = parseInt(el.textContent)||0;
+  el.textContent = Math.max(0, cur+delta);
+}
+
+var gastosExtraTemp = [];
+function renderGastosExtraModal(){
+  gastosExtraTemp = JSON.parse(JSON.stringify(invState.gastosExtra||[]));
+  renderGastosExtraList();
+}
+function renderGastosExtraList(){
+  var list = document.getElementById('inv-gastos-list');
+  if(!gastosExtraTemp.length){ list.innerHTML=''; return; }
+  list.innerHTML = gastosExtraTemp.map(function(g,i){
+    return '<div style="display:flex;justify-content:space-between;align-items:center;background:var(--cream);border-radius:8px;padding:6px 10px;font-size:0.78rem;font-weight:700;">'+
+      '<span>'+g.desc+': <strong>$'+g.val.toLocaleString('es-CO')+'</strong></span>'+
+      '<button onclick="removeGastoExtra('+i+')" style="background:none;border:none;color:var(--pink-deep);cursor:pointer;font-size:0.85rem;">✕</button>'+
+    '</div>';
+  }).join('');
+}
+function addGastoExtra(){
+  var desc = document.getElementById('inv-gasto-desc').value.trim();
+  var val  = parseFloat(document.getElementById('inv-gasto-val').value)||0;
+  if(!desc||val<=0){ vToast('⚠️ Completa descripción y valor','r'); return; }
+  gastosExtraTemp.push({desc:desc, val:val});
+  document.getElementById('inv-gasto-desc').value='';
+  document.getElementById('inv-gasto-val').value='';
+  renderGastosExtraList();
+}
+function removeGastoExtra(i){
+  gastosExtraTemp.splice(i,1);
+  renderGastosExtraList();
+}
+
+function confirmarApertura(){
+  var apertura = {};
+  products.forEach(function(p){
+    var el  = document.getElementById('inv-qty-'+p.id);
+    var unc = el ? (parseInt(el.textContent)||0) : 0;
+    var cl  = parseFloat(document.getElementById('inv-costo-'+p.id).value)||0;
+    var ql  = parseInt(document.getElementById('inv-qlote-'+p.id).value)||1;
+    apertura[p.id] = { unidades: unc, costeLote: cl, qLote: ql, costoUnit: ql>0?Math.round(cl/ql):0 };
+  });
+  invState.apertura    = apertura;
+  invState.gastosExtra = JSON.parse(JSON.stringify(gastosExtraTemp));
+  invState.abierto     = true;
+  invSave();
+  document.getElementById('inv-setup-overlay').style.display='none';
+  renderInvSummary();
+  renderProducts(); // re-render para mostrar stock badges
+  vToast('✅ Apertura guardada','g');
+}
+
+function closeInvOut(e){
+  if(e.target===document.getElementById('inv-setup-overlay'))
+    document.getElementById('inv-setup-overlay').style.display='none';
+}
+
+/* ─ Calcular ganancias del día ─ */
+function calcGanancias(){
+  // Ingresos: suma de ventas parciales confirmadas + selección actual
+  var ingreso = parciales.reduce(function(s,p){return s+p.total;},0);
+  var ingresoActual = products.reduce(function(s,p){return s+p.qty*p.price;},0);
+  ingreso += ingresoActual;
+
+  // Costo de lo vendido: unidades vendidas × costoUnit
+  var costo = 0;
+  // Calcular unidades vendidas por producto (parciales + actual)
+  var vendidas = {};
+  parciales.forEach(function(par){
+    par.items.forEach(function(i){
+      vendidas[i.id] = (vendidas[i.id]||0) + i.qty;
+    });
+  });
+  products.forEach(function(p){
+    vendidas[p.id] = (vendidas[p.id]||0) + p.qty;
+  });
+  Object.keys(vendidas).forEach(function(pid){
+    var ap = invState.apertura[pid];
+    if(ap && ap.costoUnit>0){
+      costo += vendidas[pid] * ap.costoUnit;
+    }
+  });
+
+  // Gastos extra del día
+  var gastosExtra = (invState.gastosExtra||[]).reduce(function(s,g){return s+g.val;},0);
+  costo += gastosExtra;
+
+  var ganancia = ingreso - costo;
+  var margen   = ingreso>0 ? Math.round((ganancia/ingreso)*100) : 0;
+
+  return { ingreso, costo, ganancia, margen, vendidas };
+}
+
+/* ─ Render summary inventario ─ */
+function renderInvSummary(){
+  if(!invState.abierto){
+    // Mostrar prompt para abrir
+    document.getElementById('inv-metrics').innerHTML =
+      '<div style="grid-column:1/-1;text-align:center;padding:18px 10px;">'+
+        '<div style="font-size:2rem;margin-bottom:8px">📦</div>'+
+        '<div style="font-size:0.82rem;font-weight:800;color:var(--brown-mid);margin-bottom:12px">Registra tu apertura del día para ver las ganancias</div>'+
+        '<button onclick="openInvSetup()" style="background:linear-gradient(135deg,var(--brown),var(--brown-dark));color:#fff;border:none;border-radius:12px;padding:10px 20px;font-family:Nunito,sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;">📦 Registrar apertura</button>'+
+      '</div>';
+    document.getElementById('inv-pbar').style.width='0%';
+    document.getElementById('inv-stock-rows').innerHTML='<div style="text-align:center;padding:10px;font-size:0.75rem;color:var(--muted);font-weight:600;">Sin apertura registrada</div>';
+    document.getElementById('bganancia').textContent='$0';
+    return;
+  }
+
+  var g = calcGanancias();
+
+  // Métricas
+  document.getElementById('im-ganancia').textContent = '$'+Math.abs(g.ganancia).toLocaleString('es-CO')+(g.ganancia<0?' 📉':'');
+  document.getElementById('im-ganancia').style.color = g.ganancia>=0?'var(--profit)':'var(--cost)';
+  document.getElementById('im-ingreso').textContent  = '$'+g.ingreso.toLocaleString('es-CO');
+  document.getElementById('im-costo').textContent    = '$'+g.costo.toLocaleString('es-CO');
+
+  // Barra margen
+  var pct = Math.max(0,Math.min(100, g.margen));
+  document.getElementById('inv-pbar').style.width = pct+'%';
+  document.getElementById('inv-pbar').style.background =
+    pct>60 ? 'linear-gradient(90deg,#16a34a,#22c55e)' :
+    pct>30 ? 'linear-gradient(90deg,#f59e0b,#fbbf24)' :
+             'linear-gradient(90deg,#dc2626,#ef4444)';
+
+  // Stock rows
+  var stockHTML = '';
+  products.forEach(function(p){
+    var ap = invState.apertura[p.id];
+    if(!ap || ap.unidades<=0) return;
+    // unidades vendidas de este producto
+    var sold = 0;
+    parciales.forEach(function(par){
+      par.items.forEach(function(i){ if(i.id===p.id) sold+=i.qty; });
+    });
+    sold += p.qty; // en curso
+    var restante = ap.unidades - sold;
+    var cls = restante<=0?'low':restante<=Math.ceil(ap.unidades*0.3)?'warn':'ok';
+    stockHTML +=
+      '<div class="inv-stock-row">'+
+        '<span class="inv-stock-emoji">'+p.emoji+'</span>'+
+        '<div class="inv-stock-info">'+
+          '<div class="inv-stock-name">'+p.name+'</div>'+
+          '<div class="inv-stock-detail">Inicio: '+ap.unidades+' · Costo/und: $'+ap.costoUnit.toLocaleString('es-CO')+'</div>'+
+        '</div>'+
+        '<div class="inv-stock-right">'+
+          '<div class="inv-stock-units '+cls+'">'+Math.max(0,restante)+' restantes</div>'+
+          '<div class="inv-stock-sold">vendidas: '+sold+'</div>'+
+        '</div>'+
+      '</div>';
+  });
+  if(invState.gastosExtra&&invState.gastosExtra.length){
+    var gExtra = invState.gastosExtra.reduce(function(s,g){return s+g.val;},0);
+    stockHTML +=
+      '<div style="background:#fff8e1;border-radius:10px;padding:8px 12px;margin-top:5px;font-size:0.72rem;font-weight:700;color:#7c5c00;">'+
+        '🛍️ Gastos extra del día: <strong>$'+gExtra.toLocaleString('es-CO')+'</strong>'+
+      '</div>';
+  }
+  if(!stockHTML) stockHTML='<div style="text-align:center;padding:8px;font-size:0.75rem;color:var(--muted);">Sin productos en apertura</div>';
+  document.getElementById('inv-stock-rows').innerHTML = stockHTML;
+
+  // Barra inferior ganancia
+  document.getElementById('bganancia').textContent = '$'+Math.abs(g.ganancia).toLocaleString('es-CO');
 }
 
 /* ════════════════════════════════════════
    VENTAS — DATOS
-════════════════════════════════════════ */
+════════════════════ */
 var products = [
   {id:1,name:"Torta de Chocolate",price:3000,qty:0,emoji:"🎂",desc:"Unidad"},
   {id:2,name:"Repollas",           price:2000,qty:0,emoji:"🍩",desc:"Paquete x5"},
@@ -925,34 +1055,49 @@ var products = [
 var nextId    = 10;
 var parciales = [];
 
-function saveLocal() {
+function saveLocal(){
   localStorage.setItem('ajd_products',  JSON.stringify(products));
   localStorage.setItem('ajd_parciales', JSON.stringify(parciales));
   localStorage.setItem('ajd_nextId',    String(nextId));
 }
-function loadLocal() {
-  try {
+function loadLocal(){
+  try{
     var p  = localStorage.getItem('ajd_products');
     var pa = localStorage.getItem('ajd_parciales');
     var n  = localStorage.getItem('ajd_nextId');
-    if (p)  { var pp=JSON.parse(p);  if(Array.isArray(pp)) products=pp; }
-    if (pa) { var qq=JSON.parse(pa); if(Array.isArray(qq)) parciales=qq; }
-    if (n)  { var nn=parseInt(n);    if(!isNaN(nn)) nextId=nn; }
-  } catch(e){}
+    if(p)  { var pp=JSON.parse(p);  if(Array.isArray(pp)) products=pp; }
+    if(pa) { var qq=JSON.parse(pa); if(Array.isArray(qq)) parciales=qq; }
+    if(n)  { var nn=parseInt(n);    if(!isNaN(nn)) nextId=nn; }
+  }catch(e){}
 }
 
 /* ─ Render productos ─ */
-function renderProducts() {
+function renderProducts(){
   var grid = document.getElementById('pgrid');
   grid.innerHTML = '';
-  products.forEach(function(p) {
+  products.forEach(function(p){
+    // Stock badge
+    var stockBadge = '';
+    if(invState.abierto){
+      var ap = invState.apertura[p.id];
+      if(ap && ap.unidades>0){
+        var sold=0;
+        parciales.forEach(function(par){par.items.forEach(function(i){if(i.id===p.id)sold+=i.qty;});});
+        sold+=p.qty;
+        var rest = ap.unidades - sold;
+        var scls = rest<=0?'none':rest<=Math.ceil(ap.unidades*0.3)?'low':rest<=Math.ceil(ap.unidades*0.5)?'warn':'ok';
+        var stxt = rest<=0?'Sin stock':''+Math.max(0,rest)+' disponibles';
+        stockBadge = '<span class="pstock-badge '+scls+'">'+stxt+'</span>';
+      }
+    }
     var card = document.createElement('div');
-    card.className = 'pcard' + (p.qty>0?' hs':'');
+    card.className = 'pcard'+(p.qty>0?' hs':'');
     card.innerHTML =
       '<span class="pemi">'+p.emoji+'</span>'+
       '<div class="pname">'+p.name+'</div>'+
       '<div class="pdesc">'+p.desc+'</div>'+
       '<div class="pprice">$'+p.price.toLocaleString('es-CO')+'</div>'+
+      (stockBadge?'<div>'+stockBadge+'</div>':'')+
       '<div class="crow '+(p.qty>0?'sold':'')+'">'+
         '<button class="bcnt bminus" onclick="change('+p.id+',-1)">−</button>'+
         '<span class="cdsp">'+p.qty+'</span>'+
@@ -962,35 +1107,33 @@ function renderProducts() {
     grid.appendChild(card);
   });
   updateBar();
+  renderInvSummary();
 }
 
 /* ─ Render parciales ─ */
-function renderParciales() {
+function renderParciales(){
   var body = document.getElementById('pbody');
   var cnt  = document.getElementById('pcnt');
-  cnt.textContent = parciales.length + (parciales.length===1?' venta':' ventas');
-  if (!parciales.length) {
-    body.innerHTML = '<div class="pempty">Aún no hay ventas parciales 🍪</div>';
-    return;
-  }
-  body.innerHTML = '';
-  parciales.slice().reverse().forEach(function(par) {
-    var div = document.createElement('div');
-    div.className = 'pitem';
-    var items = par.items.map(function(i){ return i.emoji+' '+i.name+' x'+i.qty; }).join(' · ');
-    var pagoHTML = '';
-    if(par.split) {
-      var parts = [];
+  cnt.textContent = parciales.length+(parciales.length===1?' venta':' ventas');
+  if(!parciales.length){ body.innerHTML='<div class="pempty">Aún no hay ventas parciales 🍪</div>'; return; }
+  body.innerHTML='';
+  parciales.slice().reverse().forEach(function(par){
+    var div=document.createElement('div');
+    div.className='pitem';
+    var items=par.items.map(function(i){return i.emoji+' '+i.name+' x'+i.qty;}).join(' · ');
+    var pagoHTML='';
+    if(par.split){
+      var parts=[];
       if(par.split.efectivo>0) parts.push('<span class="ppago efectivo">💵$'+par.split.efectivo.toLocaleString('es-CO')+'</span>');
       if(par.split.nequi>0)    parts.push('<span class="ppago nequi">🟣$'+par.split.nequi.toLocaleString('es-CO')+'</span>');
       if(par.split.davi>0)     parts.push('<span class="ppago davi">🔴$'+par.split.davi.toLocaleString('es-CO')+'</span>');
-      pagoHTML = parts.join(' ');
+      pagoHTML=parts.join(' ');
     } else {
-      var pagoClass = par.medio||'efectivo';
-      var lblP = {efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
-      pagoHTML = '<span class="ppago '+pagoClass+'">'+(lblP[pagoClass]||pagoClass)+'</span>';
+      var pagoClass=par.medio||'efectivo';
+      var lblP={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
+      pagoHTML='<span class="ppago '+pagoClass+'">'+(lblP[pagoClass]||pagoClass)+'</span>';
     }
-    div.innerHTML =
+    div.innerHTML=
       '<div class="pleft">'+
         '<div class="ptime">🕐 '+par.time+'</div>'+
         '<div class="pprods">'+items+'</div>'+
@@ -1006,32 +1149,36 @@ function renderParciales() {
 }
 
 /* ─ Barra inferior ─ */
-function updateBar() {
-  var su = products.reduce(function(s,p){return s+p.qty;},0);
-  var sm = products.reduce(function(s,p){return s+p.qty*p.price;},0);
-  var dt = parciales.reduce(function(s,p){return s+p.total;},0);
-  document.getElementById('bunits').textContent = su;
-  document.getElementById('bmoney').textContent = '$'+sm.toLocaleString('es-CO');
-  document.getElementById('btotal').textContent = '$'+dt.toLocaleString('es-CO');
-  document.getElementById('bpar').disabled = su===0;
-  document.getElementById('bfin').disabled = parciales.length===0 && su===0;
+function updateBar(){
+  var su=products.reduce(function(s,p){return s+p.qty;},0);
+  var sm=products.reduce(function(s,p){return s+p.qty*p.price;},0);
+  var dt=parciales.reduce(function(s,p){return s+p.total;},0);
+  document.getElementById('bunits').textContent=su;
+  document.getElementById('bmoney').textContent='$'+sm.toLocaleString('es-CO');
+  document.getElementById('btotal').textContent='$'+dt.toLocaleString('es-CO');
+  document.getElementById('bpar').disabled=su===0;
+  document.getElementById('bfin').disabled=parciales.length===0&&su===0;
+  if(invState.abierto){
+    var g=calcGanancias();
+    document.getElementById('bganancia').textContent='$'+Math.abs(g.ganancia).toLocaleString('es-CO');
+  }
 }
 
-function change(id, delta) {
-  var p = products.find(function(x){return x.id===id;});
-  if (!p) return;
-  p.qty = Math.max(0, p.qty+delta);
+function change(id,delta){
+  var p=products.find(function(x){return x.id===id;});
+  if(!p) return;
+  p.qty=Math.max(0,p.qty+delta);
   saveLocal();
   renderProducts();
-  if (delta>0) vToast('+1 '+p.emoji+' '+p.name);
+  if(delta>0) vToast('+1 '+p.emoji+' '+p.name);
 }
 
-function addProduct() {
+function addProduct(){
   var name  = document.getElementById('nname').value.trim();
   var price = parseInt(document.getElementById('nprice').value);
-  var emoji = document.getElementById('nemoji').value.trim() || '🍡';
-  if (!name)           return vToast('⚠️ Escribe el nombre','r');
-  if (!price||price<1) return vToast('⚠️ Precio inválido','r');
+  var emoji = document.getElementById('nemoji').value.trim()||'🍡';
+  if(!name) return vToast('⚠️ Escribe el nombre','r');
+  if(!price||price<1) return vToast('⚠️ Precio inválido','r');
   products.push({id:nextId++,name:name,price:price,emoji:emoji,desc:'Unidad',qty:0});
   saveLocal(); renderProducts();
   document.getElementById('nname').value='';
@@ -1042,25 +1189,22 @@ function addProduct() {
 
 /* ════════════════════════════════════════
    SPLIT DE PAGO
-════════════════════════════════════════ */
+════════════════════ */
 var splitTotal  = 0;
-var splitValues = {efectivo:0, nequi:0, davi:0};
-var _pendingItems = [];
-var _pendingTotal = 0;
-var _pendingUnits = 0;
-var _pendingTime  = '';
+var splitValues = {efectivo:0,nequi:0,davi:0};
+var _pendingItems=[], _pendingTotal=0, _pendingUnits=0, _pendingTime='';
 
-function buildSplitSelector(total, context) {
-  splitTotal  = total;
-  splitValues = {efectivo:total, nequi:0, davi:0};
+function buildSplitSelector(total,context){
+  splitTotal=total;
+  splitValues={efectivo:total,nequi:0,davi:0};
   return '<div class="split-title">💳 ¿Cómo pagó el cliente?</div>'+
     '<div class="split-subtitle">Ingresa cuánto pagó por cada medio. Debe sumar $'+total.toLocaleString('es-CO')+'</div>'+
     '<div class="split-rows">'+
-      buildSplitRowVal('efectivo','💵 Efectivo','ef', total, total, context)+
-      buildSplitRowVal('nequi',   '🟣 Nequi',   'nq', 0,     total, context)+
-      buildSplitRowVal('davi',    '🔴 Daviplata','dv', 0,     total, context)+
+      buildSplitRowVal('efectivo','💵 Efectivo','ef',total,total,context)+
+      buildSplitRowVal('nequi','🟣 Nequi','nq',0,total,context)+
+      buildSplitRowVal('davi','🔴 Daviplata','dv',0,total,context)+
     '</div>'+
-    '<div class="split-bar-wrap" id="split-bar-'+context+'" style="margin-top:10px">'+
+    '<div class="split-bar-wrap" id="split-bar-'+context+'">'+
       '<div class="split-bar-ef" id="sbar-ef-'+context+'" style="width:100%"></div>'+
       '<div class="split-bar-nq" id="sbar-nq-'+context+'" style="width:0%"></div>'+
       '<div class="split-bar-dv" id="sbar-dv-'+context+'" style="width:0%"></div>'+
@@ -1072,207 +1216,207 @@ function buildSplitSelector(total, context) {
     '<div class="split-err" id="split-err-'+context+'">⚠️ Los valores deben sumar exactamente $'+total.toLocaleString('es-CO')+'</div>'+
     '<div class="split-ok"  id="split-ok-'+context+'">✅ ¡Perfecto! Todo cuadra.</div>';
 }
-
-function buildSplitRowVal(medio, label, cls, initial, total, ctx) {
-  var pct = total>0 ? Math.round(initial/total*100) : 0;
-  return '<div class="split-row" id="srow-'+medio+'-'+ctx+'">'+
+function buildSplitRowVal(medio,label,cls,initial,total,ctx){
+  var pct=total>0?Math.round(initial/total*100):0;
+  return '<div class="split-row">'+
     '<span class="split-row-label '+cls+'">'+label+'</span>'+
     '<span class="split-val-prefix">$</span>'+
-    '<input type="number" class="split-val-inp '+cls+'" id="sval-'+medio+'-'+ctx+'"'+
-      ' min="0" max="'+total+'" step="100" value="'+initial+'" inputmode="numeric"'+
-      ' oninput="onSplitVal(\''+medio+'\',\''+ctx+'\')" />'+
+    '<input type="number" class="split-val-inp '+cls+'" id="sval-'+medio+'-'+ctx+'" min="0" max="'+total+'" step="100" value="'+initial+'" inputmode="numeric" oninput="onSplitVal(\''+medio+'\',\''+ctx+'\')" />'+
     '<span class="split-pct-badge" id="spct-'+medio+'-'+ctx+'">'+pct+'%</span>'+
   '</div>';
 }
-
-function onSplitVal(medio, ctx) {
-  var inp = document.getElementById('sval-'+medio+'-'+ctx);
-  var val = Math.max(0, parseInt(inp.value)||0);
-  splitValues[medio] = val;
-  updateSplitUI(ctx);
+function onSplitVal(medio,ctx){
+  var val=Math.max(0,parseInt(document.getElementById('sval-'+medio+'-'+ctx).value)||0);
+  splitValues[medio]=val; updateSplitUI(ctx);
 }
-
-function updateSplitUI(ctx) {
-  var t = splitTotal;
-  var sum = (splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
+function updateSplitUI(ctx){
+  var t=splitTotal,sum=(splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
   ['efectivo','nequi','davi'].forEach(function(m){
-    var v = splitValues[m]||0;
-    var pct = t>0 ? Math.round(v/t*100) : 0;
-    var pb = document.getElementById('spct-'+m+'-'+ctx);
-    if(pb) pb.textContent = pct+'%';
+    var v=splitValues[m]||0,pct=t>0?Math.round(v/t*100):0;
+    var pb=document.getElementById('spct-'+m+'-'+ctx);
+    if(pb) pb.textContent=pct+'%';
   });
-  var bef=document.getElementById('sbar-ef-'+ctx);
-  var bnq=document.getElementById('sbar-nq-'+ctx);
-  var bdv=document.getElementById('sbar-dv-'+ctx);
+  var bef=document.getElementById('sbar-ef-'+ctx),bnq=document.getElementById('sbar-nq-'+ctx),bdv=document.getElementById('sbar-dv-'+ctx);
   if(t>0){
     if(bef) bef.style.width=Math.round((splitValues.efectivo||0)/t*100)+'%';
     if(bnq) bnq.style.width=Math.round((splitValues.nequi||0)/t*100)+'%';
     if(bdv) bdv.style.width=Math.round((splitValues.davi||0)/t*100)+'%';
   }
-  var rem = t - sum;
-  var remEl = document.getElementById('split-rem-'+ctx);
-  if(remEl){
-    remEl.textContent = (rem>=0?'$'+rem.toLocaleString('es-CO'):'-$'+Math.abs(rem).toLocaleString('es-CO'));
-    remEl.className   = 'split-remaining-val'+(rem<0?' over':'');
-  }
-  var ok  = Math.abs(sum - t) <= 0;
-  var err = document.getElementById('split-err-'+ctx);
-  var okEl= document.getElementById('split-ok-'+ctx);
-  if(err)  err.classList.toggle('show', !ok && sum>0);
-  if(okEl) okEl.classList.toggle('show', ok);
+  var rem=t-sum;
+  var remEl=document.getElementById('split-rem-'+ctx);
+  if(remEl){remEl.textContent=(rem>=0?'$'+rem.toLocaleString('es-CO'):'-$'+Math.abs(rem).toLocaleString('es-CO'));remEl.className='split-remaining-val'+(rem<0?' over':'');}
+  var ok=Math.abs(sum-t)<=0;
+  var err=document.getElementById('split-err-'+ctx),okEl=document.getElementById('split-ok-'+ctx);
+  if(err) err.classList.toggle('show',!ok&&sum>0);
+  if(okEl) okEl.classList.toggle('show',ok);
 }
-
-function getSplitValues() {
-  return {efectivo:splitValues.efectivo||0, nequi:splitValues.nequi||0, davi:splitValues.davi||0};
-}
+function getSplitValues(){ return {efectivo:splitValues.efectivo||0,nequi:splitValues.nequi||0,davi:splitValues.davi||0}; }
 
 /* ════════════════════════════════════════
    REGISTRAR PARCIAL
-════════════════════════════════════════ */
-function registrarParcial() {
-  var items = products.filter(function(p){return p.qty>0;})
+════════════════════ */
+function registrarParcial(){
+  var items=products.filter(function(p){return p.qty>0;})
     .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
-  if (!items.length) return;
-  showMedioModal('parcial', items);
+  if(!items.length) return;
+  showMedioModal('parcial',items);
 }
-
-function showMedioModal(context, items) {
-  var total  = items.reduce(function(s,i){return s+i.qty*i.price;},0);
-  var units  = items.reduce(function(s,i){return s+i.qty;},0);
-  var time   = new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
-  var itemsHTML = items.map(function(i){
-    return '<div class="prow">'+
-      '<span class="pemi">'+i.emoji+'</span>'+
-      '<span class="pri">'+i.name+'</span>'+
-      '<span class="prto">x'+i.qty+' · $'+(i.qty*i.price).toLocaleString('es-CO')+'</span>'+
-    '</div>';
+function showMedioModal(context,items){
+  var total=items.reduce(function(s,i){return s+i.qty*i.price;},0);
+  var units=items.reduce(function(s,i){return s+i.qty;},0);
+  var time=new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+  var itemsHTML=items.map(function(i){
+    return '<div class="prow"><span class="pemi">'+i.emoji+'</span><span class="pri">'+i.name+'</span><span class="prto">x'+i.qty+' · $'+(i.qty*i.price).toLocaleString('es-CO')+'</span></div>';
   }).join('');
 
-  var content = '<div class="tbox">'+
-    '<div class="tl">Total a cobrar</div>'+
-    '<div class="tm">$'+total.toLocaleString('es-CO')+'</div>'+
-    '<div class="tu">'+units+' unidades · '+time+'</div>'+
-  '</div>'+
-  '<div class="dsec"><h4>Productos</h4>'+itemsHTML+'</div>'+
-  '<div class="dsec">'+buildSplitSelector(total, context)+'</div>'+
-  '<div class="macts">'+
-    '<button class="breset" onclick="closeMedioModal()">✕ Cancelar</button>'+
-    '<button class="bfin" style="flex:2" id="btn-confirm-parcial">💾 Guardar venta</button>'+
-  '</div>';
+  // Calcular ganancia de esta venta si hay apertura
+  var gVenta='';
+  if(invState.abierto){
+    var costoVenta=0;
+    items.forEach(function(i){
+      var ap=invState.apertura[i.id];
+      if(ap&&ap.costoUnit>0) costoVenta+=i.qty*ap.costoUnit;
+    });
+    var gananVenta=total-costoVenta;
+    gVenta='<div style="background:linear-gradient(135deg,#e8f5e9,#f1fbf4);border:1.5px solid #c8e6c9;border-radius:12px;padding:10px 14px;margin-bottom:12px;display:flex;justify-content:space-between;font-size:0.82rem;font-weight:800;">'+
+      '<span style="color:var(--brown-mid)">💰 Ganancia estimada esta venta</span>'+
+      '<span style="font-family:DM Mono,monospace;color:'+(gananVenta>=0?'var(--profit)':'var(--cost)')+'">$'+Math.abs(gananVenta).toLocaleString('es-CO')+'</span>'+
+    '</div>';
+  }
 
-  document.getElementById('mtitle').textContent = '💾 Registrar venta parcial';
-  document.getElementById('mdate').textContent  = '';
-  document.getElementById('mcontent').innerHTML = content;
-  document.getElementById('mov').style.display  = 'flex';
-  document.getElementById('btn-confirm-parcial').addEventListener('click', function(){
-    confirmParcial(_pendingItems, total, units, time);
-  });
-  _pendingItems = items;
-  _pendingTotal = total;
-  _pendingUnits = units;
-  _pendingTime  = time;
+  var content=
+    '<div class="tbox"><div class="tl">Total a cobrar</div><div class="tm">$'+total.toLocaleString('es-CO')+'</div><div class="tu">'+units+' unidades · '+time+'</div></div>'+
+    gVenta+
+    '<div class="dsec"><h4>Productos</h4>'+itemsHTML+'</div>'+
+    '<div class="dsec">'+buildSplitSelector(total,context)+'</div>'+
+    '<div class="macts">'+
+      '<button class="breset" onclick="closeMedioModal()">✕ Cancelar</button>'+
+      '<button class="bfin" style="flex:2" id="btn-confirm-parcial">💾 Guardar venta</button>'+
+    '</div>';
+  document.getElementById('mtitle').textContent='💾 Registrar venta parcial';
+  document.getElementById('mdate').textContent='';
+  document.getElementById('mcontent').innerHTML=content;
+  document.getElementById('mov').style.display='flex';
+  document.getElementById('btn-confirm-parcial').addEventListener('click',function(){ confirmParcial(_pendingItems,total,units,time); });
+  _pendingItems=items; _pendingTotal=total; _pendingUnits=units; _pendingTime=time;
 }
-
-function closeMedioModal() {
-  document.getElementById('mov').style.display = 'none';
-}
-
-function confirmParcial(items, total, units, time) {
-  if(!items) { items=_pendingItems; total=_pendingTotal; units=_pendingUnits; time=_pendingTime; }
-  var sum = (splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
-  if(Math.abs(sum - total) > 0) { vToast('⚠️ Los valores deben sumar $'+total.toLocaleString('es-CO'),'r'); return; }
-  var split = getSplitValues();
+function closeMedioModal(){ document.getElementById('mov').style.display='none'; }
+function confirmParcial(items,total,units,time){
+  if(!items){items=_pendingItems;total=_pendingTotal;units=_pendingUnits;time=_pendingTime;}
+  var sum=(splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
+  if(Math.abs(sum-total)>0){vToast('⚠️ Los valores deben sumar $'+total.toLocaleString('es-CO'),'r');return;}
+  var split=getSplitValues();
   parciales.push({id:'p_'+Date.now(),time:time,items:items,total:total,units:units,
     split:{efectivo:split.efectivo,nequi:split.nequi,davi:split.davi}});
   products.forEach(function(p){p.qty=0;});
-  saveLocal();
-  renderProducts();
-  renderParciales();
-  updateBar();
+  saveLocal(); renderProducts(); renderParciales(); updateBar();
   closeMedioModal();
-  var parts = [];
+  var parts=[];
   if(split.efectivo>0) parts.push('💵$'+split.efectivo.toLocaleString('es-CO'));
   if(split.nequi>0)    parts.push('🟣$'+split.nequi.toLocaleString('es-CO'));
   if(split.davi>0)     parts.push('🔴$'+split.davi.toLocaleString('es-CO'));
   vToast('💾 '+parts.join(' · '),'g');
-  if(split.efectivo>0) transferToFinanzas(split.efectivo, 'efectivo', 'Venta Ajolotito · '+time);
-  if(split.nequi>0)    transferToFinanzas(split.nequi,    'nequi',    'Venta Ajolotito · '+time);
-  if(split.davi>0)     transferToFinanzas(split.davi,     'davi',     'Venta Ajolotito · '+time);
+  if(split.efectivo>0) transferToFinanzas(split.efectivo,'efectivo','Venta Ajolotito · '+time);
+  if(split.nequi>0)    transferToFinanzas(split.nequi,   'nequi',   'Venta Ajolotito · '+time);
+  if(split.davi>0)     transferToFinanzas(split.davi,    'davi',    'Venta Ajolotito · '+time);
 }
 
 /* ════════════════════════════════════════
    CIERRE DEL DÍA
-════════════════════════════════════════ */
-function showResumen() {
-  var pendingItems = products.filter(function(p){return p.qty>0;})
+════════════════════ */
+function showResumen(){
+  var pendingItems=products.filter(function(p){return p.qty>0;})
     .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
-
-  var resumen = {};
+  var resumen={};
   parciales.forEach(function(par){
     par.items.forEach(function(i){
-      if (!resumen[i.id]) resumen[i.id]={id:i.id,name:i.name,emoji:i.emoji,price:i.price,qty:0};
-      resumen[i.id].qty += i.qty;
+      if(!resumen[i.id]) resumen[i.id]={id:i.id,name:i.name,emoji:i.emoji,price:i.price,qty:0};
+      resumen[i.id].qty+=i.qty;
     });
   });
-  if (pendingItems.length) {
+  if(pendingItems.length){
     pendingItems.forEach(function(i){
-      if (!resumen[i.id]) resumen[i.id]={id:i.id,name:i.name,emoji:i.emoji,price:i.price,qty:0};
-      resumen[i.id].qty += i.qty;
+      if(!resumen[i.id]) resumen[i.id]={id:i.id,name:i.name,emoji:i.emoji,price:i.price,qty:0};
+      resumen[i.id].qty+=i.qty;
     });
   }
-  var arr = Object.values(resumen).filter(function(r){return r.qty>0;});
+  var arr=Object.values(resumen).filter(function(r){return r.qty>0;});
+  var grandTotal=parciales.reduce(function(s,p){return s+p.total;},0)+
+                 pendingItems.reduce(function(s,i){return s+i.qty*i.price;},0);
+  var grandUnits=parciales.reduce(function(s,p){return s+p.units;},0)+
+                 pendingItems.reduce(function(s,i){return s+i.qty;},0);
+  var now=new Date();
+  var ds=now.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+  var ts=now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
 
-  var grandTotal = parciales.reduce(function(s,p){return s+p.total;},0) +
-                   pendingItems.reduce(function(s,i){return s+i.qty*i.price;},0);
-  var grandUnits = parciales.reduce(function(s,p){return s+p.units;},0) +
-                   pendingItems.reduce(function(s,i){return s+i.qty;},0);
-
-  var now = new Date();
-  var ds  = now.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
-  var ts  = now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
-
-  var tableHTML = '<table class="stbl"><thead><tr><th></th><th>Producto</th><th>Cant.</th><th>Total</th></tr></thead><tbody>';
+  var tableHTML='<table class="stbl"><thead><tr><th></th><th>Producto</th><th>Cant.</th><th>Total</th></tr></thead><tbody>';
   arr.forEach(function(c){
-    tableHTML += '<tr><td class="eji">'+c.emoji+'</td><td>'+c.name+'</td><td><span class="qbadge">'+c.qty+'</span></td><td class="scol">$'+(c.qty*c.price).toLocaleString('es-CO')+'</td></tr>';
+    tableHTML+='<tr><td class="eji">'+c.emoji+'</td><td>'+c.name+'</td><td><span class="qbadge">'+c.qty+'</span></td><td class="scol">$'+(c.qty*c.price).toLocaleString('es-CO')+'</td></tr>';
   });
-  tableHTML += '</tbody></table>';
+  tableHTML+='</tbody></table>';
 
-  var porMedio = {efectivo:0,nequi:0,davi:0};
-  parciales.forEach(function(p){
-    var m = p.medio||'efectivo';
-    porMedio[m] = (porMedio[m]||0)+p.total;
-  });
-
-  var medioHTML = '';
-  if (porMedio.efectivo>0) medioHTML += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>💵 Efectivo</span><strong>$'+porMedio.efectivo.toLocaleString('es-CO')+'</strong></div>';
-  if (porMedio.nequi>0)    medioHTML += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>🟣 Nequi</span><strong>$'+porMedio.nequi.toLocaleString('es-CO')+'</strong></div>';
-  if (porMedio.davi>0)     medioHTML += '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>🔴 Daviplata</span><strong>$'+porMedio.davi.toLocaleString('es-CO')+'</strong></div>';
-
-  var hasPending = pendingItems.length > 0;
-  var pendingTotal = pendingItems.reduce(function(s,i){return s+i.qty*i.price;},0);
-
-  var content =
-    '<div class="tbox">'+
-      '<div class="tl">Total del día</div>'+
-      '<div class="tm">$'+grandTotal.toLocaleString('es-CO')+'</div>'+
-      '<div class="tu">'+grandUnits+' unidades vendidas · '+parciales.length+' ventas</div>'+
-    '</div>'+
-    '<div class="dsec"><h4>Resumen por producto</h4>'+tableHTML+'</div>';
-
-  if (medioHTML) {
-    content += '<div class="dsec"><h4>Por medio de pago</h4>'+medioHTML+'</div>';
+  // Resumen ganancias en cierre
+  var gBlock='';
+  if(invState.abierto){
+    var g=calcGanancias();
+    var gastosExtra=(invState.gastosExtra||[]).reduce(function(s,g){return s+g.val;},0);
+    gBlock=
+      '<div class="dsec">'+
+        '<h4>💰 Rentabilidad del día</h4>'+
+        '<div style="background:linear-gradient(135deg,'+
+          (g.ganancia>=0?'#e8f5e9,#f1fbf4':'#fde8e8,#fff3f3')+
+          ');border:1.5px solid '+(g.ganancia>=0?'#c8e6c9':'#f5b8b8')+';border-radius:14px;padding:14px;">'+
+          '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.07);font-size:0.83rem;font-weight:700;">'+
+            '<span style="color:var(--brown-mid)">Ingresos totales</span>'+
+            '<span style="font-family:DM Mono,monospace;color:var(--profit)">$'+g.ingreso.toLocaleString('es-CO')+'</span>'+
+          '</div>'+
+          '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.07);font-size:0.83rem;font-weight:700;">'+
+            '<span style="color:var(--brown-mid)">Costo producción</span>'+
+            '<span style="font-family:DM Mono,monospace;color:var(--cost)">-$'+(g.costo-gastosExtra).toLocaleString('es-CO')+'</span>'+
+          '</div>'+
+          (gastosExtra>0?
+          '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.07);font-size:0.83rem;font-weight:700;">'+
+            '<span style="color:var(--brown-mid)">Gastos extra del día</span>'+
+            '<span style="font-family:DM Mono,monospace;color:var(--cost)">-$'+gastosExtra.toLocaleString('es-CO')+'</span>'+
+          '</div>':'')+
+          '<div style="display:flex;justify-content:space-between;padding:8px 0 4px;font-size:0.95rem;font-weight:900;">'+
+            '<span style="color:'+(g.ganancia>=0?'var(--profit)':'var(--cost)')+'">GANANCIA NETA</span>'+
+            '<span style="font-family:DM Mono,monospace;font-size:1.05rem;color:'+(g.ganancia>=0?'var(--profit)':'var(--cost)')+'">'+
+              (g.ganancia>=0?'+':'-')+'$'+Math.abs(g.ganancia).toLocaleString('es-CO')+
+            '</span>'+
+          '</div>'+
+          '<div style="font-size:0.72rem;color:var(--muted);font-weight:700;text-align:right">Margen: '+g.margen+'%</div>'+
+        '</div>'+
+      '</div>';
   }
 
-  if (hasPending) {
-    content +=
+  var porMedio={efectivo:0,nequi:0,davi:0};
+  parciales.forEach(function(p){
+    if(p.split){
+      porMedio.efectivo+=(p.split.efectivo||0);
+      porMedio.nequi+=(p.split.nequi||0);
+      porMedio.davi+=(p.split.davi||0);
+    } else { var m=p.medio||'efectivo'; porMedio[m]=(porMedio[m]||0)+p.total; }
+  });
+  var medioHTML='';
+  if(porMedio.efectivo>0) medioHTML+='<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>💵 Efectivo</span><strong>$'+porMedio.efectivo.toLocaleString('es-CO')+'</strong></div>';
+  if(porMedio.nequi>0)    medioHTML+='<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>🟣 Nequi</span><strong>$'+porMedio.nequi.toLocaleString('es-CO')+'</strong></div>';
+  if(porMedio.davi>0)     medioHTML+='<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--cream-dark)"><span>🔴 Daviplata</span><strong>$'+porMedio.davi.toLocaleString('es-CO')+'</strong></div>';
+
+  var hasPending=pendingItems.length>0;
+  var pendingTotal=pendingItems.reduce(function(s,i){return s+i.qty*i.price;},0);
+
+  var content=
+    '<div class="tbox"><div class="tl">Total del día</div><div class="tm">$'+grandTotal.toLocaleString('es-CO')+'</div><div class="tu">'+grandUnits+' unidades vendidas · '+parciales.length+' ventas</div></div>'+
+    gBlock+
+    '<div class="dsec"><h4>Resumen por producto</h4>'+tableHTML+'</div>'+
+    (medioHTML?'<div class="dsec"><h4>Por medio de pago</h4>'+medioHTML+'</div>':'')+
+    (hasPending?
       '<div class="dsec" style="background:#fff8e1;border-radius:12px;padding:10px 12px;">'+
         '<h4 style="color:#e65100">⚠️ Tienes '+(pendingItems.reduce(function(s,i){return s+i.qty;},0))+' unidades sin guardar ($'+pendingTotal.toLocaleString('es-CO')+')</h4>'+
-        '<p style="font-size:0.75rem;color:var(--brown-mid);margin-top:4px">¿Cómo las cobró? Ajusta el split:</p>'+
+        '<p style="font-size:0.75rem;color:var(--brown-mid);margin-top:4px">¿Cómo las cobró?</p>'+
       '</div>'+
-      '<div class="dsec">'+buildSplitSelector(pendingTotal, 'cierre')+'</div>';
-  }
-
-  content +=
+      '<div class="dsec">'+buildSplitSelector(pendingTotal,'cierre')+'</div>':'')+
     '<div class="macts">'+
       '<button class="breset" onclick="closeMedioModal()">✕ Cerrar</button>'+
       '<button class="bwa" onclick="sendWhatsApp()">'+
@@ -1282,583 +1426,163 @@ function showResumen() {
       '<button class="bclose" onclick="confirmCierre('+hasPending+','+pendingTotal+',\''+ds+'\',\''+ts+'\')">✅ Cerrar día</button>'+
     '</div>';
 
-  document.getElementById('mtitle').textContent = '🎉 Cierre del Día';
-  document.getElementById('mdate').textContent  = ds + ' · ' + ts;
-  document.getElementById('mcontent').innerHTML = content;
-  document.getElementById('mov').style.display  = 'flex';
+  document.getElementById('mtitle').textContent='🎉 Cierre del Día';
+  document.getElementById('mdate').textContent=ds+' · '+ts;
+  document.getElementById('mcontent').innerHTML=content;
+  document.getElementById('mov').style.display='flex';
 }
 
-function confirmCierre(hasPending, pendingTotal, ds, ts) {
-  if (hasPending && pendingTotal > 0) {
-    var sum = (splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
-    if(Math.abs(sum - pendingTotal) > 0) { vToast('⚠️ Los valores deben sumar $'+pendingTotal.toLocaleString('es-CO'),'r'); return; }
-    var split = getSplitValues();
-    var pendingItems = products.filter(function(p){return p.qty>0;})
+function confirmCierre(hasPending,pendingTotal,ds,ts){
+  if(hasPending&&pendingTotal>0){
+    var sum=(splitValues.efectivo||0)+(splitValues.nequi||0)+(splitValues.davi||0);
+    if(Math.abs(sum-pendingTotal)>0){vToast('⚠️ Los valores deben sumar $'+pendingTotal.toLocaleString('es-CO'),'r');return;}
+    var split=getSplitValues();
+    var pendingItems=products.filter(function(p){return p.qty>0;})
       .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
-    var units = pendingItems.reduce(function(s,i){return s+i.qty;},0);
-    var time  = new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
-    parciales.push({id:'p_'+Date.now(),time:time,items:pendingItems,
-      total:pendingTotal,units:units,split:split});
-    if(split.efectivo>0) transferToFinanzas(split.efectivo, 'efectivo', 'Cierre Ajolotito · '+time);
-    if(split.nequi>0)    transferToFinanzas(split.nequi,    'nequi',    'Cierre Ajolotito · '+time);
-    if(split.davi>0)     transferToFinanzas(split.davi,     'davi',     'Cierre Ajolotito · '+time);
+    var units=pendingItems.reduce(function(s,i){return s+i.qty;},0);
+    var time=new Date().toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+    parciales.push({id:'p_'+Date.now(),time:time,items:pendingItems,total:pendingTotal,units:units,split:split});
+    if(split.efectivo>0) transferToFinanzas(split.efectivo,'efectivo','Cierre Ajolotito · '+time);
+    if(split.nequi>0)    transferToFinanzas(split.nequi,   'nequi',   'Cierre Ajolotito · '+time);
+    if(split.davi>0)     transferToFinanzas(split.davi,    'davi',    'Cierre Ajolotito · '+time);
   }
-  var grandTotal = parciales.reduce(function(s,p){return s+p.total;},0);
+  var grandTotal=parciales.reduce(function(s,p){return s+p.total;},0);
   closeMedioModal();
   vToast('✅ Día cerrado · Total: $'+grandTotal.toLocaleString('es-CO'),'g');
   resetDay();
 }
 
-function resetDay() {
-  parciales = [];
-  products.forEach(function(p){p.qty=0;});
-  saveLocal();
-  renderProducts();
-  renderParciales();
-  updateBar();
+function resetDay(){
+  parciales=[]; products.forEach(function(p){p.qty=0;});
+  invState={apertura:{},gastosExtra:[],abierto:false};
+  invSave(); saveLocal(); renderProducts(); renderParciales(); updateBar();
 }
 
-function sendWhatsApp() {
-  var pendingItems = products.filter(function(p){return p.qty>0;})
+function sendWhatsApp(){
+  var pendingItems=products.filter(function(p){return p.qty>0;})
     .map(function(p){return {id:p.id,name:p.name,qty:p.qty,price:p.price,emoji:p.emoji,desc:p.desc};});
-
   var resumen={};
-  parciales.forEach(function(par){
-    par.items.forEach(function(i){
-      if(!resumen[i.id]) resumen[i.id]={name:i.name,emoji:i.emoji,price:i.price,qty:0};
-      resumen[i.id].qty+=i.qty;
-    });
-  });
-  pendingItems.forEach(function(i){
-    if(!resumen[i.id]) resumen[i.id]={name:i.name,emoji:i.emoji,price:i.price,qty:0};
-    resumen[i.id].qty+=i.qty;
-  });
+  parciales.forEach(function(par){par.items.forEach(function(i){if(!resumen[i.id])resumen[i.id]={name:i.name,emoji:i.emoji,price:i.price,qty:0};resumen[i.id].qty+=i.qty;});});
+  pendingItems.forEach(function(i){if(!resumen[i.id])resumen[i.id]={name:i.name,emoji:i.emoji,price:i.price,qty:0};resumen[i.id].qty+=i.qty;});
   var arr=Object.values(resumen).filter(function(r){return r.qty>0;});
-
-  var grandTotal=parciales.reduce(function(s,p){return s+p.total;},0)+
-                 pendingItems.reduce(function(s,i){return s+i.qty*i.price;},0);
-  var grandUnits=parciales.reduce(function(s,p){return s+p.units;},0)+
-                 pendingItems.reduce(function(s,i){return s+i.qty;},0);
-
+  var grandTotal=parciales.reduce(function(s,p){return s+p.total;},0)+pendingItems.reduce(function(s,i){return s+i.qty*i.price;},0);
+  var grandUnits=parciales.reduce(function(s,p){return s+p.units;},0)+pendingItems.reduce(function(s,i){return s+i.qty;},0);
   var now=new Date();
   var ds=now.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
   var ts=now.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
-
   var lines=['🍫 *AJOLOTITO DULCE*','🎉 *Cierre del Día*','📅 '+ds+' · '+ts,'',
     '━━━━━━━━━━━━━━━━━━','📦 *RESUMEN POR PRODUCTO*','━━━━━━━━━━━━━━━━━━'];
   arr.forEach(function(c){
     lines.push(c.emoji+' '+c.name);
     lines.push('   '+c.qty+' unid. x $'+c.price.toLocaleString('es-CO')+' = *$'+(c.qty*c.price).toLocaleString('es-CO')+'*');
   });
-  lines.push('');
-  lines.push('━━━━━━━━━━━━━━━━━━');
-  lines.push('🕐 *HISTORIAL DE VENTAS ('+parciales.length+')*');
-  lines.push('━━━━━━━━━━━━━━━━━━');
+  if(invState.abierto){
+    var g=calcGanancias();
+    lines.push('');lines.push('━━━━━━━━━━━━━━━━━━');lines.push('💰 *RENTABILIDAD*');lines.push('━━━━━━━━━━━━━━━━━━');
+    lines.push('Ingresos: $'+g.ingreso.toLocaleString('es-CO'));
+    lines.push('Costos: $'+g.costo.toLocaleString('es-CO'));
+    lines.push('*Ganancia neta: $'+Math.abs(g.ganancia).toLocaleString('es-CO')+'* ('+g.margen+'%)');
+  }
+  lines.push('');lines.push('━━━━━━━━━━━━━━━━━━');
+  lines.push('🕐 *HISTORIAL DE VENTAS ('+parciales.length+')*');lines.push('━━━━━━━━━━━━━━━━━━');
   parciales.forEach(function(par){
     var its=par.items.map(function(i){return i.emoji+'x'+i.qty;}).join(' ');
     lines.push('🕐 '+par.time+'  '+its+'  👉 $'+par.total.toLocaleString('es-CO'));
   });
-  lines.push('');
-  lines.push('━━━━━━━━━━━━━━━━━━');
+  lines.push('');lines.push('━━━━━━━━━━━━━━━━━━');
   lines.push('💰 *TOTAL DEL DÍA: $'+grandTotal.toLocaleString('es-CO')+'*');
   lines.push('📦 *TOTAL UNIDADES: '+grandUnits+'*');
-  var msg = lines.join('\n');
-  window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank');
+  window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(lines.join('\n')),'_blank');
 }
 
-function delParcial(pid) {
+function delParcial(pid){
   parciales=parciales.filter(function(p){return p.id!==pid;});
-  saveLocal(); renderParciales(); updateBar();
+  saveLocal(); renderParciales(); updateBar(); renderInvSummary();
   vToast('Venta eliminada');
 }
-
-function closeOut(e) {
-  if (e.target === document.getElementById('mov')) closeMedioModal();
+function closeOut(e){ if(e.target===document.getElementById('mov')) closeMedioModal(); }
+function vToast(msg,cls){
+  var old=document.getElementById('_vtoast'); if(old) old.remove();
+  var t=document.createElement('div'); t.id='_vtoast'; t.className='vtoast '+(cls||''); t.textContent=msg;
+  document.body.appendChild(t); setTimeout(function(){if(t.parentNode)t.remove();},2600);
 }
-
-function vToast(msg,cls) {
-  var old=document.getElementById('_vtoast');
-  if(old) old.remove();
-  var t=document.createElement('div');
-  t.id='_vtoast'; t.className='vtoast '+(cls||'');
-  t.textContent=msg;
-  document.body.appendChild(t);
-  setTimeout(function(){if(t.parentNode)t.remove();},2600);
-}
-
-function updateDateBadge() {
+function updateDateBadge(){
   var now=new Date();
-  var ds=now.toLocaleDateString('es-CO',{weekday:'short',day:'numeric',month:'short'});
-  document.getElementById('dbadge').textContent=ds;
+  document.getElementById('dbadge').textContent=now.toLocaleDateString('es-CO',{weekday:'short',day:'numeric',month:'short'});
 }
 
 /* ════════════════════════════════════════
-   TRANSFERIR VENTA → FINANZAS
-════════════════════════════════════════ */
-function transferToFinanzas(amount, medio, desc) {
-  var raw=localStorage.getItem('misfinanzas');
-  if(!raw) return;
-  var fs;
-  try{ fs=JSON.parse(raw); } catch(e){ return; }
-
+   TRANSFERIR → FINANZAS
+════════════════════ */
+function transferToFinanzas(amount,medio,desc){
+  var raw=localStorage.getItem('misfinanzas'); if(!raw) return;
+  var fs; try{fs=JSON.parse(raw);}catch(e){return;}
   if(medio==='efectivo') fs.efectivo+=amount;
   else if(medio==='nequi') fs.nequi+=amount;
   else if(medio==='davi') fs.davi+=amount;
   fs.ingresos+=amount;
-
   var today=new Date().toISOString().split('T')[0];
   if(!fs.movimientos) fs.movimientos=[];
-  fs.movimientos.push({
-    desc:desc||'Venta Ajolotito Dulce',
-    valor:amount,
-    tipo:'ingreso',
-    cuenta:medio,
-    cuotas:1,
-    fecha:today
-  });
+  fs.movimientos.push({desc:desc||'Venta Ajolotito Dulce',valor:amount,tipo:'ingreso',cuenta:medio,cuotas:1,fecha:today});
   localStorage.setItem('misfinanzas',JSON.stringify(fs));
-
-  if(document.getElementById('f-app').classList.contains('visible')) {
-    fState=fs; fRender();
-  }
+  if(document.getElementById('f-app').classList.contains('visible')){fState=fs;fRender();}
   var lblM={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
-  showFToast('+$'+amount.toLocaleString('es-CO')+' → Finanzas ('+(lblM[medio]||medio)+')', 'ing');
+  showFToast('+$'+amount.toLocaleString('es-CO')+' → Finanzas ('+(lblM[medio]||medio)+')','ing');
 }
 
 /* ════════════════════════════════════════
-   FINANZAS — LÓGICA
-════════════════════════════════════════ */
-var fState = {};
-var fTipo  = 'ingreso';
-
-function fFmt(n){ return '$'+Math.abs(n).toLocaleString('es-CO',{minimumFractionDigits:0,maximumFractionDigits:0}); }
-function fFmtSigned(n){ return (n>=0?'+':'-')+'$'+Math.abs(n).toLocaleString('es-CO'); }
-
-function fGetWeekLabel(){
-  var now=new Date(),start=new Date(now),end=new Date(now);
-  start.setDate(now.getDate()-now.getDay()+1);
-  end.setDate(start.getDate()+6);
-  var o={day:'numeric',month:'short'};
-  return 'Semana '+start.toLocaleDateString('es-CO',o)+' – '+end.toLocaleDateString('es-CO',o);
-}
-
-function fDiasPago(){
-  var hoy=new Date(),dia=hoy.getDate(),mes=hoy.getMonth(),anio=hoy.getFullYear();
-  var fp=dia<=16?new Date(anio,mes,16):new Date(anio,mes+1,16);
-  var diff=Math.ceil((fp-hoy)/(1000*60*60*24));
-  if(diff===0) return '¡HOY pago!';
-  if(diff===1) return 'mañana';
-  if(diff<0)   return 'ya pasó';
-  return 'faltan '+diff+'d';
-}
-
-function fCheckReminder(){
-  var dia=new Date().getDate();
-  var banner=document.getElementById('f-reminder');
-  if(dia>=13&&dia<=18){
-    banner.style.display='flex';
-    var msg='';
-    if(dia===16) msg='<strong>HOY es el 16 — paga tu TC.</strong>';
-    else if(dia<16) msg='El <strong>16 de este mes</strong> debes pagar tu TC. Quedan <strong>'+(16-dia)+' días</strong>.';
-    else msg='El día 16 pasó. Paga tu TC para reducir intereses.';
-    document.getElementById('f-reminder-msg').innerHTML=msg;
-  } else { banner.style.display='none'; }
-}
-
-function fSetTipo(t){
-  fTipo=t;
-  var bI=document.getElementById('f-btn-ing'),bG=document.getElementById('f-btn-gas');
-  var bR=document.getElementById('f-btn-reg'),lM=document.getElementById('f-label-medio');
-  var sel=document.getElementById('f-mov-cuenta');
-  if(t==='ingreso'){
-    bI.className='f-tipo-btn ai'; bG.className='f-tipo-btn';
-    bR.textContent='＋ Registrar ingreso'; bR.className='f-btn-reg';
-    lM.textContent='¿Por dónde llegó el ingreso?';
-    sel.innerHTML='<option value="">— Selecciona medio —</option>'+
-      '<option value="efectivo">💵 Efectivo</option>'+
-      '<option value="nequi">🟣 Nequi</option>'+
-      '<option value="davi">🔴 Daviplata</option>';
-  } else {
-    bG.className='f-tipo-btn ag'; bI.className='f-tipo-btn';
-    bR.textContent='－ Registrar gasto'; bR.className='f-btn-reg gasto-mode';
-    lM.textContent='¿Cómo pagaste el gasto?';
-    sel.innerHTML='<option value="">— Selecciona medio —</option>'+
-      '<option value="efectivo">💵 Efectivo</option>'+
-      '<option value="nequi">🟣 Nequi</option>'+
-      '<option value="davi">🔴 Daviplata</option>'+
-      '<option value="tc">💳 Tarjeta de Crédito</option>';
-  }
-  document.getElementById('f-field-cuotas').style.display='none';
-  document.getElementById('f-field-cuota-num').style.display='none';
-  document.getElementById('f-hint').style.display='none';
-}
-
-function fOnCuenta(){
-  var c=document.getElementById('f-mov-cuenta').value;
-  document.getElementById('f-field-cuotas').style.display=(fTipo==='gasto'&&c==='tc')?'block':'none';
-  if(fTipo!=='gasto'||c!=='tc'){
-    document.getElementById('f-field-cuota-num').style.display='none';
-    document.getElementById('f-hint').style.display='none';
-  } else fUpdateHint();
-}
-
-function fOnCuotas(){
-  var v=document.getElementById('f-mov-cuotas').value;
-  document.getElementById('f-field-cuota-num').style.display=(v==='otro')?'block':'none';
-  fUpdateHint();
-}
-
-function fUpdateHint(){
-  var valor=parseFloat(document.getElementById('f-mov-valor').value)||0;
-  var sel=document.getElementById('f-mov-cuotas').value;
-  var n=sel==='otro'?(parseInt(document.getElementById('f-mov-cuotas-num').value)||0):parseInt(sel)||1;
-  var hint=document.getElementById('f-hint');
-  var cuenta=document.getElementById('f-mov-cuenta').value;
-  if(fTipo==='gasto'&&cuenta==='tc'&&valor>0&&n>1){
-    hint.innerHTML='💡 Cuota: <strong>'+fFmt(valor/n)+'</strong> × '+n+' meses = '+fFmt(valor);
-    hint.style.display='block';
-  } else hint.style.display='none';
-}
-
-function fIniciar(){
-  var efectivo=parseFloat(document.getElementById('fi-efectivo').value)||0;
-  var nequi=parseFloat(document.getElementById('fi-nequi').value)||0;
-  var davi=parseFloat(document.getElementById('fi-davi').value)||0;
-  var tcGasto=parseFloat(document.getElementById('fi-tc-gasto').value)||0;
-  var tcCupo=parseFloat(document.getElementById('fi-tc-cupo').value)||0;
-  fState={efectivo,nequi,davi,tcGasto,tcCupo,ingresos:0,gastos:0,movimientos:[],pagosTc:[]};
-  document.getElementById('f-mov-fecha').value=new Date().toISOString().split('T')[0];
-  fSaveState();
-  document.getElementById('f-setup').classList.remove('visible');
-  document.getElementById('f-app').classList.add('visible');
-  document.getElementById('f-week-lbl').textContent=fGetWeekLabel();
-  fCheckReminder(); fRender();
-}
-
-function fRender(){
-  var total=fState.efectivo+fState.nequi+fState.davi-fState.tcGasto;
-  document.getElementById('f-total-valor').textContent=fFmt(total);
-  document.getElementById('f-total-valor').className='f-total-val '+(total>=0?'pos':'neg');
-  document.getElementById('f-total-ing').textContent=fFmtSigned(fState.ingresos);
-  document.getElementById('f-total-gas').textContent='-'+fFmt(fState.gastos);
-  document.getElementById('fv-efectivo').textContent=fFmt(fState.efectivo);
-  document.getElementById('fv-nequi').textContent=fFmt(fState.nequi);
-  document.getElementById('fv-davi').textContent=fFmt(fState.davi);
-  document.getElementById('fv-tc-gasto').textContent=fFmt(fState.tcGasto)+' utili.';
-  document.getElementById('fv-tc-cupo').textContent='Cupo: '+fFmt(fState.tcCupo);
-  var totalCupo=fState.tcGasto+fState.tcCupo;
-  var pct=totalCupo>0?Math.round((fState.tcGasto/totalCupo)*100):0;
-  document.getElementById('f-tc-pct').textContent=pct+'%';
-  var bar=document.getElementById('f-tc-bar');
-  bar.style.width=pct+'%';
-  bar.style.background=pct>80?'var(--accent2)':pct>50?'var(--accent3)':'var(--credit)';
-  document.getElementById('f-dias-pago').textContent=fDiasPago();
-  fRenderMovimientos(); fRenderTips(); fRenderHistorialTC();
-}
-
-function fRenderMovimientos(){
-  var list=document.getElementById('f-mov-list');
-  document.getElementById('f-mov-count').textContent=(fState.movimientos||[]).length+' registros';
-  if(!fState.movimientos||!fState.movimientos.length){
-    list.innerHTML='<div class="f-mov-empty">Sin movimientos aún.</div>'; return;
-  }
-  var lbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata',tc:'💳 TC'};
-  list.innerHTML=[...fState.movimientos].reverse().map(function(m){
-    var meta=m.fecha+' · '+(lbl[m.cuenta]||m.cuenta);
-    if(m.cuotas&&m.cuotas>1) meta+=' · '+m.cuotas+' cuotas (~'+fFmt(m.valor/m.cuotas)+'/mes)';
-    var esTCPago = m.tipo==='tc-pago';
-    return '<div class="f-mov-item'+(esTCPago?' tc-pago-mov':'')+'">'+
-      '<div class="f-mov-left"><div class="f-mov-desc">'+(m.desc||'Sin descripción')+'</div><div class="f-mov-meta">'+meta+'</div></div>'+
-      '<div class="f-mov-amount '+(esTCPago?'tc-pay':m.tipo==='ingreso'?'ing':'gas')+'">'+(esTCPago?'↩ TC':m.tipo==='ingreso'?'+':'-')+fFmt(m.valor)+'</div>'+
-    '</div>';
-  }).join('');
-}
-
-function fRenderHistorialTC(){
-  var pagosTc = fState.pagosTc||[];
-  var container = document.getElementById('tc-historial');
-  var list = document.getElementById('tc-historial-list');
-  if(!pagosTc.length){
-    container.style.display='none';
-    return;
-  }
-  container.style.display='block';
-  list.innerHTML = [...pagosTc].reverse().map(function(p){
-    var tipoLabel = p.tipoPago==='total'
-      ? '<span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Pago total</span>'
-      : '<span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Abono parcial</span>';
-    var cuentaLbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
-    return '<div class="tc-pago-item">'+
-      '<div class="tc-pago-left">'+
-        '<div class="tc-pago-tipo">'+tipoLabel+'</div>'+
-        '<div class="tc-pago-meta">'+p.fecha+' · desde '+(cuentaLbl[p.cuenta]||p.cuenta)+'</div>'+
-      '</div>'+
-      '<div class="tc-pago-amount">'+fFmt(p.monto)+' ↩</div>'+
-    '</div>';
-  }).join('');
-}
-
-function fRenderTips(){
-  var tips=[];
-  var totalCupo=fState.tcGasto+fState.tcCupo;
-  var pct=totalCupo>0?(fState.tcGasto/totalCupo)*100:0;
-  var dia=new Date().getDate();
-  if(dia>=13&&dia<=18){
-    if(dia===16) tips.push({icon:'🚨',text:'<strong>HOY es el día de pago de tu TC.</strong> Haz clic en "Registrar pago TC" para cuadrar.'});
-    else if(dia<16) tips.push({icon:'📅',text:'El pago de tu TC es el <strong>16 de este mes</strong> (en '+(16-dia)+' días). Usa el botón "Registrar pago TC" cuando lo hagas.'});
-    else tips.push({icon:'⏰',text:'El 16 ya pasó. Cada día genera intereses. Registra tu pago con el botón 💳.'});
-  }
-  if(pct>80) tips.push({icon:'🚨',text:'Llevas el <strong>'+Math.round(pct)+'%</strong> del cupo usado. Superar el 80% impacta tu score.'});
-  else if(pct>50) tips.push({icon:'💳',text:'Usas el <strong>'+Math.round(pct)+'%</strong> del cupo. No pases del 70%.'});
-  var balance=fState.ingresos-fState.gastos;
-  if(balance<0) tips.push({icon:'📉',text:'Esta semana gastas más de lo que ingresas en <strong>'+fFmt(Math.abs(balance))+'</strong>.'});
-  if(fState.ingresos>0){
-    var tasa=Math.round((fState.gastos/fState.ingresos)*100);
-    if(tasa>80) tips.push({icon:'⚠️',text:'Gastas el <strong>'+tasa+'%</strong> de tus ingresos. La regla 50/30/20 sugiere 20% para ahorro.'});
-    else if(fState.gastos>0) tips.push({icon:'✅',text:'¡Buen ritmo! Solo el <strong>'+tasa+'%</strong> de gasto sobre ingresos esta semana.'});
-  }
-  var totalVentas=parciales.reduce(function(s,p){return s+p.total;},0);
-  if(totalVentas>0) tips.push({icon:'🍫',text:'Hoy llevas <strong>$'+totalVentas.toLocaleString('es-CO')+'</strong> en ventas registradas en tus finanzas.'});
-  // Tip pago TC si tiene saldo
-  if(fState.tcGasto>0 && !(fState.pagosTc||[]).length){
-    tips.push({icon:'💡',text:'Tienes <strong>'+fFmt(fState.tcGasto)+'</strong> en TC. Cuando pagues, usa el botón "Registrar pago TC" para cuadrar los saldos.'});
-  }
-  if(!tips.length) tips.push({icon:'💡',text:'Registra tus movimientos para recibir sugerencias personalizadas.'});
-  document.getElementById('f-tips').innerHTML=tips.slice(0,5).map(function(t){
-    return '<div class="f-tip"><span class="f-tip-icon">'+t.icon+'</span><span>'+t.text+'</span></div>';
-  }).join('');
-}
-
-function fRegistrar(){
-  var desc=document.getElementById('f-mov-desc').value.trim();
-  var valor=parseFloat(document.getElementById('f-mov-valor').value);
-  var cuenta=document.getElementById('f-mov-cuenta').value;
-  var fecha=document.getElementById('f-mov-fecha').value;
-  if(!valor||valor<=0){showFToast('Ingresa un valor válido','warn');return;}
-  if(!cuenta){showFToast('Selecciona el medio de pago','warn');return;}
-  var cuotas=1;
-  if(fTipo==='gasto'&&cuenta==='tc'){
-    var sel=document.getElementById('f-mov-cuotas').value;
-    cuotas=sel==='otro'?(parseInt(document.getElementById('f-mov-cuotas-num').value)||1):parseInt(sel)||1;
-  }
-  if(fTipo==='ingreso'){
-    if(cuenta==='efectivo') fState.efectivo+=valor;
-    else if(cuenta==='nequi') fState.nequi+=valor;
-    else if(cuenta==='davi') fState.davi+=valor;
-    fState.ingresos+=valor;
-    var lbl={efectivo:'Efectivo',nequi:'Nequi',davi:'Daviplata'};
-    showFToast('+'+fFmt(valor)+' en '+(lbl[cuenta]||cuenta),'ing');
-  } else {
-    if(cuenta==='efectivo') fState.efectivo=Math.max(0,fState.efectivo-valor);
-    else if(cuenta==='nequi') fState.nequi=Math.max(0,fState.nequi-valor);
-    else if(cuenta==='davi') fState.davi=Math.max(0,fState.davi-valor);
-    else if(cuenta==='tc'){fState.tcGasto+=valor;fState.tcCupo=Math.max(0,fState.tcCupo-valor);}
-    fState.gastos+=valor;
-    var msg2='-'+fFmt(valor);
-    if(cuenta==='tc') msg2+=cuotas>1?' TC · '+cuotas+' cuotas':' TC · contado';
-    else msg2+=' '+{efectivo:'💵',nequi:'🟣',davi:'🔴'}[cuenta];
-    showFToast(msg2,'gas');
-  }
-  if(!fState.movimientos) fState.movimientos=[];
-  fState.movimientos.push({desc:desc||'Sin descripción',valor,tipo:fTipo,cuenta,cuotas,fecha:fecha||new Date().toISOString().split('T')[0]});
-  document.getElementById('f-mov-desc').value='';
-  document.getElementById('f-mov-valor').value='';
-  document.getElementById('f-hint').style.display='none';
-  fSaveState(); fRender();
-}
-
-function showFToast(msg,tipo){
-  var t=document.getElementById('f-toast');
-  t.textContent=msg; t.className='f-toast '+tipo+' show';
-  setTimeout(function(){t.classList.remove('show');},2800);
-}
-
-function fReset(){
-  if(!confirm('¿Iniciar nueva semana? Se borrarán los movimientos actuales.')) return;
-  localStorage.removeItem('misfinanzas');
-  document.getElementById('f-app').classList.remove('visible');
-  document.getElementById('f-setup').classList.add('visible');
-  document.getElementById('fi-efectivo').value=fState.efectivo||'';
-  document.getElementById('fi-nequi').value=fState.nequi||'';
-  document.getElementById('fi-davi').value=fState.davi||'';
-  document.getElementById('fi-tc-gasto').value=fState.tcGasto||'';
-  document.getElementById('fi-tc-cupo').value=fState.tcCupo||'';
-}
-
-function fSaveState(){ localStorage.setItem('misfinanzas',JSON.stringify(fState)); }
-
-function fLoadState(){
-  var s=localStorage.getItem('misfinanzas');
-  if(s){
-    try{
-      fState=JSON.parse(s);
-      if(!fState.pagosTc) fState.pagosTc=[];
-      document.getElementById('f-setup').classList.remove('visible');
-      document.getElementById('f-app').classList.add('visible');
-      document.getElementById('f-week-lbl').textContent=fGetWeekLabel();
-      document.getElementById('f-mov-fecha').value=new Date().toISOString().split('T')[0];
-      fCheckReminder(); fRender();
-    }catch(e){}
-  } else {
-    document.getElementById('f-setup').classList.add('visible');
-  }
-}
+   FINANZAS
+════════════════════ */
+var fState={},fTipo='ingreso';
+function fFmt(n){return '$'+Math.abs(n).toLocaleString('es-CO',{minimumFractionDigits:0,maximumFractionDigits:0});}
+function fFmtSigned(n){return(n>=0?'+':'-')+'$'+Math.abs(n).toLocaleString('es-CO');}
+function fGetWeekLabel(){var now=new Date(),start=new Date(now),end=new Date(now);start.setDate(now.getDate()-now.getDay()+1);end.setDate(start.getDate()+6);var o={day:'numeric',month:'short'};return 'Semana '+start.toLocaleDateString('es-CO',o)+' – '+end.toLocaleDateString('es-CO',o);}
+function fDiasPago(){var hoy=new Date(),dia=hoy.getDate(),mes=hoy.getMonth(),anio=hoy.getFullYear();var fp=dia<=16?new Date(anio,mes,16):new Date(anio,mes+1,16);var diff=Math.ceil((fp-hoy)/(1000*60*60*24));if(diff===0)return '¡HOY pago!';if(diff===1)return 'mañana';if(diff<0)return 'ya pasó';return 'faltan '+diff+'d';}
+function fCheckReminder(){var dia=new Date().getDate();var banner=document.getElementById('f-reminder');if(dia>=13&&dia<=18){banner.style.display='flex';var msg='';if(dia===16)msg='<strong>HOY es el 16 — paga tu TC.</strong>';else if(dia<16)msg='El <strong>16 de este mes</strong> debes pagar tu TC. Quedan <strong>'+(16-dia)+' días</strong>.';else msg='El día 16 pasó. Paga tu TC para reducir intereses.';document.getElementById('f-reminder-msg').innerHTML=msg;}else{banner.style.display='none';}}
+function fSetTipo(t){fTipo=t;var bI=document.getElementById('f-btn-ing'),bG=document.getElementById('f-btn-gas'),bR=document.getElementById('f-btn-reg'),lM=document.getElementById('f-label-medio'),sel=document.getElementById('f-mov-cuenta');if(t==='ingreso'){bI.className='f-tipo-btn ai';bG.className='f-tipo-btn';bR.textContent='＋ Registrar ingreso';bR.className='f-btn-reg';lM.textContent='¿Por dónde llegó el ingreso?';sel.innerHTML='<option value="">— Selecciona medio —</option><option value="efectivo">💵 Efectivo</option><option value="nequi">🟣 Nequi</option><option value="davi">🔴 Daviplata</option>';}else{bG.className='f-tipo-btn ag';bI.className='f-tipo-btn';bR.textContent='－ Registrar gasto';bR.className='f-btn-reg gasto-mode';lM.textContent='¿Cómo pagaste el gasto?';sel.innerHTML='<option value="">— Selecciona medio —</option><option value="efectivo">💵 Efectivo</option><option value="nequi">🟣 Nequi</option><option value="davi">🔴 Daviplata</option><option value="tc">💳 Tarjeta de Crédito</option>';}document.getElementById('f-field-cuotas').style.display='none';document.getElementById('f-field-cuota-num').style.display='none';document.getElementById('f-hint').style.display='none';}
+function fOnCuenta(){var c=document.getElementById('f-mov-cuenta').value;document.getElementById('f-field-cuotas').style.display=(fTipo==='gasto'&&c==='tc')?'block':'none';if(fTipo!=='gasto'||c!=='tc'){document.getElementById('f-field-cuota-num').style.display='none';document.getElementById('f-hint').style.display='none';}else fUpdateHint();}
+function fOnCuotas(){var v=document.getElementById('f-mov-cuotas').value;document.getElementById('f-field-cuota-num').style.display=(v==='otro')?'block':'none';fUpdateHint();}
+function fUpdateHint(){var valor=parseFloat(document.getElementById('f-mov-valor').value)||0;var sel=document.getElementById('f-mov-cuotas').value;var n=sel==='otro'?(parseInt(document.getElementById('f-mov-cuotas-num').value)||0):parseInt(sel)||1;var hint=document.getElementById('f-hint'),cuenta=document.getElementById('f-mov-cuenta').value;if(fTipo==='gasto'&&cuenta==='tc'&&valor>0&&n>1){hint.innerHTML='💡 Cuota: <strong>'+fFmt(valor/n)+'</strong> × '+n+' meses = '+fFmt(valor);hint.style.display='block';}else hint.style.display='none';}
+function fIniciar(){var efectivo=parseFloat(document.getElementById('fi-efectivo').value)||0;var nequi=parseFloat(document.getElementById('fi-nequi').value)||0;var davi=parseFloat(document.getElementById('fi-davi').value)||0;var tcGasto=parseFloat(document.getElementById('fi-tc-gasto').value)||0;var tcCupo=parseFloat(document.getElementById('fi-tc-cupo').value)||0;fState={efectivo,nequi,davi,tcGasto,tcCupo,ingresos:0,gastos:0,movimientos:[],pagosTc:[]};document.getElementById('f-mov-fecha').value=new Date().toISOString().split('T')[0];fSaveState();document.getElementById('f-setup').classList.remove('visible');document.getElementById('f-app').classList.add('visible');document.getElementById('f-week-lbl').textContent=fGetWeekLabel();fCheckReminder();fRender();}
+function fRender(){var total=fState.efectivo+fState.nequi+fState.davi-fState.tcGasto;document.getElementById('f-total-valor').textContent=fFmt(total);document.getElementById('f-total-valor').className='f-total-val '+(total>=0?'pos':'neg');document.getElementById('f-total-ing').textContent=fFmtSigned(fState.ingresos);document.getElementById('f-total-gas').textContent='-'+fFmt(fState.gastos);document.getElementById('fv-efectivo').textContent=fFmt(fState.efectivo);document.getElementById('fv-nequi').textContent=fFmt(fState.nequi);document.getElementById('fv-davi').textContent=fFmt(fState.davi);document.getElementById('fv-tc-gasto').textContent=fFmt(fState.tcGasto)+' utili.';document.getElementById('fv-tc-cupo').textContent='Cupo: '+fFmt(fState.tcCupo);var totalCupo=fState.tcGasto+fState.tcCupo;var pct=totalCupo>0?Math.round((fState.tcGasto/totalCupo)*100):0;document.getElementById('f-tc-pct').textContent=pct+'%';var bar=document.getElementById('f-tc-bar');bar.style.width=pct+'%';bar.style.background=pct>80?'var(--accent2)':pct>50?'var(--accent3)':'var(--credit)';document.getElementById('f-dias-pago').textContent=fDiasPago();fRenderMovimientos();fRenderTips();fRenderHistorialTC();}
+function fRenderMovimientos(){var list=document.getElementById('f-mov-list');document.getElementById('f-mov-count').textContent=(fState.movimientos||[]).length+' registros';if(!fState.movimientos||!fState.movimientos.length){list.innerHTML='<div class="f-mov-empty">Sin movimientos aún.</div>';return;}var lbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata',tc:'💳 TC'};list.innerHTML=[...fState.movimientos].reverse().map(function(m){var meta=m.fecha+' · '+(lbl[m.cuenta]||m.cuenta);if(m.cuotas&&m.cuotas>1)meta+=' · '+m.cuotas+' cuotas (~'+fFmt(m.valor/m.cuotas)+'/mes)';var esTCPago=m.tipo==='tc-pago';return '<div class="f-mov-item'+(esTCPago?' tc-pago-mov':'')+'"><div class="f-mov-left"><div class="f-mov-desc">'+(m.desc||'Sin descripción')+'</div><div class="f-mov-meta">'+meta+'</div></div><div class="f-mov-amount '+(esTCPago?'tc-pay':m.tipo==='ingreso'?'ing':'gas')+'">'+(esTCPago?'↩ TC':m.tipo==='ingreso'?'+':'-')+fFmt(m.valor)+'</div></div>';}).join('');}
+function fRenderHistorialTC(){var pagosTc=fState.pagosTc||[];var container=document.getElementById('tc-historial');var list=document.getElementById('tc-historial-list');if(!pagosTc.length){container.style.display='none';return;}container.style.display='block';list.innerHTML=[...pagosTc].reverse().map(function(p){var tipoLabel=p.tipoPago==='total'?'<span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Pago total</span>':'<span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Abono parcial</span>';var cuentaLbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};return '<div class="tc-pago-item"><div class="tc-pago-left"><div class="tc-pago-tipo">'+tipoLabel+'</div><div class="tc-pago-meta">'+p.fecha+' · desde '+(cuentaLbl[p.cuenta]||p.cuenta)+'</div></div><div class="tc-pago-amount">'+fFmt(p.monto)+' ↩</div></div>';}).join('');}
+function fRenderTips(){var tips=[];var totalCupo=fState.tcGasto+fState.tcCupo;var pct=totalCupo>0?(fState.tcGasto/totalCupo)*100:0;var dia=new Date().getDate();if(dia>=13&&dia<=18){if(dia===16)tips.push({icon:'🚨',text:'<strong>HOY es el día de pago de tu TC.</strong>'});else if(dia<16)tips.push({icon:'📅',text:'El pago de tu TC es el <strong>16 de este mes</strong> (en '+(16-dia)+' días).'});else tips.push({icon:'⏰',text:'El 16 ya pasó. Cada día genera intereses.'});}if(pct>80)tips.push({icon:'🚨',text:'Llevas el <strong>'+Math.round(pct)+'%</strong> del cupo usado.'});else if(pct>50)tips.push({icon:'💳',text:'Usas el <strong>'+Math.round(pct)+'%</strong> del cupo.'});var balance=fState.ingresos-fState.gastos;if(balance<0)tips.push({icon:'📉',text:'Esta semana gastas más de lo que ingresas en <strong>'+fFmt(Math.abs(balance))+'</strong>.'});if(fState.ingresos>0){var tasa=Math.round((fState.gastos/fState.ingresos)*100);if(tasa>80)tips.push({icon:'⚠️',text:'Gastas el <strong>'+tasa+'%</strong> de tus ingresos.'});else if(fState.gastos>0)tips.push({icon:'✅',text:'¡Buen ritmo! Solo el <strong>'+tasa+'%</strong> de gasto sobre ingresos.'});}if(invState.abierto){var g=calcGanancias();if(g.ingreso>0)tips.push({icon:'🍫',text:'Ganancia del día: <strong>$'+Math.abs(g.ganancia).toLocaleString('es-CO')+'</strong> (margen '+g.margen+'%).'});}if(!tips.length)tips.push({icon:'💡',text:'Registra tus movimientos para recibir sugerencias personalizadas.'});document.getElementById('f-tips').innerHTML=tips.slice(0,5).map(function(t){return '<div class="f-tip"><span class="f-tip-icon">'+t.icon+'</span><span>'+t.text+'</span></div>';}).join('');}
+function fRegistrar(){var desc=document.getElementById('f-mov-desc').value.trim();var valor=parseFloat(document.getElementById('f-mov-valor').value);var cuenta=document.getElementById('f-mov-cuenta').value;var fecha=document.getElementById('f-mov-fecha').value;if(!valor||valor<=0){showFToast('Ingresa un valor válido','warn');return;}if(!cuenta){showFToast('Selecciona el medio de pago','warn');return;}var cuotas=1;if(fTipo==='gasto'&&cuenta==='tc'){var sel=document.getElementById('f-mov-cuotas').value;cuotas=sel==='otro'?(parseInt(document.getElementById('f-mov-cuotas-num').value)||1):parseInt(sel)||1;}if(fTipo==='ingreso'){if(cuenta==='efectivo')fState.efectivo+=valor;else if(cuenta==='nequi')fState.nequi+=valor;else if(cuenta==='davi')fState.davi+=valor;fState.ingresos+=valor;var lbl={efectivo:'Efectivo',nequi:'Nequi',davi:'Daviplata'};showFToast('+'+fFmt(valor)+' en '+(lbl[cuenta]||cuenta),'ing');}else{if(cuenta==='efectivo')fState.efectivo=Math.max(0,fState.efectivo-valor);else if(cuenta==='nequi')fState.nequi=Math.max(0,fState.nequi-valor);else if(cuenta==='davi')fState.davi=Math.max(0,fState.davi-valor);else if(cuenta==='tc'){fState.tcGasto+=valor;fState.tcCupo=Math.max(0,fState.tcCupo-valor);}fState.gastos+=valor;var msg2='-'+fFmt(valor);if(cuenta==='tc')msg2+=cuotas>1?' TC · '+cuotas+' cuotas':' TC · contado';else msg2+=' '+{efectivo:'💵',nequi:'🟣',davi:'🔴'}[cuenta];showFToast(msg2,'gas');}if(!fState.movimientos)fState.movimientos=[];fState.movimientos.push({desc:desc||'Sin descripción',valor,tipo:fTipo,cuenta,cuotas,fecha:fecha||new Date().toISOString().split('T')[0]});document.getElementById('f-mov-desc').value='';document.getElementById('f-mov-valor').value='';document.getElementById('f-hint').style.display='none';fSaveState();fRender();}
+function showFToast(msg,tipo){var t=document.getElementById('f-toast');t.textContent=msg;t.className='f-toast '+tipo+' show';setTimeout(function(){t.classList.remove('show');},2800);}
+function fReset(){if(!confirm('¿Iniciar nueva semana? Se borrarán los movimientos actuales.'))return;localStorage.removeItem('misfinanzas');document.getElementById('f-app').classList.remove('visible');document.getElementById('f-setup').classList.add('visible');document.getElementById('fi-efectivo').value=fState.efectivo||'';document.getElementById('fi-nequi').value=fState.nequi||'';document.getElementById('fi-davi').value=fState.davi||'';document.getElementById('fi-tc-gasto').value=fState.tcGasto||'';document.getElementById('fi-tc-cupo').value=fState.tcCupo||'';}
+function fSaveState(){localStorage.setItem('misfinanzas',JSON.stringify(fState));}
+function fLoadState(){var s=localStorage.getItem('misfinanzas');if(s){try{fState=JSON.parse(s);if(!fState.pagosTc)fState.pagosTc=[];document.getElementById('f-setup').classList.remove('visible');document.getElementById('f-app').classList.add('visible');document.getElementById('f-week-lbl').textContent=fGetWeekLabel();document.getElementById('f-mov-fecha').value=new Date().toISOString().split('T')[0];fCheckReminder();fRender();}catch(e){}}else{document.getElementById('f-setup').classList.add('visible');}}
 
 /* ════════════════════════════════════════
-   MODAL PAGO TC — LÓGICA
-════════════════════════════════════════ */
-var tcTipoPago = 'total'; // 'total' | 'parcial'
-
-function openTCModal(){
-  // Actualizar valores actuales en modal
-  document.getElementById('tc-val-utili').textContent = fFmt(fState.tcGasto);
-  document.getElementById('tc-val-cupo').textContent  = fFmt(fState.tcCupo);
-  document.getElementById('tc-fecha').value = new Date().toISOString().split('T')[0];
-  document.getElementById('tc-cuenta').value = '';
-  document.getElementById('tc-monto').value = '';
-  document.getElementById('tc-preview').classList.remove('show');
-  document.getElementById('tc-warning').classList.remove('show');
-  document.getElementById('tc-confirm-btn').disabled = true;
-  tcSetTipo('total');
-  document.getElementById('tc-modal-overlay').style.display = 'flex';
-}
-
-function closeTCModal(){
-  document.getElementById('tc-modal-overlay').style.display = 'none';
-}
-
-function closeTCModalOut(e){
-  if(e.target === document.getElementById('tc-modal-overlay')) closeTCModal();
-}
-
-function tcSetTipo(tipo){
-  tcTipoPago = tipo;
-  var btnTotal   = document.getElementById('tc-btn-total');
-  var btnParcial = document.getElementById('tc-btn-parcial');
-  var campoMonto = document.getElementById('tc-field-monto');
-
-  if(tipo==='total'){
-    btnTotal.className   = 'tc-tipo-btn total-mode';
-    btnParcial.className = 'tc-tipo-btn';
-    campoMonto.style.display = 'none';
-    document.getElementById('tc-monto').value = fState.tcGasto; // autocompletar con el total
-  } else {
-    btnParcial.className = 'tc-tipo-btn parcial-mode';
-    btnTotal.className   = 'tc-tipo-btn';
-    campoMonto.style.display = 'block';
-    document.getElementById('tc-monto').value = '';
-  }
-  tcUpdatePreview();
-}
-
-function tcUpdatePreview(){
-  var cuenta = document.getElementById('tc-cuenta').value;
-  var montoInput = parseFloat(document.getElementById('tc-monto').value)||0;
-  var monto = tcTipoPago==='total' ? fState.tcGasto : montoInput;
-
-  // Ocultar todo si no hay cuenta o monto
-  if(!cuenta || monto<=0){
-    document.getElementById('tc-preview').classList.remove('show');
-    document.getElementById('tc-warning').classList.remove('show');
-    document.getElementById('tc-confirm-btn').disabled = true;
-    return;
-  }
-
-  // Calcular saldo de cuenta después del pago
-  var saldoCuenta = cuenta==='efectivo' ? fState.efectivo
-    : cuenta==='nequi' ? fState.nequi
-    : cuenta==='davi' ? fState.davi : 0;
-
-  var nuevoSaldoTC   = Math.max(0, fState.tcGasto - monto);
-  var nuevoCupo      = fState.tcCupo + monto;
-  var nuevoSaldoCuenta = saldoCuenta - monto;
-
-  // Actualizar preview
-  document.getElementById('tc-prev-monto').textContent = fFmt(monto);
-  document.getElementById('tc-prev-nuevo-saldo').textContent = fFmt(nuevoSaldoTC);
-  document.getElementById('tc-prev-cupo').textContent = fFmt(nuevoCupo);
-  document.getElementById('tc-prev-cuenta-saldo').textContent = fFmt(Math.abs(nuevoSaldoCuenta));
-  document.getElementById('tc-prev-cuenta-saldo').className =
-    'tc-preview-val ' + (nuevoSaldoCuenta>=0?'green':'red');
-  document.getElementById('tc-preview').classList.add('show');
-
-  // Advertencias
-  var warn = document.getElementById('tc-warning');
-  if(monto > fState.tcGasto){
-    warn.innerHTML = '⚠️ Estás pagando más de lo que debes ($'+fFmt(fState.tcGasto)+'). Se ajustará al saldo real.';
-    warn.classList.add('show');
-  } else if(nuevoSaldoCuenta < 0){
-    warn.innerHTML = '⚠️ No tienes suficiente saldo en '+{efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'}[cuenta]+' para este pago. Déficit: '+fFmt(Math.abs(nuevoSaldoCuenta));
-    warn.classList.add('show');
-  } else {
-    warn.classList.remove('show');
-  }
-
-  document.getElementById('tc-confirm-btn').disabled = false;
-}
-
-function confirmarPagoTC(){
-  var cuenta  = document.getElementById('tc-cuenta').value;
-  var montoRaw = parseFloat(document.getElementById('tc-monto').value)||0;
-  var monto   = tcTipoPago==='total' ? fState.tcGasto : montoRaw;
-  var fecha   = document.getElementById('tc-fecha').value || new Date().toISOString().split('T')[0];
-
-  if(!cuenta){ showFToast('Selecciona desde qué cuenta pagaste','warn'); return; }
-  if(monto<=0){ showFToast('El monto debe ser mayor a cero','warn'); return; }
-
-  // Ajustar si pagan más de lo que deben
-  var montoReal = Math.min(monto, fState.tcGasto);
-
-  // Descontar de la cuenta origen
-  if(cuenta==='efectivo') fState.efectivo = Math.max(0, fState.efectivo - montoReal);
-  else if(cuenta==='nequi') fState.nequi = Math.max(0, fState.nequi - montoReal);
-  else if(cuenta==='davi') fState.davi = Math.max(0, fState.davi - montoReal);
-
-  // Reducir saldo TC y restaurar cupo
-  fState.tcGasto = Math.max(0, fState.tcGasto - montoReal);
-  fState.tcCupo  = fState.tcCupo + montoReal;
-
-  // Registrar en movimientos
-  if(!fState.movimientos) fState.movimientos=[];
-  var cuentaLbl = {efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};
-  fState.movimientos.push({
-    desc: tcTipoPago==='total' ? '💳 Pago total TC' : '💳 Abono a TC',
-    valor: montoReal,
-    tipo: 'tc-pago',
-    cuenta: cuenta,
-    cuotas: 1,
-    fecha: fecha
-  });
-
-  // Guardar en historial pagos TC
-  if(!fState.pagosTc) fState.pagosTc=[];
-  fState.pagosTc.push({
-    monto: montoReal,
-    tipoPago: tcTipoPago,
-    cuenta: cuenta,
-    fecha: fecha
-  });
-
-  fSaveState();
-  fRender();
-  closeTCModal();
-
-  var msgTipo = tcTipoPago==='total' ? '✅ Pago total TC' : '💳 Abono TC';
-  showFToast(msgTipo+' · '+fFmt(montoReal)+' desde '+(cuentaLbl[cuenta]||cuenta), 'tc');
-}
+   MODAL PAGO TC
+════════════════════ */
+var tcTipoPago='total';
+function openTCModal(){document.getElementById('tc-val-utili').textContent=fFmt(fState.tcGasto);document.getElementById('tc-val-cupo').textContent=fFmt(fState.tcCupo);document.getElementById('tc-fecha').value=new Date().toISOString().split('T')[0];document.getElementById('tc-cuenta').value='';document.getElementById('tc-monto').value='';document.getElementById('tc-preview').classList.remove('show');document.getElementById('tc-warning').classList.remove('show');document.getElementById('tc-confirm-btn').disabled=true;tcSetTipo('total');document.getElementById('tc-modal-overlay').style.display='flex';}
+function closeTCModal(){document.getElementById('tc-modal-overlay').style.display='none';}
+function closeTCModalOut(e){if(e.target===document.getElementById('tc-modal-overlay'))closeTCModal();}
+function tcSetTipo(tipo){tcTipoPago=tipo;var btnTotal=document.getElementById('tc-btn-total'),btnParcial=document.getElementById('tc-btn-parcial'),campoMonto=document.getElementById('tc-field-monto');if(tipo==='total'){btnTotal.className='tc-tipo-btn total-mode';btnParcial.className='tc-tipo-btn';campoMonto.style.display='none';document.getElementById('tc-monto').value=fState.tcGasto;}else{btnParcial.className='tc-tipo-btn parcial-mode';btnTotal.className='tc-tipo-btn';campoMonto.style.display='block';document.getElementById('tc-monto').value='';}tcUpdatePreview();}
+function tcUpdatePreview(){var cuenta=document.getElementById('tc-cuenta').value;var montoInput=parseFloat(document.getElementById('tc-monto').value)||0;var monto=tcTipoPago==='total'?fState.tcGasto:montoInput;if(!cuenta||monto<=0){document.getElementById('tc-preview').classList.remove('show');document.getElementById('tc-warning').classList.remove('show');document.getElementById('tc-confirm-btn').disabled=true;return;}var saldoCuenta=cuenta==='efectivo'?fState.efectivo:cuenta==='nequi'?fState.nequi:cuenta==='davi'?fState.davi:0;var nuevoSaldoTC=Math.max(0,fState.tcGasto-monto);var nuevoCupo=fState.tcCupo+monto;var nuevoSaldoCuenta=saldoCuenta-monto;document.getElementById('tc-prev-monto').textContent=fFmt(monto);document.getElementById('tc-prev-nuevo-saldo').textContent=fFmt(nuevoSaldoTC);document.getElementById('tc-prev-cupo').textContent=fFmt(nuevoCupo);document.getElementById('tc-prev-cuenta-saldo').textContent=fFmt(Math.abs(nuevoSaldoCuenta));document.getElementById('tc-prev-cuenta-saldo').className='tc-preview-val '+(nuevoSaldoCuenta>=0?'green':'red');document.getElementById('tc-preview').classList.add('show');var warn=document.getElementById('tc-warning');if(monto>fState.tcGasto){warn.innerHTML='⚠️ Estás pagando más de lo que debes.';warn.classList.add('show');}else if(nuevoSaldoCuenta<0){warn.innerHTML='⚠️ No tienes suficiente saldo. Déficit: '+fFmt(Math.abs(nuevoSaldoCuenta));warn.classList.add('show');}else{warn.classList.remove('show');}document.getElementById('tc-confirm-btn').disabled=false;}
+function confirmarPagoTC(){var cuenta=document.getElementById('tc-cuenta').value;var montoRaw=parseFloat(document.getElementById('tc-monto').value)||0;var monto=tcTipoPago==='total'?fState.tcGasto:montoRaw;var fecha=document.getElementById('tc-fecha').value||new Date().toISOString().split('T')[0];if(!cuenta){showFToast('Selecciona desde qué cuenta pagaste','warn');return;}if(monto<=0){showFToast('El monto debe ser mayor a cero','warn');return;}var montoReal=Math.min(monto,fState.tcGasto);if(cuenta==='efectivo')fState.efectivo=Math.max(0,fState.efectivo-montoReal);else if(cuenta==='nequi')fState.nequi=Math.max(0,fState.nequi-montoReal);else if(cuenta==='davi')fState.davi=Math.max(0,fState.davi-montoReal);fState.tcGasto=Math.max(0,fState.tcGasto-montoReal);fState.tcCupo=fState.tcCupo+montoReal;if(!fState.movimientos)fState.movimientos=[];fState.movimientos.push({desc:tcTipoPago==='total'?'💳 Pago total TC':'💳 Abono a TC',valor:montoReal,tipo:'tc-pago',cuenta:cuenta,cuotas:1,fecha:fecha});if(!fState.pagosTc)fState.pagosTc=[];fState.pagosTc.push({monto:montoReal,tipoPago:tcTipoPago,cuenta:cuenta,fecha:fecha});fSaveState();fRender();closeTCModal();var msgTipo=tcTipoPago==='total'?'✅ Pago total TC':'💳 Abono TC';showFToast(msgTipo+' · '+fFmt(montoReal)+' desde '+({efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'}[cuenta]||cuenta),'tc');}
 
 /* ════════════════════════════════════════
    INIT
-════════════════════════════════════════ */
+════════════════════ */
 (function init(){
   loadLocal();
+  invLoad();
   updateDateBadge();
   renderProducts();
   renderParciales();
   updateBar();
+  renderInvSummary();
   fLoadState();
   var fi=document.getElementById('f-mov-fecha');
   if(fi) fi.value=new Date().toISOString().split('T')[0];
+  // Si no hay apertura, mostrar el modal automáticamente al cargar por primera vez
+  if(!invState.abierto){
+    setTimeout(function(){ openInvSetup(); }, 600);
+  }
 })();
 </script>
 </body>
