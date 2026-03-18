@@ -461,6 +461,103 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
 .f-mov-amount.gas{color:var(--accent2);}
 .f-mov-amount.tc-pay{color:var(--credit);}
 .f-mov-empty{text-align:center;padding:28px 16px;color:var(--muted);font-size:13px;font-weight:600;}
+/* ── BOTÓN TRASLADO ── */
+.f-traslado-btn{
+  display:flex;align-items:center;gap:12px;width:100%;
+  background:linear-gradient(135deg,#f0f4ff,#e8f0ff);
+  border:1.5px solid #c5d3f5;border-radius:18px;padding:14px 18px;
+  cursor:pointer;margin-bottom:12px;transition:all 0.2s;
+  font-family:'Nunito',sans-serif;
+}
+.f-traslado-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(100,130,220,0.18);border-color:#a0b4f0;}
+.f-traslado-icon{font-size:1.4rem;flex-shrink:0;}
+.f-traslado-txt{flex:1;text-align:left;font-size:0.9rem;font-weight:800;color:#3a4fa0;}
+.f-traslado-arrow{font-size:1rem;color:#8090c0;font-weight:800;}
+
+/* ── MODAL TRASLADO ── */
+.tras-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:500;
+  display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
+@media(min-width:600px){.tras-overlay{align-items:center;padding:20px;}}
+.tras-modal{background:#fff;border-radius:28px 28px 0 0;width:100%;max-width:480px;
+  overflow:hidden;box-shadow:0 -10px 50px rgba(0,0,0,0.25);
+  animation:trasup 0.3s cubic-bezier(0.34,1.4,0.64,1);}
+@media(min-width:600px){.tras-modal{border-radius:28px;animation:trssci 0.3s ease;}}
+@keyframes trasup{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes trssci{from{transform:scale(0.88);opacity:0}to{transform:scale(1);opacity:1}}
+.tras-head{
+  background:linear-gradient(135deg,#3a4fa0,#5c73d4,#7c93e8);
+  padding:22px 20px 18px;text-align:center;position:relative;}
+.tras-head-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.18);
+  border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.tras-head-close:hover{background:rgba(255,255,255,0.3);}
+.tras-head-emoji{font-size:2.2rem;display:block;margin-bottom:6px;}
+.tras-head-title{font-family:'Pacifico',cursive;color:#fff;font-size:1.3rem;margin-bottom:3px;}
+.tras-head-sub{color:rgba(255,255,255,0.72);font-size:0.75rem;font-weight:600;}
+.tras-body{padding:20px 18px 24px;}
+
+/* saldos actuales */
+.tras-saldos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;}
+.tras-saldo-card{background:#f8f9ff;border:1.5px solid #e0e6f8;border-radius:14px;
+  padding:10px 8px;text-align:center;transition:all 0.2s;}
+.tras-saldo-card.selected-from{border-color:#e05c5c;background:#fff5f5;box-shadow:0 0 0 2px rgba(224,92,92,0.2);}
+.tras-saldo-card.selected-to{border-color:#3cb371;background:#f0fdf4;box-shadow:0 0 0 2px rgba(60,179,113,0.2);}
+.tras-saldo-icon{font-size:1.2rem;margin-bottom:3px;}
+.tras-saldo-lbl{font-size:0.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.tras-saldo-val{font-family:'DM Mono',monospace;font-size:0.85rem;font-weight:700;color:var(--text);}
+
+/* flecha animada */
+.tras-arrow-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.tras-select-cuenta{flex:1;background:#fff;border:1.5px solid var(--border);border-radius:11px;
+  padding:11px 14px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;
+  color:var(--text);outline:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b0a39a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+  transition:border-color 0.2s;}
+.tras-select-cuenta.origen:focus{border-color:#e05c5c;}
+.tras-select-cuenta.destino:focus{border-color:#3cb371;}
+.tras-arrow-mid{
+  font-size:1.3rem;flex-shrink:0;
+  animation:tras-pulse 1.4s ease-in-out infinite;}
+@keyframes tras-pulse{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.25);opacity:1}}
+
+/* monto y fecha */
+.tras-field-lbl{font-size:11.5px;font-weight:800;color:var(--text);opacity:0.7;margin-bottom:5px;display:block;}
+.tras-inp{background:#fff;border:1.5px solid var(--border);border-radius:11px;
+  padding:11px 15px;font-family:'Nunito',sans-serif;font-size:14px;
+  color:var(--text);width:100%;outline:none;font-weight:600;
+  transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:12px;}
+.tras-inp:focus{border-color:#5c73d4;box-shadow:0 0 0 3px rgba(92,115,212,0.12);}
+
+/* preview resultado */
+.tras-preview{background:linear-gradient(135deg,#f0f4ff,#f4f8ff);
+  border:1.5px solid #c5d3f5;border-radius:14px;padding:14px;
+  margin-bottom:14px;display:none;}
+.tras-preview.show{display:block;}
+.tras-preview-title{font-size:0.7rem;font-weight:800;color:#3a4fa0;text-transform:uppercase;
+  letter-spacing:0.5px;margin-bottom:10px;}
+.tras-preview-row{display:flex;align-items:center;justify-content:space-between;
+  font-size:12.5px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.06);}
+.tras-preview-row:last-child{border-bottom:none;padding-top:8px;}
+.tras-preview-lbl{color:var(--muted);font-weight:700;}
+.tras-preview-val{font-family:'DM Mono',monospace;font-weight:700;}
+.tras-preview-val.red{color:#e53935;}
+.tras-preview-val.green{color:#2e7d32;}
+.tras-warn{background:#fff8e1;border:1.5px solid #ffe082;border-radius:11px;
+  padding:10px 13px;font-size:12px;font-weight:700;color:#f57f17;
+  margin-bottom:12px;display:none;line-height:1.5;}
+.tras-warn.show{display:block;}
+
+/* botón confirmar */
+.tras-confirm-btn{width:100%;background:linear-gradient(135deg,#5c73d4,#3a4fa0);color:#fff;
+  border:none;border-radius:14px;padding:14px;font-family:'Nunito',sans-serif;
+  font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 5px 18px rgba(60,80,160,0.28);}
+.tras-confirm-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(60,80,160,0.38);}
+.tras-confirm-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+
+.f-mov-amount.tras-pay{color:#5c73d4;}
+.f-mov-item.tras-mov{border-color:#c5d3f5;background:linear-gradient(135deg,#f8f9ff,#fff);}
 .f-toast{position:fixed;bottom:24px;right:16px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:12px 18px;font-size:13px;font-weight:700;z-index:600;box-shadow:0 6px 28px rgba(58,46,40,0.1);transform:translateY(80px);opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);}
 .f-toast.show{transform:translateY(0);opacity:1;}
 .f-toast.ing{border-color:#a8dfc0;color:var(--accent);}
@@ -632,6 +729,14 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
       <div class="tc-historial-title">💳 Historial de pagos a TC</div>
       <div id="tc-historial-list"></div>
     </div>
+
+    <!-- BOTÓN TRASLADO -->
+    <button class="f-traslado-btn" onclick="openTrasladoModal()">
+      <span class="f-traslado-icon">🔄</span>
+      <span class="f-traslado-txt">Trasladar dinero entre cuentas</span>
+      <span class="f-traslado-arrow">→</span>
+    </button>
+
     <div class="f-panels">
       <div class="f-panel">
         <div class="f-panel-title">📝 Registrar movimiento</div>
@@ -728,6 +833,88 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);min-height:100vh;ov
         <div class="tc-preview-row" id="tc-prev-cuenta-row"><span class="tc-preview-lbl">Saldo cuenta después</span><span class="tc-preview-val" id="tc-prev-cuenta-saldo">$0</span></div>
       </div>
       <button class="tc-confirm-btn" id="tc-confirm-btn" onclick="confirmarPagoTC()" disabled>💳 Confirmar pago</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MODAL TRASLADO ═══════════ -->
+<div class="tras-overlay" id="tras-overlay" style="display:none;" onclick="closeTrasladoOut(event)">
+  <div class="tras-modal">
+    <div class="tras-head">
+      <button class="tras-head-close" onclick="closeTrasladoModal()">✕</button>
+      <span class="tras-head-emoji">🔄</span>
+      <div class="tras-head-title">Trasladar Dinero</div>
+      <div class="tras-head-sub">Mueve fondos entre tus cuentas sin perder el registro</div>
+    </div>
+    <div class="tras-body">
+
+      <!-- Saldos actuales -->
+      <div class="tras-saldos" id="tras-saldos-grid">
+        <div class="tras-saldo-card" id="tscard-efectivo">
+          <div class="tras-saldo-icon">💵</div>
+          <div class="tras-saldo-lbl">Efectivo</div>
+          <div class="tras-saldo-val" id="tsval-efectivo">$0</div>
+        </div>
+        <div class="tras-saldo-card" id="tscard-nequi">
+          <div class="tras-saldo-icon">🟣</div>
+          <div class="tras-saldo-lbl">Nequi</div>
+          <div class="tras-saldo-val" id="tsval-nequi">$0</div>
+        </div>
+        <div class="tras-saldo-card" id="tscard-davi">
+          <div class="tras-saldo-icon">🔴</div>
+          <div class="tras-saldo-lbl">Daviplata</div>
+          <div class="tras-saldo-val" id="tsval-davi">$0</div>
+        </div>
+      </div>
+
+      <!-- Origen → Destino -->
+      <div class="tras-arrow-row">
+        <select class="tras-select-cuenta origen" id="tras-origen" onchange="trasUpdate()">
+          <option value="">Origen ↑</option>
+          <option value="efectivo">💵 Efectivo</option>
+          <option value="nequi">🟣 Nequi</option>
+          <option value="davi">🔴 Daviplata</option>
+        </select>
+        <span class="tras-arrow-mid">➜</span>
+        <select class="tras-select-cuenta destino" id="tras-destino" onchange="trasUpdate()">
+          <option value="">Destino ↓</option>
+          <option value="efectivo">💵 Efectivo</option>
+          <option value="nequi">🟣 Nequi</option>
+          <option value="davi">🔴 Daviplata</option>
+        </select>
+      </div>
+
+      <!-- Monto -->
+      <label class="tras-field-lbl">¿Cuánto vas a trasladar?</label>
+      <input class="tras-inp" id="tras-monto" type="number" placeholder="$0" min="0" inputmode="numeric" oninput="trasUpdate()">
+
+      <!-- Fecha -->
+      <label class="tras-field-lbl">Fecha</label>
+      <input class="tras-inp" id="tras-fecha" type="date">
+
+      <!-- Advertencia -->
+      <div class="tras-warn" id="tras-warn"></div>
+
+      <!-- Preview -->
+      <div class="tras-preview" id="tras-preview">
+        <div class="tras-preview-title">📋 Vista previa del traslado</div>
+        <div class="tras-preview-row">
+          <span class="tras-preview-lbl" id="tras-prev-origen-lbl">Origen después</span>
+          <span class="tras-preview-val red" id="tras-prev-origen-val">$0</span>
+        </div>
+        <div class="tras-preview-row">
+          <span class="tras-preview-lbl" id="tras-prev-destino-lbl">Destino después</span>
+          <span class="tras-preview-val green" id="tras-prev-destino-val">$0</span>
+        </div>
+        <div class="tras-preview-row">
+          <span class="tras-preview-lbl">Total entre ambas</span>
+          <span class="tras-preview-val" id="tras-prev-total" style="color:#3a4fa0;">$0</span>
+        </div>
+      </div>
+
+      <button class="tras-confirm-btn" id="tras-confirm-btn" onclick="confirmarTraslado()" disabled>
+        🔄 Confirmar traslado
+      </button>
     </div>
   </div>
 </div>
@@ -1545,7 +1732,29 @@ function fOnCuotas(){var v=document.getElementById('f-mov-cuotas').value;documen
 function fUpdateHint(){var valor=parseFloat(document.getElementById('f-mov-valor').value)||0;var sel=document.getElementById('f-mov-cuotas').value;var n=sel==='otro'?(parseInt(document.getElementById('f-mov-cuotas-num').value)||0):parseInt(sel)||1;var hint=document.getElementById('f-hint'),cuenta=document.getElementById('f-mov-cuenta').value;if(fTipo==='gasto'&&cuenta==='tc'&&valor>0&&n>1){hint.innerHTML='💡 Cuota: <strong>'+fFmt(valor/n)+'</strong> × '+n+' meses = '+fFmt(valor);hint.style.display='block';}else hint.style.display='none';}
 function fIniciar(){var efectivo=parseFloat(document.getElementById('fi-efectivo').value)||0;var nequi=parseFloat(document.getElementById('fi-nequi').value)||0;var davi=parseFloat(document.getElementById('fi-davi').value)||0;var tcGasto=parseFloat(document.getElementById('fi-tc-gasto').value)||0;var tcCupo=parseFloat(document.getElementById('fi-tc-cupo').value)||0;fState={efectivo,nequi,davi,tcGasto,tcCupo,ingresos:0,gastos:0,movimientos:[],pagosTc:[]};document.getElementById('f-mov-fecha').value=new Date().toISOString().split('T')[0];fSaveState();document.getElementById('f-setup').classList.remove('visible');document.getElementById('f-app').classList.add('visible');document.getElementById('f-week-lbl').textContent=fGetWeekLabel();fCheckReminder();fRender();}
 function fRender(){var total=fState.efectivo+fState.nequi+fState.davi-fState.tcGasto;document.getElementById('f-total-valor').textContent=fFmt(total);document.getElementById('f-total-valor').className='f-total-val '+(total>=0?'pos':'neg');document.getElementById('f-total-ing').textContent=fFmtSigned(fState.ingresos);document.getElementById('f-total-gas').textContent='-'+fFmt(fState.gastos);document.getElementById('fv-efectivo').textContent=fFmt(fState.efectivo);document.getElementById('fv-nequi').textContent=fFmt(fState.nequi);document.getElementById('fv-davi').textContent=fFmt(fState.davi);document.getElementById('fv-tc-gasto').textContent=fFmt(fState.tcGasto)+' utili.';document.getElementById('fv-tc-cupo').textContent='Cupo: '+fFmt(fState.tcCupo);var totalCupo=fState.tcGasto+fState.tcCupo;var pct=totalCupo>0?Math.round((fState.tcGasto/totalCupo)*100):0;document.getElementById('f-tc-pct').textContent=pct+'%';var bar=document.getElementById('f-tc-bar');bar.style.width=pct+'%';bar.style.background=pct>80?'var(--accent2)':pct>50?'var(--accent3)':'var(--credit)';document.getElementById('f-dias-pago').textContent=fDiasPago();fRenderMovimientos();fRenderTips();fRenderHistorialTC();}
-function fRenderMovimientos(){var list=document.getElementById('f-mov-list');document.getElementById('f-mov-count').textContent=(fState.movimientos||[]).length+' registros';if(!fState.movimientos||!fState.movimientos.length){list.innerHTML='<div class="f-mov-empty">Sin movimientos aún.</div>';return;}var lbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata',tc:'💳 TC'};list.innerHTML=[...fState.movimientos].reverse().map(function(m){var meta=m.fecha+' · '+(lbl[m.cuenta]||m.cuenta);if(m.cuotas&&m.cuotas>1)meta+=' · '+m.cuotas+' cuotas (~'+fFmt(m.valor/m.cuotas)+'/mes)';var esTCPago=m.tipo==='tc-pago';return '<div class="f-mov-item'+(esTCPago?' tc-pago-mov':'')+'"><div class="f-mov-left"><div class="f-mov-desc">'+(m.desc||'Sin descripción')+'</div><div class="f-mov-meta">'+meta+'</div></div><div class="f-mov-amount '+(esTCPago?'tc-pay':m.tipo==='ingreso'?'ing':'gas')+'">'+(esTCPago?'↩ TC':m.tipo==='ingreso'?'+':'-')+fFmt(m.valor)+'</div></div>';}).join('');}
+function fRenderMovimientos(){
+  var list=document.getElementById('f-mov-list');
+  document.getElementById('f-mov-count').textContent=(fState.movimientos||[]).length+' registros';
+  if(!fState.movimientos||!fState.movimientos.length){list.innerHTML='<div class="f-mov-empty">Sin movimientos aún.</div>';return;}
+  var lbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata',tc:'💳 TC'};
+  list.innerHTML=[...fState.movimientos].reverse().map(function(m){
+    var esTraslado = m.tipo==='traslado';
+    var esTCPago   = m.tipo==='tc-pago';
+    var meta = m.fecha+' · ';
+    if(esTraslado){
+      // cuenta guarda "origen>destino"
+      var partes = (m.cuenta||'').split('>');
+      meta += (lbl[partes[0]]||partes[0])+' → '+(lbl[partes[1]]||partes[1]);
+    } else {
+      meta += (lbl[m.cuenta]||m.cuenta);
+      if(m.cuotas&&m.cuotas>1) meta+=' · '+m.cuotas+' cuotas (~'+fFmt(m.valor/m.cuotas)+'/mes)';
+    }
+    var amountClass = esTraslado ? 'tras-pay' : esTCPago ? 'tc-pay' : m.tipo==='ingreso' ? 'ing' : 'gas';
+    var amountPre   = esTraslado ? '⇄ ' : esTCPago ? '↩ TC' : m.tipo==='ingreso' ? '+' : '-';
+    var itemClass   = 'f-mov-item'+(esTCPago?' tc-pago-mov':esTraslado?' tras-mov':'');
+    return '<div class="'+itemClass+'"><div class="f-mov-left"><div class="f-mov-desc">'+(m.desc||'Sin descripción')+'</div><div class="f-mov-meta">'+meta+'</div></div><div class="f-mov-amount '+amountClass+'">'+amountPre+fFmt(m.valor)+'</div></div>';
+  }).join('');
+}
 function fRenderHistorialTC(){var pagosTc=fState.pagosTc||[];var container=document.getElementById('tc-historial');var list=document.getElementById('tc-historial-list');if(!pagosTc.length){container.style.display='none';return;}container.style.display='block';list.innerHTML=[...pagosTc].reverse().map(function(p){var tipoLabel=p.tipoPago==='total'?'<span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Pago total</span>':'<span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:800;">Abono parcial</span>';var cuentaLbl={efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'};return '<div class="tc-pago-item"><div class="tc-pago-left"><div class="tc-pago-tipo">'+tipoLabel+'</div><div class="tc-pago-meta">'+p.fecha+' · desde '+(cuentaLbl[p.cuenta]||p.cuenta)+'</div></div><div class="tc-pago-amount">'+fFmt(p.monto)+' ↩</div></div>';}).join('');}
 function fRenderTips(){var tips=[];var totalCupo=fState.tcGasto+fState.tcCupo;var pct=totalCupo>0?(fState.tcGasto/totalCupo)*100:0;var dia=new Date().getDate();if(dia>=13&&dia<=18){if(dia===16)tips.push({icon:'🚨',text:'<strong>HOY es el día de pago de tu TC.</strong>'});else if(dia<16)tips.push({icon:'📅',text:'El pago de tu TC es el <strong>16 de este mes</strong> (en '+(16-dia)+' días).'});else tips.push({icon:'⏰',text:'El 16 ya pasó. Cada día genera intereses.'});}if(pct>80)tips.push({icon:'🚨',text:'Llevas el <strong>'+Math.round(pct)+'%</strong> del cupo usado.'});else if(pct>50)tips.push({icon:'💳',text:'Usas el <strong>'+Math.round(pct)+'%</strong> del cupo.'});var balance=fState.ingresos-fState.gastos;if(balance<0)tips.push({icon:'📉',text:'Esta semana gastas más de lo que ingresas en <strong>'+fFmt(Math.abs(balance))+'</strong>.'});if(fState.ingresos>0){var tasa=Math.round((fState.gastos/fState.ingresos)*100);if(tasa>80)tips.push({icon:'⚠️',text:'Gastas el <strong>'+tasa+'%</strong> de tus ingresos.'});else if(fState.gastos>0)tips.push({icon:'✅',text:'¡Buen ritmo! Solo el <strong>'+tasa+'%</strong> de gasto sobre ingresos.'});}if(invState.abierto){var g=calcGanancias();if(g.ingreso>0)tips.push({icon:'🍫',text:'Ganancia del día: <strong>$'+Math.abs(g.ganancia).toLocaleString('es-CO')+'</strong> (margen '+g.margen+'%).'});}if(!tips.length)tips.push({icon:'💡',text:'Registra tus movimientos para recibir sugerencias personalizadas.'});document.getElementById('f-tips').innerHTML=tips.slice(0,5).map(function(t){return '<div class="f-tip"><span class="f-tip-icon">'+t.icon+'</span><span>'+t.text+'</span></div>';}).join('');}
 function fRegistrar(){var desc=document.getElementById('f-mov-desc').value.trim();var valor=parseFloat(document.getElementById('f-mov-valor').value);var cuenta=document.getElementById('f-mov-cuenta').value;var fecha=document.getElementById('f-mov-fecha').value;if(!valor||valor<=0){showFToast('Ingresa un valor válido','warn');return;}if(!cuenta){showFToast('Selecciona el medio de pago','warn');return;}var cuotas=1;if(fTipo==='gasto'&&cuenta==='tc'){var sel=document.getElementById('f-mov-cuotas').value;cuotas=sel==='otro'?(parseInt(document.getElementById('f-mov-cuotas-num').value)||1):parseInt(sel)||1;}if(fTipo==='ingreso'){if(cuenta==='efectivo')fState.efectivo+=valor;else if(cuenta==='nequi')fState.nequi+=valor;else if(cuenta==='davi')fState.davi+=valor;fState.ingresos+=valor;var lbl={efectivo:'Efectivo',nequi:'Nequi',davi:'Daviplata'};showFToast('+'+fFmt(valor)+' en '+(lbl[cuenta]||cuenta),'ing');}else{if(cuenta==='efectivo')fState.efectivo=Math.max(0,fState.efectivo-valor);else if(cuenta==='nequi')fState.nequi=Math.max(0,fState.nequi-valor);else if(cuenta==='davi')fState.davi=Math.max(0,fState.davi-valor);else if(cuenta==='tc'){fState.tcGasto+=valor;fState.tcCupo=Math.max(0,fState.tcCupo-valor);}fState.gastos+=valor;var msg2='-'+fFmt(valor);if(cuenta==='tc')msg2+=cuotas>1?' TC · '+cuotas+' cuotas':' TC · contado';else msg2+=' '+{efectivo:'💵',nequi:'🟣',davi:'🔴'}[cuenta];showFToast(msg2,'gas');}if(!fState.movimientos)fState.movimientos=[];fState.movimientos.push({desc:desc||'Sin descripción',valor,tipo:fTipo,cuenta,cuotas,fecha:fecha||new Date().toISOString().split('T')[0]});document.getElementById('f-mov-desc').value='';document.getElementById('f-mov-valor').value='';document.getElementById('f-hint').style.display='none';fSaveState();fRender();}
@@ -1564,6 +1773,133 @@ function closeTCModalOut(e){if(e.target===document.getElementById('tc-modal-over
 function tcSetTipo(tipo){tcTipoPago=tipo;var btnTotal=document.getElementById('tc-btn-total'),btnParcial=document.getElementById('tc-btn-parcial'),campoMonto=document.getElementById('tc-field-monto');if(tipo==='total'){btnTotal.className='tc-tipo-btn total-mode';btnParcial.className='tc-tipo-btn';campoMonto.style.display='none';document.getElementById('tc-monto').value=fState.tcGasto;}else{btnParcial.className='tc-tipo-btn parcial-mode';btnTotal.className='tc-tipo-btn';campoMonto.style.display='block';document.getElementById('tc-monto').value='';}tcUpdatePreview();}
 function tcUpdatePreview(){var cuenta=document.getElementById('tc-cuenta').value;var montoInput=parseFloat(document.getElementById('tc-monto').value)||0;var monto=tcTipoPago==='total'?fState.tcGasto:montoInput;if(!cuenta||monto<=0){document.getElementById('tc-preview').classList.remove('show');document.getElementById('tc-warning').classList.remove('show');document.getElementById('tc-confirm-btn').disabled=true;return;}var saldoCuenta=cuenta==='efectivo'?fState.efectivo:cuenta==='nequi'?fState.nequi:cuenta==='davi'?fState.davi:0;var nuevoSaldoTC=Math.max(0,fState.tcGasto-monto);var nuevoCupo=fState.tcCupo+monto;var nuevoSaldoCuenta=saldoCuenta-monto;document.getElementById('tc-prev-monto').textContent=fFmt(monto);document.getElementById('tc-prev-nuevo-saldo').textContent=fFmt(nuevoSaldoTC);document.getElementById('tc-prev-cupo').textContent=fFmt(nuevoCupo);document.getElementById('tc-prev-cuenta-saldo').textContent=fFmt(Math.abs(nuevoSaldoCuenta));document.getElementById('tc-prev-cuenta-saldo').className='tc-preview-val '+(nuevoSaldoCuenta>=0?'green':'red');document.getElementById('tc-preview').classList.add('show');var warn=document.getElementById('tc-warning');if(monto>fState.tcGasto){warn.innerHTML='⚠️ Estás pagando más de lo que debes.';warn.classList.add('show');}else if(nuevoSaldoCuenta<0){warn.innerHTML='⚠️ No tienes suficiente saldo. Déficit: '+fFmt(Math.abs(nuevoSaldoCuenta));warn.classList.add('show');}else{warn.classList.remove('show');}document.getElementById('tc-confirm-btn').disabled=false;}
 function confirmarPagoTC(){var cuenta=document.getElementById('tc-cuenta').value;var montoRaw=parseFloat(document.getElementById('tc-monto').value)||0;var monto=tcTipoPago==='total'?fState.tcGasto:montoRaw;var fecha=document.getElementById('tc-fecha').value||new Date().toISOString().split('T')[0];if(!cuenta){showFToast('Selecciona desde qué cuenta pagaste','warn');return;}if(monto<=0){showFToast('El monto debe ser mayor a cero','warn');return;}var montoReal=Math.min(monto,fState.tcGasto);if(cuenta==='efectivo')fState.efectivo=Math.max(0,fState.efectivo-montoReal);else if(cuenta==='nequi')fState.nequi=Math.max(0,fState.nequi-montoReal);else if(cuenta==='davi')fState.davi=Math.max(0,fState.davi-montoReal);fState.tcGasto=Math.max(0,fState.tcGasto-montoReal);fState.tcCupo=fState.tcCupo+montoReal;if(!fState.movimientos)fState.movimientos=[];fState.movimientos.push({desc:tcTipoPago==='total'?'💳 Pago total TC':'💳 Abono a TC',valor:montoReal,tipo:'tc-pago',cuenta:cuenta,cuotas:1,fecha:fecha});if(!fState.pagosTc)fState.pagosTc=[];fState.pagosTc.push({monto:montoReal,tipoPago:tcTipoPago,cuenta:cuenta,fecha:fecha});fSaveState();fRender();closeTCModal();var msgTipo=tcTipoPago==='total'?'✅ Pago total TC':'💳 Abono TC';showFToast(msgTipo+' · '+fFmt(montoReal)+' desde '+({efectivo:'💵 Efectivo',nequi:'🟣 Nequi',davi:'🔴 Daviplata'}[cuenta]||cuenta),'tc');}
+
+/* ════════════════════════════════════════
+   TRASLADO ENTRE CUENTAS
+════════════════════ */
+var CUENTAS_LABEL = {efectivo:'💵 Efectivo', nequi:'🟣 Nequi', davi:'🔴 Daviplata'};
+var CUENTAS_COLOR = {efectivo:'var(--accent)', nequi:'var(--nequi)', davi:'var(--davi)'};
+
+function openTrasladoModal(){
+  // Actualizar saldos en mini-cards
+  document.getElementById('tsval-efectivo').textContent = fFmt(fState.efectivo||0);
+  document.getElementById('tsval-nequi').textContent    = fFmt(fState.nequi||0);
+  document.getElementById('tsval-davi').textContent     = fFmt(fState.davi||0);
+  // Resetear campos
+  document.getElementById('tras-origen').value  = '';
+  document.getElementById('tras-destino').value = '';
+  document.getElementById('tras-monto').value   = '';
+  document.getElementById('tras-fecha').value   = new Date().toISOString().split('T')[0];
+  document.getElementById('tras-preview').classList.remove('show');
+  document.getElementById('tras-warn').classList.remove('show');
+  document.getElementById('tras-confirm-btn').disabled = true;
+  // Limpiar highlight de cards
+  ['efectivo','nequi','davi'].forEach(function(c){
+    document.getElementById('tscard-'+c).className='tras-saldo-card';
+  });
+  document.getElementById('tras-overlay').style.display = 'flex';
+}
+
+function closeTrasladoModal(){
+  document.getElementById('tras-overlay').style.display = 'none';
+}
+
+function closeTrasladoOut(e){
+  if(e.target === document.getElementById('tras-overlay')) closeTrasladoModal();
+}
+
+function trasUpdate(){
+  var origen  = document.getElementById('tras-origen').value;
+  var destino = document.getElementById('tras-destino').value;
+  var monto   = parseFloat(document.getElementById('tras-monto').value)||0;
+
+  // Highlight de cards
+  ['efectivo','nequi','davi'].forEach(function(c){
+    var card = document.getElementById('tscard-'+c);
+    card.className = 'tras-saldo-card';
+    if(c===origen)  card.className += ' selected-from';
+    if(c===destino) card.className += ' selected-to';
+  });
+
+  var warn    = document.getElementById('tras-warn');
+  var preview = document.getElementById('tras-preview');
+  var btnConf = document.getElementById('tras-confirm-btn');
+
+  warn.classList.remove('show');
+  preview.classList.remove('show');
+  btnConf.disabled = true;
+
+  if(!origen || !destino || monto <= 0) return;
+
+  // Validar mismo origen/destino
+  if(origen === destino){
+    warn.innerHTML = '⚠️ El origen y destino no pueden ser la misma cuenta.';
+    warn.classList.add('show');
+    return;
+  }
+
+  // Saldo origen
+  var saldoOrigen = fState[origen] || 0;
+
+  // Advertencia saldo insuficiente
+  if(monto > saldoOrigen){
+    warn.innerHTML = '⚠️ Saldo insuficiente en '+CUENTAS_LABEL[origen]+'. Disponible: '+fFmt(saldoOrigen);
+    warn.classList.add('show');
+    // Igual mostrar preview pero deshabilitar
+    renderTrasPreview(origen, destino, monto, saldoOrigen);
+    return;
+  }
+
+  warn.classList.remove('show');
+  renderTrasPreview(origen, destino, monto, saldoOrigen);
+  btnConf.disabled = false;
+}
+
+function renderTrasPreview(origen, destino, monto, saldoOrigen){
+  var saldoDestino = fState[destino] || 0;
+  var nuevoOrigen  = saldoOrigen - monto;
+  var nuevoDestino = saldoDestino + monto;
+  var totalAmbas   = saldoOrigen + saldoDestino; // no cambia
+
+  document.getElementById('tras-prev-origen-lbl').textContent  = CUENTAS_LABEL[origen]+' después';
+  document.getElementById('tras-prev-destino-lbl').textContent = CUENTAS_LABEL[destino]+' después';
+  document.getElementById('tras-prev-origen-val').textContent  = fFmt(nuevoOrigen);
+  document.getElementById('tras-prev-destino-val').textContent = fFmt(nuevoDestino);
+  document.getElementById('tras-prev-total').textContent       = fFmt(totalAmbas);
+
+  document.getElementById('tras-preview').classList.add('show');
+}
+
+function confirmarTraslado(){
+  var origen  = document.getElementById('tras-origen').value;
+  var destino = document.getElementById('tras-destino').value;
+  var monto   = parseFloat(document.getElementById('tras-monto').value)||0;
+  var fecha   = document.getElementById('tras-fecha').value || new Date().toISOString().split('T')[0];
+
+  if(!origen||!destino||monto<=0||origen===destino) return;
+  var saldoOrigen = fState[origen]||0;
+  if(monto > saldoOrigen){ showFToast('Saldo insuficiente en '+CUENTAS_LABEL[origen],'warn'); return; }
+
+  // Mover dinero
+  fState[origen]  = saldoOrigen - monto;
+  fState[destino] = (fState[destino]||0) + monto;
+
+  // Registrar en movimientos como traslado (neutro — no afecta ingresos/gastos totales)
+  if(!fState.movimientos) fState.movimientos=[];
+  fState.movimientos.push({
+    desc: '🔄 Traslado '+CUENTAS_LABEL[origen]+' → '+CUENTAS_LABEL[destino],
+    valor: monto,
+    tipo: 'traslado',
+    cuenta: origen+'>'+destino,
+    cuotas: 1,
+    fecha: fecha
+  });
+
+  fSaveState();
+  fRender();
+  closeTrasladoModal();
+  showFToast('🔄 '+fFmt(monto)+' trasladado de '+CUENTAS_LABEL[origen]+' a '+CUENTAS_LABEL[destino], 'ing');
+}
 
 /* ════════════════════════════════════════
    INIT
